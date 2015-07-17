@@ -1,0 +1,81 @@
+@import 'compass';
+@import 'modular-scale';
+@import 'susy';
+@import 'breakpoint';
+
+.fullWidthContainer {
+  @include clearfix;
+  @include container(100%);
+  @include span(1 of 1);
+}
+
+hence-comp-ui-card {
+  $ms-ratio: $minor-second;
+  $dark-blue: #000080;
+
+  .padded {
+    padding: ms(0.25);
+  }
+
+  #wrapper {
+    @include container(1140px);
+    border: 1px solid #000;
+    margin: ms(0.25);
+  }
+
+  #image {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  #title {
+    // xs view
+    @include breakpoint(320px) {
+      @include span(5 of 6);
+    }
+
+    // tablet view
+    @include breakpoint(600px) {
+      @include span(4 of 6);
+    }
+
+    // desktop view
+    @include breakpoint(900px) {
+      @include span(9 of 10);
+    }
+
+    color: $dark-blue;
+    font-size: ms(2);
+    padding: ms(2 * -0.75); // a margin of 25% the font-size
+  }
+
+  #description {
+    @extend .fullWidthContainer;
+
+    padding: ms(0.25);
+    font-size: ms(0.25);
+  }
+
+  #options {
+    // xs view
+    @include breakpoint(320px) {
+      @include span(1 of 6 last);
+    }
+
+    // tablet view
+    @include breakpoint(600px) {
+      @include span(2 of 6 last);
+    }
+
+    // desktop view
+    @include breakpoint(900px) {
+      @include span(1 of 10 last);
+    }
+  }
+
+  #callToAction {
+    @extend .fullWidthContainer;
+  }
+}

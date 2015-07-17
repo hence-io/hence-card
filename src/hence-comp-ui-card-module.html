@@ -1,0 +1,47 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<!--
+An element providing a solution to no problem in particular.
+
+Example:
+
+    <hence-comp-ui-card></hence-comp-ui-card>
+
+@demo
+-->
+<dom-module id="hence-comp-ui-card">
+  <style>
+    /* Inherent styles for the component wrapper, since this only works within the template */
+    :host {
+
+    }
+  </style>
+  <template>
+    <!-- local DOM for your element -->
+    <div id="wrapper">
+      <template is="dom-if" if="{{image}}">
+        <div id="image">
+          <img src="{{image}}" alt="">
+        </div>
+      </template>
+      <div id="title">{{title}}</div>
+      <template id="options" is="dom-if" if="{{options}}">
+        <button id="toggleOptions" on-tap="eventToggleOptions">...</button>
+        <template is="dom-if" if="{{displayOptions}}">
+          <template is="dom-repeat" items="{{options}}" as="opt">
+            <span class="link"><a on-tap="eventOptionAction">{{opt.label}}</a></span>
+          </template>
+        </template>
+      </template>
+      <div id="description">
+        <template is="dom-if" if="{{description}}">{{description}}</template>
+        <template is="dom-if" if="{{!description}}">
+          <content></content>
+        </template>
+      </div>
+      <tempalte id="callToAction" is="dom-if" if="{{callToAction.label}}">
+        <button on-tap="eventCallToAction">{{callToAction.label}}</button>
+      </tempalte>
+    </div>
+  </template>
+</dom-module>
