@@ -65,7 +65,7 @@ let HenceCompUiCard = HenceComp({
   /**
    * @param {Event} e The event executing this function
    */
-    eventToggleOptions(e) {
+  eventToggleOptions(e) {
     // Update the property, using this.set to fire any expecting listeners
     this.set('displayOptions', !this.displayOptions);
     console.log('this.displayOptions is now', this.displayOptions);
@@ -74,11 +74,11 @@ let HenceCompUiCard = HenceComp({
   /**
    * @param {Event} e The event executing this function
    */
-    eventCallToAction(e) {
+  eventCallToAction(e) {
     this.callToAction.action();
   },
 
-  eventOptionAction(e){
+  eventOptionAction(e) {
     let opt = e.model.opt;
     console.log(e, opt, opt.action);
     opt.action();
@@ -93,7 +93,7 @@ let HenceCompUiCard = HenceComp({
    * ready, but parents are not. This is the point where you should make modifications to the DOM (when  necessary),
    * or kick off any processes the element wants to perform.
    */
-    ready() {
+  ready() {
     // WARNING, updating DOM elements HERE may override variable revisions in the factoryImpl function if created
     // with the createElement function,leveraging the components defaults instead. If the element is embedded, no issue.
 
@@ -104,7 +104,7 @@ let HenceCompUiCard = HenceComp({
    * perform any work related to your element's visual state or active behavior (measuring sizes, beginning animations,
    * loading resources, etc).
    */
-    attached() {
+  attached() {
     let self = this;
     // WARNING, updating DOM elements HERE may override variable revisions in the factoryImpl function if created
     // with the createElement function,leveraging the components defaults instead. If the element is embedded, no issue.
@@ -114,15 +114,15 @@ let HenceCompUiCard = HenceComp({
     }
 
     if (self.options.length) {
-      self.options.forEach(function (opt) {
+      self.options.forEach((opt)=> {
         self.set(`event_${opt.action.name}`, opt.action);
       });
     }
 
-    this.async(function () {
+    this.async(()=> {
       // access sibling or parent elements here
     });
-  },
+  }
 
 
   /*********************************************************************************************************************

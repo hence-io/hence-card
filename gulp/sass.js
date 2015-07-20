@@ -14,7 +14,6 @@ module.exports = function(browserSync) {
   // Compile SASS with sourcemaps + livereload.
   gulp.task('sass',['lintsass'], function () {
     return gulp.src(global.paths.sass)
-      .pipe(sourcemaps.init())
       .pipe(compass({
         //config_file: './config.rb',
         sass: global.paths.src,

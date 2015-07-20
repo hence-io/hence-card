@@ -2,14 +2,12 @@ var component = document.querySelector('hence-comp-ui-card');
 
 suite('<hence-comp-ui-card>', function () {
 
-  test('says hello', function () {
-    assert.equal(component.greeting, 'test greeting');
+  test('default title is set', function () {
+    assert.equal(component.title, 'Lorem ipsum dolor sit amet');
   });
 
-  test('says hello', function () {
-    assert.equal(component.sayHello(), 'hence-comp-ui-card says, Hello World!');
-
-    var greetings = component.sayHello('greetings Earthlings');
-    assert.equal(greetings, 'hence-comp-ui-card says, greetings Earthlings');
+  test('toggle menu', function () {
+    component.eventToggleOptions();
+    assert.equal(component.displayOptions, true);
   });
 });

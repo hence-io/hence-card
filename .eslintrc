@@ -24,12 +24,13 @@
       "allow-null"
     ],
     "alert": 0,
+    "consistent-this": 0,
     "no-else-return": 2,
     // "no-lone-blocks": 0, // TODO check if there are real, valid use cases for this in ES 2015+
     "no-throw-literal": 2,
     "no-void": 2,
     "no-undef": 0,
-    "new-cap": [true,false],
+    "new-cap": [2, {"capIsNew":false}],
     "wrap-iife": [
       2,
       "inside"

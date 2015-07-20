@@ -3,34 +3,40 @@
 @import 'susy';
 @import 'breakpoint';
 
-.fullWidthContainer {
+$black : #000;
+
+%fullWidthContainer {
   @include clearfix;
-  @include container(100%);
+  @include container(97%);
   @include span(1 of 1);
 }
 
 hence-comp-ui-card {
-  $ms-ratio: $minor-second;
-  $dark-blue: #000080;
+  $ms-ratio : $minor-second;
+  $dark-blue : #000080;
 
   .padded {
-    padding: ms(0.25);
+    padding : ms(.25);
   }
 
   #wrapper {
-    @include container(1140px);
-    border: 1px solid #000;
-    margin: ms(0.25);
+    @include container(100%);
+    border : 1px solid $black;
+    margin : ms(.25);
   }
 
   #image {
     img {
-      width: 100%;
-      height: auto;
+      height : auto;
+      width  : 100%;
     }
   }
 
   #title {
+    color     : $dark-blue;
+    font-size : ms(2);
+    padding   : ms(2 * -.75); // a margin of 25% the font-size
+
     // xs view
     @include breakpoint(320px) {
       @include span(5 of 6);
@@ -45,17 +51,12 @@ hence-comp-ui-card {
     @include breakpoint(900px) {
       @include span(9 of 10);
     }
-
-    color: $dark-blue;
-    font-size: ms(2);
-    padding: ms(2 * -0.75); // a margin of 25% the font-size
   }
 
   #description {
-    @extend .fullWidthContainer;
-
-    padding: ms(0.25);
-    font-size: ms(0.25);
+    @extend %fullWidthContainer;
+    font-size : ms(.25);
+    padding   : ms(.25);
   }
 
   #options {
@@ -76,6 +77,6 @@ hence-comp-ui-card {
   }
 
   #callToAction {
-    @extend .fullWidthContainer;
+    @extend %fullWidthContainer;
   }
 }

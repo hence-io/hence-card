@@ -1,25 +1,36 @@
-import Component from '../../src/index';
+'use strict';
 
-describe('ES6 component Tests - hence-comp-ui-card', () => {
-  let component;
+import _ from 'lodash';
 
-  beforeEach(() => {
-    component = new Component();
+elementSuite('hence-comp-ui-card', 'unit/index', ()=> {
+  //suite('attributes', ()=> {
+  test('should have a polymer class', (done)=> {
+    // The karma-polymer-test adds some extra function calls to Mocha to work
+    // around the timing issues of setting Polymer attributes. Set the attributes in
+    // the `this.set` callback then check them in the `this.then` callback
+    this.set((element)=> {
+    }).then((element)=> {
+      assert.equal(element.is, 'hence-comp-ui-card');
+      done();
+    });
   });
 
-  afterEach(() => {
-
+  test('should set a title', (done)=> {
+    this.set((element)=> {
+      element.title = 'Test test';
+    }).then((element)=> {
+      assert.equal(element.title, 'Test test');
+      done();
+    });
   });
 
-  it('should have the default greeting property set', () => {
-    expect(component.properties.greeting.value).to.equal('Hello!');
+  test('should be able to enable displaying it\'s options', (done) => {
+    this.set((element)=> {
+      element.eventToggleOptions();
+    }).then((element)=> {
+      assert.equal(element.displayOptions, true);
+      done();
+    });
   });
-
-  it('should sayHello', () => {
-    expect(component.sayHello()).to.equal('hence-comp-ui-card says, Hello World!');
-  });
-
-  it('should have a polymer config', () => {
-    expect(component.polymerOptions().is).to.equal('hence-comp-ui-card');
-  });
+  //});
 });
