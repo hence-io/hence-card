@@ -2,36 +2,47 @@ var gulp = require('gulp');
 var requireDir = require('require-dir');
 
 var srcDir = './src/';
+var tmpDir = './.tmp/';
+
 global.comp = {
   name: 'hence-comp-ui-card'
 };
-
+global.compassOptions = {
+  //config_file: './config.rb',
+  sass: srcDir,
+  css: tmpDir + 'css',
+  require: ['susy', 'modular-scale', 'breakpoint','font-awesome-sass']
+};
 // Specify paths & globbing patterns for tasks.
 global.paths = {
   // HTML sources.
-  'html': srcDir+'**/*.html',
+  'html': srcDir + '**/*.html',
   // Bower
   'bower': './bower_components/',
   // Main JS file
-  'mainjs': srcDir+'index.js',
+  'mainjs': srcDir + 'index.js',
   // JS sources.
-  'js': srcDir+'**/*.js',
+  'js': srcDir + '**/*.js',
   // SASS sources.
-  'sass': srcDir+'**/*.scss',
+  'sass': srcDir + '**/*.scss',
+  // Fonts
+  'fonts': './fonts/**',
   // Image sources.
-  'img': srcDir+'img/*',
+  'img': srcDir + 'img/*',
   // Sources folder.
   'src': srcDir,
   // Compiled CSS folder.
-  'css': srcDir+'css',
+  'css': srcDir + 'css',
   // Distribution folder.
   'dist': './dist/',
   // Temp folder.
-  'tmp': './.tmp/'
+  'tmp': tmpDir,
+  // WCT Test folder
+  'testBehaviour': './test/behaviour/**'
 };
 
 // Require all tasks in the 'gulp' folder.
-requireDir('./gulp', { recurse: false });
+requireDir('./gulp', {recurse: false});
 
 // Default task; start local server & watch for changes.
 gulp.task('default', ['serve']);

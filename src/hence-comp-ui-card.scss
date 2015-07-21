@@ -1,7 +1,13 @@
+// Essentials
 @import 'compass';
 @import 'modular-scale';
 @import 'susy';
 @import 'breakpoint';
+
+// Optional, Font awesome
+@import 'font-awesome-compass';
+@import 'font-awesome';
+$fa-font-path : '../font' !default;
 
 $black : #000;
 
@@ -9,6 +15,8 @@ $black : #000;
   @include clearfix;
   @include container(97%);
   @include span(1 of 1);
+  font-size : ms(.25);
+  padding   : ms(.25);
 }
 
 hence-comp-ui-card {
@@ -22,7 +30,7 @@ hence-comp-ui-card {
   #wrapper {
     @include container(100%);
     border : 1px solid $black;
-    margin : ms(.25);
+    margin : ms(.25) 0;
   }
 
   #image {
@@ -36,7 +44,6 @@ hence-comp-ui-card {
     color     : $dark-blue;
     font-size : ms(2);
     padding   : ms(2 * -.75); // a margin of 25% the font-size
-
     // xs view
     @include breakpoint(320px) {
       @include span(5 of 6);
@@ -53,13 +60,9 @@ hence-comp-ui-card {
     }
   }
 
-  #description {
-    @extend %fullWidthContainer;
-    font-size : ms(.25);
-    padding   : ms(.25);
-  }
+  #optionsWrapper {
+    text-align : right;
 
-  #options {
     // xs view
     @include breakpoint(320px) {
       @include span(1 of 6 last);
@@ -76,7 +79,30 @@ hence-comp-ui-card {
     }
   }
 
+  #toggleOptions {
+    @extend .fa, .fa-ellipsis-v;
+  }
+
+  #options {
+    border   : 1px solid $black;
+    height   : auto;
+    position : absolute;
+    right    : 10px;
+    width    : auto;
+  }
+
+  #description,
   #callToAction {
     @extend %fullWidthContainer;
+  }
+
+  #callToAction {
+    &.right {
+      text-align : right;
+    }
+
+    &.center {
+      text-align : center;
+    }
   }
 }

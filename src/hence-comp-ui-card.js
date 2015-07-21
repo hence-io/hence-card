@@ -5,6 +5,9 @@
 import console from 'consoler';
 import HenceComp from 'hence-comp';
 
+/*import _extend from 'lodash/object/extend';*/
+import _defaults from 'lodash/object/defaults';
+
 let is = 'hence-comp-ui-card';
 
 /**
@@ -37,7 +40,7 @@ let HenceCompUiCard = HenceComp({
     options: {
       type: Array,
       notify: true,
-      value: []
+      value: null
     },
     displayOptions: {
       type: Boolean,
@@ -46,7 +49,7 @@ let HenceCompUiCard = HenceComp({
     callToAction: {
       type: Object,
       notify: true,
-      value: ()=> { return {}; }
+      value: null
     }
   },
 
@@ -68,14 +71,15 @@ let HenceCompUiCard = HenceComp({
   eventToggleOptions(e) {
     // Update the property, using this.set to fire any expecting listeners
     this.set('displayOptions', !this.displayOptions);
-    console.log('this.displayOptions is now', this.displayOptions);
+    console.log('this.displayOptions is now', e, this.displayOptions);
   },
 
   /**
    * @param {Event} e The event executing this function
    */
   eventCallToAction(e) {
-    this.callToAction.action();
+    console.log('eventCallToAction', e, this.callToAction.input);
+    this.callToAction.action(e, this.callToAction.input);
   },
 
   eventOptionAction(e) {
@@ -106,17 +110,36 @@ let HenceCompUiCard = HenceComp({
    */
   attached() {
     let self = this;
+    let $ = self.$;
+    let options = self.options;
+    let callToAction = self.callToAction;
+
     // WARNING, updating DOM elements HERE may override variable revisions in the factoryImpl function if created
     // with the createElement function,leveraging the components defaults instead. If the element is embedded, no issue.
 
+    // If flagged as padded, as the style class for it
     if (self.padded) {
-      self.$.wrapper.classList.add('padded');
+      $.wrapper.classList.add('padded');
     }
 
-    if (self.options.length) {
-      self.options.forEach((opt)=> {
+    // If options were added, fill in their event bindings
+    if (options.length) {
+      options.forEach((opt)=> {
         self.set(`event_${opt.action.name}`, opt.action);
       });
+    }
+
+    // If call to action was provided, sanitize it's input if also provided
+    if (callToAction) {
+      $.callToAction.classList.add(callToAction.align || '');
+
+      if (callToAction.input) {
+        _defaults(callToAction.input, {
+          type: 'text',
+          placeholder: '',
+          label: ''
+        });
+      }
     }
 
     this.async(()=> {

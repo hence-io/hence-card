@@ -13,13 +13,11 @@ module.exports = function(browserSync) {
    */
   // Compile SASS with sourcemaps + livereload.
   gulp.task('sass',['lintsass'], function () {
+    gulp.src(global.paths.fonts)
+      .pipe(gulp.dest(global.paths.tmp + 'fonts'));
+
     return gulp.src(global.paths.sass)
-      .pipe(compass({
-        //config_file: './config.rb',
-        sass: global.paths.src,
-        css: global.paths.tmp + 'css',
-        require: ['susy', 'modular-scale','breakpoint']
-      }))
+      .pipe(compass(global.compassOptions))
       .pipe(concat('hence-comp-ui-sample.css'))
       .pipe(autoprefixer())
       .pipe(sourcemaps.init({loadMaps: true})) // loads map

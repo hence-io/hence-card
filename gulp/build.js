@@ -51,13 +51,11 @@ gulp.task('build:serve', function (done) {
 
 // Build SASS for distribution.
 gulp.task('buildsass', function () {
+  gulp.src(global.paths.fonts)
+    .pipe(gulp.dest(global.paths.tmp + 'fonts'));
+
   gulp.src(global.paths.sass)
-    .pipe(compass({
-      //config_file: './config.rb',
-      sass: global.paths.src,
-      css: global.paths.tmp + 'css',
-      require: ['susy', 'modular-scale','breakpoint']
-    }))
+    .pipe(compass(global.compassOptions))
     .pipe(concat(global.comp.name+'.css'))
     .pipe(autoprefixer())
     .pipe(minifyCss())

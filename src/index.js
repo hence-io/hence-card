@@ -12,9 +12,15 @@ let options = [
 ];
 
 let callToAction = {
-  label: 'My Action',
-  action: ()=> {
-    alert('woohoo!');
+  label: 'Sign Up Now!',
+  align: 'right', // left/center/right
+  action: (e, input)=> {
+    alert(`Successful submission with: ${input.value}`);
+  },
+  input: {
+    label: 'Enter your email here:',
+    type: 'text',
+    placeholder: 'Email'
   }
 };
 

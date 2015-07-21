@@ -12,7 +12,9 @@ module.exports = function (config) {
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: [
       'browserify',
-      'polymerTest'
+      'mocha',
+      'chai-as-promised',
+      'sinon-chai'
     ],
 
     plugins: [
@@ -25,8 +27,6 @@ module.exports = function (config) {
       "karma-mocha",
       "karma-mocha-reporter",
       "karma-sinon-chai",
-      "karma-detect-browsers",
-      "karma-polymer-test",
       "browserify",
       "babelify",
       "watchify"
@@ -35,11 +35,8 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      // We need this to allow the HTML boilerplate files to be loaded via
-      // elementSuite, Karma will now serve the files
-      {pattern: 'test/unit/index.html', included: false, watched: true, served: true},
-      //'src/**/*.js',
-      'test/unit/**/*.js',
+      'src/**/*.js',
+      'test/unit/**/*.js'
     ],
 
 
@@ -50,7 +47,7 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      //'src/**/*.js': ['browserify'],
+      'src/**/*.js': ['browserify'],
       'test/unit/**/*.js': ['browserify']
     },
     browserify: {

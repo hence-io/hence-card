@@ -9,5 +9,7 @@ suite('<hence-comp-ui-card>', function () {
   test('toggle menu', function () {
     component.eventToggleOptions();
     assert.equal(component.displayOptions, true);
+    component.eventToggleOptions();
+    assert.equal(component.displayOptions, false);
   });
 });
