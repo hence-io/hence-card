@@ -125,7 +125,7 @@ let HenceCompUiCard = HenceComp({
     }
 
     // If options were added, fill in their event bindings
-    if (options.length) {
+    if (options && options.length) {
       options.forEach((opt)=> {
         self.set(`event_${opt.action.name}`, opt.action);
       });
