@@ -1,0 +1,48 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="hence-comp-ui-card">
+  <style>
+    /* Inherent styles for the component wrapper, since this only works within the template */
+    :host {
+    }
+  </style>
+  <template>
+    <!-- local DOM for your element -->
+    <div id="wrapper">
+      <template is="dom-if" if="{{image}}">
+        <div id="image">
+          <img src="{{image}}" alt="">
+        </div>
+      </template>
+      <div id="title">{{title}}</div>
+      <div id="optionsWrapper">
+        <template is="dom-if" if="{{options}}">
+          <button id="toggleOptions" on-tap="eventToggleOptions"></button>
+          <template is="dom-if" if="{{displayOptions}}">
+            <div id="options">
+              <template is="dom-repeat" items="{{options}}" as="opt">
+                <span class="link"><a on-tap="eventOptionAction">{{opt.label}}</a></span>
+              </template>
+            </div>
+          </template>
+        </template>
+      </div>
+      <div id="description">
+        <template is="dom-if" if="{{description}}">{{description}}</template>
+        <template is="dom-if" if="{{!description}}">
+          <content></content>
+        </template>
+      </div>
+      <div id="callToAction">
+        <template is="dom-if" if="{{callToAction}}">
+          <template is="dom-if" if="{{callToAction.input}}">
+            <label for="callToActionInput">{{callToAction.input.label}}</label>
+            <input id="callToActionInput" type="{{callToAction.input.type}}" value="{{callToAction.input.value::input}}"
+                   placeholder="{{callToAction.input.placeholder}}">
+          </template>
+          <button on-tap="eventCallToAction">{{callToAction.label}}</button>
+        </template>
+      </div>
+    </div>
+  </template>
+</dom-module>
