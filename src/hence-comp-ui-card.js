@@ -111,6 +111,8 @@ let HenceCompUiCard = HenceComp({
   attached() {
     let self = this;
     let $ = self.$;
+    self.configureProperties(); // will auto fill in this components properties if passed in as an object through the
+    // DOM.
     let options = self.options;
     let callToAction = self.callToAction;
 
