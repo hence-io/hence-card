@@ -24,7 +24,6 @@ let callToAction = {
   }
 };
 
-HenceCompUiCard.appendElementTo();
 HenceCompUiCard.appendElementTo({
   title: 'Padded example w/ options',
   padded: true,
