@@ -90,6 +90,7 @@ gulp.task('buildhtml', function () {
   gulp.src(global.paths.html)
     .pipe(replace(global.comp.name+'.css', global.comp.name+'.min.css'))
     .pipe(replace(global.comp.name+'.js', global.comp.name+'.min.js'))
+    .pipe(replace('/bower_components', '../..'))
     //.pipe(replace('<script src="config.js"></script>', ''))
     //.pipe(replace("<script>System.import('./js/app')</script>", ''))
     //.pipe(minifyHtml())
