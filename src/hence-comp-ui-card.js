@@ -3,7 +3,7 @@
  * @module hence-comp-ui-card
  */
 import console from 'consoler';
-import HenceComp from 'hence-comp';
+import HenceComp, {HenceBehaviour} from 'hence-comp';
 
 /*import _extend from 'lodash/object/extend';*/
 import _defaults from 'lodash/object/defaults';
@@ -111,8 +111,6 @@ let HenceCompUiCard = HenceComp({
   attached() {
     let self = this;
     let $ = self.$;
-    self.configureProperties(); // will auto fill in this components properties if passed in as an object through the
-    // DOM.
     let options = self.options;
     let callToAction = self.callToAction;
 
@@ -147,13 +145,14 @@ let HenceCompUiCard = HenceComp({
     this.async(()=> {
       // access sibling or parent elements here
     });
-  }
+  },
 
 
   /*********************************************************************************************************************
    * Element Behaviour
    ********************************************************************************************************************/
 
+  behaviors : [HenceBehaviour]
 });
 
 export {is};
