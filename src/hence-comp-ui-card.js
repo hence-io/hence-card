@@ -68,7 +68,7 @@ let HenceCompUiCard = HenceComp({
   /**
    * @param {Event} e The event executing this function
    */
-  eventToggleOptions(e) {
+    eventToggleOptions(e) {
     // Update the property, using this.set to fire any expecting listeners
     this.set('displayOptions', !this.displayOptions);
     console.log('this.displayOptions is now', e, this.displayOptions);
@@ -77,7 +77,7 @@ let HenceCompUiCard = HenceComp({
   /**
    * @param {Event} e The event executing this function
    */
-  eventCallToAction(e) {
+    eventCallToAction(e) {
     console.log('eventCallToAction', e, this.callToAction.input);
     this.callToAction.action(e, this.callToAction.input);
   },
@@ -97,7 +97,7 @@ let HenceCompUiCard = HenceComp({
    * ready, but parents are not. This is the point where you should make modifications to the DOM (when  necessary),
    * or kick off any processes the element wants to perform.
    */
-  ready() {
+    ready() {
     // WARNING, updating DOM elements HERE may override variable revisions in the factoryImpl function if created
     // with the createElement function,leveraging the components defaults instead. If the element is embedded, no issue.
 
@@ -108,7 +108,7 @@ let HenceCompUiCard = HenceComp({
    * perform any work related to your element's visual state or active behavior (measuring sizes, beginning animations,
    * loading resources, etc).
    */
-  attached() {
+    attached() {
     let self = this;
     let $ = self.$;
     let options = self.options;
@@ -152,7 +152,7 @@ let HenceCompUiCard = HenceComp({
    * Element Behaviour
    ********************************************************************************************************************/
 
-  behaviors : [HenceBehaviour]
+  behaviors: [HenceBehaviour]
 });
 
 export {is};
