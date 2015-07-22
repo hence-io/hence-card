@@ -131,7 +131,9 @@ let HenceCompUiCard = HenceComp({
 
     // If call to action was provided, sanitize it's input if also provided
     if (callToAction) {
-      $.callToAction.classList.add(callToAction.align || '');
+      if (callToAction.align) {
+        $.callToAction.classList.add(callToAction.align);
+      }
 
       if (callToAction.input) {
         _defaults(callToAction.input, {
@@ -152,7 +154,7 @@ let HenceCompUiCard = HenceComp({
    * Element Behaviour
    ********************************************************************************************************************/
 
-  behaviors: [HenceBehaviour]
+  behaviors: []
 });
 
 export {is};
