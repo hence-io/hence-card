@@ -73,7 +73,7 @@ gulp.task('buildsass', function () {
 
 // Build JS for distribution.
 gulp.task('buildjs', function () {
-  return browserify(global.paths.mainjs, {debug: true})
+  return browserify(global.paths.distjs, {debug: true})
     .transform(babelify)
     .bundle().on('error', gutil.log.bind(gutil, 'Browserify Error'))
     .pipe(source(global.comp.name+'.js'))
@@ -90,6 +90,7 @@ gulp.task('buildhtml', function () {
   gulp.src(global.paths.html)
     .pipe(replace(global.comp.name+'.css', global.comp.name+'.min.css'))
     .pipe(replace(global.comp.name+'.js', global.comp.name+'.min.js'))
+    .pipe(replace('webcomponents-lite.js', 'webcomponents-lite.min.js'))
     .pipe(replace('/bower_components', '../..'))
     //.pipe(replace('<script src="config.js"></script>', ''))
     //.pipe(replace("<script>System.import('./js/app')</script>", ''))
