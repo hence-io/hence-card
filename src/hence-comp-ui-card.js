@@ -109,6 +109,14 @@ let HenceCompUiCard = HenceComp({
    * loading resources, etc).
    */
     attached() {
+    this._prepareData();
+
+    this.async(()=> {
+      // access sibling or parent elements here
+    });
+  },
+
+  _prepareData() {
     let self = this;
     let $ = self.$;
     let options = self.options;
@@ -142,13 +150,12 @@ let HenceCompUiCard = HenceComp({
           label: ''
         });
       }
+
+      self.set('callToAction', callToAction); // make sure to fire any watchers
     }
 
-    this.async(()=> {
-      // access sibling or parent elements here
-    });
+    console.log('comp is ', self.properties);
   },
-
 
   /*********************************************************************************************************************
    * Element Behaviour
