@@ -154,7 +154,7 @@ let HenceCompUiCard = HenceComp({
       self.set('callToAction', callToAction); // make sure to fire any watchers
     }
 
-    console.log('comp is ', self.properties);
+    //console.log('comp is ', self.properties);
   },
 
   /*********************************************************************************************************************

@@ -1,17 +1,12 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
 
 <dom-module id="hence-comp-ui-card">
-  <style>
-    /* Inherent styles for the component wrapper, since this only works within the template */
-    :host {
-    }
-  </style>
   <template>
     <!-- local DOM for your element -->
     <div id="wrapper">
       <template is="dom-if" if="{{image}}">
         <div id="image">
-          <img src="{{image}}" alt="">
+          <img src$="{{image}}" alt="">
         </div>
       </template>
       <div id="title">{{title}}</div>

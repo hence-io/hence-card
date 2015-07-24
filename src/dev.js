@@ -27,7 +27,8 @@ let callToAction = {
 HenceCompUiCard.appendElementTo({
   title: 'Padded example w/ options',
   padded: true,
-  options: options
+  options: options,
+  image: 'http://placehold.it/350x50'
 });
 HenceCompUiCard.appendElementTo({
   title: 'Example w/ options pre-opened',
