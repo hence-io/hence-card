@@ -3,7 +3,7 @@ import requireDir from 'require-dir';
 
 var srcDir = './src/';
 var tmpDir = './.tmp/';
-var buildSrcDir = './gulp/build/src/';
+var buildSrcDir = './gulp/src/';
 
 global.comp = {
   name: 'hence-comp-ui-card',

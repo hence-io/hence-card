@@ -29,7 +29,7 @@ HenceCompUiCard.appendElementTo({
   padded: true,
   options: options,
   image: 'http://placehold.it/350x50'
-});
+}, document.getElementsByTagName('body'));
 HenceCompUiCard.appendElementTo({
   title: 'Example w/ options pre-opened',
   displayOptions: true,
@@ -45,3 +45,4 @@ HenceCompUiCard.appendElementTo({
   options: options,
   callToAction: callToAction
 });
+
