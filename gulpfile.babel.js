@@ -6,8 +6,8 @@ var tmpDir = './.tmp/';
 var buildSrcDir = './gulp/src/';
 
 global.comp = {
-  name: 'hence-comp-model-user',
-  camel: 'HenceCompModelUser'
+  name: 'hence-comp-ui-card',
+  camel: 'HenceCompUiCard'
 };
 
 // Specify paths & globbing patterns for tasks.
