@@ -45,5 +45,3 @@ HenceCompUiCard.appendElementTo({
   options: options,
   callToAction: callToAction
 });
-
-export * from './hence-comp-ui-card';
