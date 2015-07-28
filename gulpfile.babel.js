@@ -6,15 +6,10 @@ var tmpDir = './.tmp/';
 var buildSrcDir = './gulp/src/';
 
 global.comp = {
-  name: 'hence-comp-ui-card',
-  camel: 'HenceCompUiCard'
+  name: 'hence-comp-model-user',
+  camel: 'HenceCompModelUser'
 };
-global.compassOptions = {
-  //config_file: './config.rb',
-  sass: srcDir,
-  css: tmpDir + 'css',
-  require: ['susy', 'modular-scale', 'breakpoint','font-awesome-sass']
-};
+
 // Specify paths & globbing patterns for tasks.
 global.paths = {
   // HTML sources.
