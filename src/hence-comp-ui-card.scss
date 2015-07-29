@@ -8,112 +8,113 @@
 @import 'breakpoint';
 // Spacing
 @import 'modular-scale';
+
 //
 /***************************
 ** Optional
 ****************************/
 // Font awesome
-$fa-font-path : '/bower_components/font-awesome/fonts/' !default;
+$fa-font-path: '/bower_components/font-awesome/fonts/' !default;
 @import 'font-awesome';
 //
 /***************************
 ** Component Base Styles
 ****************************/
 
-$black : #000;
+$black: #000;
+$dark-blue: #000080;
 
 %fullWidthContainer {
   @include clearfix;
   @include container(97%);
   @include span(1 of 1);
-  font-size : ms(.25);
-  padding   : ms(.25);
+  font-size: ms(.25);
+  padding: ms(.25);
 }
 
-hence-comp-ui-card {
-  $ms-ratio : $minor-second;
-  $dark-blue : #000080;
+:host {
+  $ms-ratio: $minor-second;
+}
 
-  .padded {
-    padding : ms(.25);
+.padded {
+  padding: ms(.25);
+}
+
+#wrapper {
+  @include container(100%);
+  border: 1px solid $black;
+  margin: ms(.25) 0;
+}
+
+#image {
+  img {
+    height: auto;
+    width: 100%;
+  }
+}
+
+#title {
+  color: $dark-blue;
+  font-size: ms(2);
+  padding: ms(2 * -.75); // a margin of 25% the font-size
+  // xs view
+  @include breakpoint(320px) {
+    @include span(5 of 6);
   }
 
-  #wrapper {
-    @include container(100%);
-    border : 1px solid $black;
-    margin : ms(.25) 0;
+  // tablet view
+  @include breakpoint(600px) {
+    @include span(4 of 6);
   }
 
-  #image {
-    img {
-      height : auto;
-      width  : 100%;
-    }
+  // desktop view
+  @include breakpoint(900px) {
+    @include span(9 of 10);
+  }
+}
+
+#optionsWrapper {
+  text-align: right;
+
+  // xs view
+  @include breakpoint(320px) {
+    @include span(1 of 6 last);
   }
 
-  #title {
-    color     : $dark-blue;
-    font-size : ms(2);
-    padding   : ms(2 * -.75); // a margin of 25% the font-size
-    // xs view
-    @include breakpoint(320px) {
-      @include span(5 of 6);
-    }
-
-    // tablet view
-    @include breakpoint(600px) {
-      @include span(4 of 6);
-    }
-
-    // desktop view
-    @include breakpoint(900px) {
-      @include span(9 of 10);
-    }
+  // tablet view
+  @include breakpoint(600px) {
+    @include span(2 of 6 last);
   }
 
-  #optionsWrapper {
-    text-align : right;
+  // desktop view
+  @include breakpoint(900px) {
+    @include span(1 of 10 last);
+  }
+}
 
-    // xs view
-    @include breakpoint(320px) {
-      @include span(1 of 6 last);
-    }
+#toggleOptions {
+  @extend .fa, .fa-ellipsis-v;
+}
 
-    // tablet view
-    @include breakpoint(600px) {
-      @include span(2 of 6 last);
-    }
+#options {
+  border: 1px solid $black;
+  height: auto;
+  position: absolute;
+  right: 10px;
+  width: auto;
+}
 
-    // desktop view
-    @include breakpoint(900px) {
-      @include span(1 of 10 last);
-    }
+#description,
+#callToAction {
+  @extend %fullWidthContainer;
+}
+
+#callToAction {
+  &.right {
+    text-align: right;
   }
 
-  #toggleOptions {
-    @extend .fa, .fa-ellipsis-v;
-  }
-
-  #options {
-    border   : 1px solid $black;
-    height   : auto;
-    position : absolute;
-    right    : 10px;
-    width    : auto;
-  }
-
-  #description,
-  #callToAction {
-    @extend %fullWidthContainer;
-  }
-
-  #callToAction {
-    &.right {
-      text-align : right;
-    }
-
-    &.center {
-      text-align : center;
-    }
+  &.center {
+    text-align: center;
   }
 }
