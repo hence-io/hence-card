@@ -34,7 +34,8 @@ let sassCompilation = function (opts) {
     dist: false,
     replace: false,
     concat: false,
-    bypassSourcemap: false
+    bypassSourcemap: false,
+    styleguide: false
   });
 
   // Compile SASS with sourcemaps + livereload.
@@ -49,6 +50,7 @@ let sassCompilation = function (opts) {
       .pipe(gulpif(opts.replace, replace(opts.replace.this, opts.replace.with)))
       .pipe(concat(opts.concat ? opts.concat : compSassFilename))
       .pipe(autoprefixer())
+      .pipe(gulpif(opts.styleguide,opts.styleguide.applyStyles()))
       .pipe(gulpif(!opts.bypassSourcemap, sourcemaps.init({loadMaps: true})))
       .pipe(gulpif(opts.dist, minifyCss()))
       .pipe(gulpif(opts.dist, rename({suffix: '.min'})))
@@ -64,4 +66,5 @@ let sassCompilation = function (opts) {
   });
 };
 
+export {compassOptions};
 export default sassCompilation;

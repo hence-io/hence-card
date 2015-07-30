@@ -1,8 +1,7 @@
-/*
-  Essential Libraries
-
-  Style guide: Libraries
-*/
+// styleguide:ignore:start
+/***************************
+** Essentials
+****************************/
 // Core
 @import 'compass';
 // Grid/Responsive
@@ -11,14 +10,19 @@
 // Spacing
 @import 'modular-scale';
 
-/*
-  Optional Libraries
-
-  Style guide: Libraries
-*/
+//
+/***************************
+** Optional
+****************************/
 // Font awesome
-$fa-font-path : '/bower_components/font-awesome/fonts/' !default;
+$fa-font-path: '/bower_components/font-awesome/fonts/' !default;
 @import 'font-awesome';
+//
+/***************************
+** Component Base Styles
+****************************/
+// styleguide:ignore:end
+
 /*
  Component Styles: hence-comp-ui-card
 

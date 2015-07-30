@@ -2,34 +2,54 @@
 
 import gulp from 'gulp';
 import styleguide from 'sc5-styleguide';
+import compass from 'gulp-compass';
 
 let styleguideDir = global.paths.dist + 'styleguide/';
 let compSass = global.comp.name + '.scss';
 let compCss = global.comp.name + '.css';
 
-import sassCompilation from './../sass';
-sassCompilation({
-  taskName: 'kss-sass',
-  dest: styleguideDir,
-  concat: 'public/style.css',
-  bypassSourcemap: true,
-  replace: {
-    'this': '/bower_components',
-    'with': '../../bower_components'
-  }
-});
+import {compassOptions} from './../sass';
+
+import browserSyncConstructor from 'browser-sync';
+let browserSync = browserSyncConstructor.create();
+
 
 /**
  * Sass Tasks
  */
-gulp.task('kss', ['kss-sass'], function () {
-  // Build the kss guide
-  gulp.src(global.paths.sass)
+gulp.task('kss', ['kss:generate', 'kss:apply'],function() {
+  browserSync.init({
+    server: {
+      baseDir: ['./dist/styleguide'],
+      routes: {
+        "/bower_components": "./bower_components"
+      }
+    }
+  });
+});
+
+gulp.task('kss:generate', function () {
+  return gulp.src(global.paths.sass)
     .pipe(styleguide.generate({
       title: 'Component Styleguide',
-      server: true,
+      server: false,
+      css: 'scss',
       rootPath: styleguideDir,
-      overviewPath: 'README.md'
+      overviewPath: 'README.md',
+      disableEncapsulation:true,
+      extraHead: [
+        `
+        <script src=../../../webcomponentsjs/webcomponents-lite.min.js></script>
+        <link rel=import href=../hence-comp-ui-card.html>
+        `
+      ]
     }))
+    .pipe(gulp.dest(styleguideDir));
+});
+
+gulp.task('kss:apply', function () {
+  return gulp.src(global.paths.sass)
+    .pipe(compass(compassOptions))
+    .pipe(styleguide.applyStyles())
     .pipe(gulp.dest(styleguideDir));
 });
