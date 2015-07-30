@@ -19,7 +19,6 @@ import imagemin from 'gulp-imagemin';
 // Sass
 import autoprefixer from 'gulp-autoprefixer';
 import minifyCss from 'gulp-minify-css';
-import gulpkss from 'gulp-kss';
 
 // JS
 import uglify from 'gulp-uglify';

@@ -152,7 +152,7 @@ let HenceCompUiCard = HenceComp({
         });
       }
 
-      self.set('callToAction, callToAction); // make sure to fire any watchers
+      self.set('callToAction', callToAction); // make sure to fire any watchers
     }
 
     self.updateDisplayOptions();
