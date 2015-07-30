@@ -33,14 +33,14 @@ import browserSyncConstructor from 'browser-sync';
 let browserSync = browserSyncConstructor.create();
 
 import sassCompilation from './../sass';
-sassCompilation('buildsass', browserSync, true);
+sassCompilation({taskName: 'buildsass', browserSync: browserSync, dist: true});
 
 import htmlCompilation from './../html';
 htmlCompilation('buildhtml', true);
 
 // One build task to rule them all.
 gulp.task('build', (done)=> {
-  runSeq('clean', ['buildsass', 'buildimg', 'buildjs','kss'], 'buildhtml', done);
+  runSeq('clean', ['buildsass', 'buildimg', 'buildjs', 'kss'], 'buildhtml', done);
 });
 
 gulp.task('build:serve', (done)=> {

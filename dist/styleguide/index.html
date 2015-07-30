@@ -1,96 +1,55 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<html lang="en" ng-app="sgApp">
 <head>
-  <meta charset="utf-8">
-
-  <title>KSS: Living Styleguide</title>
-  <meta name="description" content="">
-  <meta name="generator" content="kss-node" />
-
-  <meta name="viewport" content="width=device-width">
-
-  <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
-
-  <link rel="stylesheet" href="public/kss.css">
-  <link rel="stylesheet" href="public/style.css">
-
-</head>
-<body><div id="kss-wrapper">
-  <div id="kss-nav">
-    <header id="kss-header">
-      <hgroup><h1>kss-node Styleguide</h1></hgroup>
-    </header>
-    <aside>
-      <nav><ul>
-        <li><a href="index.html">0.0: Overview</a></li>
-      </ul></nav>
-    </aside>
-  </div>
-  <div role="main" id="kss-main">
-    <article id="kss-content">
-        <h1 id="hence-io-component-stack">Hence.io Component Stack</h1>
-<h2 id="hence-comp-ui-card">hence-comp-ui-card</h2>
-<blockquote>
-</blockquote>
-<p>A basic card element.</p>
-<h2 id="using-this-component">Using this component</h2>
-<p>Add this component to your polymer project with:</p>
-<pre><code>&lt;link rel=&quot;import&quot; href=&quot;bower_components/hence-comp-ui-card.html&quot; &gt;
-</code></pre><h1 id="development">Development</h1>
-<p>All development takes place leveraging the files in the /src &amp; /test folders.</p>
-<h2 id="dependencies">Dependencies</h2>
-<p>Element dependencies are managed via NPM &amp; <a href="http://bower.io/">Bower</a>. You can
-install that via:</p>
-<pre><code>npm install -g bower
-</code></pre><p>Then, go ahead and download the element&#39;s dependencies:</p>
-<pre><code>npm i &amp;&amp; bower i
-</code></pre><h2 id="available-gulp-commands">Available Gulp Commands</h2>
-<p><code>$ gulp</code>
-Will compile assets, serve your web component with live reload, transpile es6, and lint your js/scss all while watching your src files</p>
-<p><code>$ gulp build</code>
-Will compile your component for consumption, exporting it to a /dist folder</p>
-<p><code>$ gulp test</code>
-Will execute the wct test tool to perform selenium tests on your web component</p>
-<p><code>$ gulp test:karma</code><br>Will execute es6 unit testing on your web component&#39;s script files</p>
-<p><code>$ gulp test:karma-watch</code><br>Will execute the karma tests and set a watcher on the component and test script files</p>
-<h3 id="inspired-by">Inspired By</h3>
-<p><a href="https://github.com/alexweber/es6-jspm-gulp-boilerplate">https://github.com/alexweber/es6-jspm-gulp-boilerplate</a></p>
-
-    </article>
-  </div>
-  <footer>
-    
-  </footer>
-  <!-- SCRIPTS -->
-  <script src="public/kss.js"></script>
-  <script src="public/prettify.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/assets/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
-    $(document).ready(function(){
-      var sidebarAdjust = function() {
-        // Match footer/body height
-        var height = Math.max($(window).height(), $('#kss-main').height());
+    var _styleguideConfig = {"title":"Component Styleguide","disableEncapsulation":false,"disableHtml5Mode":false};
+    (function() {
+      'use strict';
+      var userStyleFiles = [
+          '/styleguide.css',
+          '/styleguide_pseudo_styles.css',
+          '/styleguide_helper_elements.css'
+        ],
+        head = document.querySelector('head');
 
-        if ($(window).width() <= 768) {
-          $('#kss-main, #kss-nav').height('auto');
-        } else {
-          $('#kss-main, #kss-nav').height(height);
+      function addCssLink(href, options) {
+        var link = document.createElement('link');
+        link.setAttribute('rel', 'stylesheet');
+        link.setAttribute('type', 'text/css');
+        link.setAttribute('href', href);
+        if (options && options.noReload) {
+          link.setAttribute('data-noreload', true);
         }
-      };
+        head.appendChild(link);
+      }
 
-      $(window).resize(sidebarAdjust);
-      $(window).scroll(sidebarAdjust);
-      sidebarAdjust();
+      // Use Shadow DOM but fallback to global styles if shadow DOM is not supported
+      if (typeof head.createShadowRoot !== 'function' || _styleguideConfig.disableEncapsulation) {
+        userStyleFiles.forEach(addCssLink);
+      }
 
-      // Ensure code blocks are highlighted properly...
-      $('pre>code').addClass('prettyprint');
-      prettyPrint();
-
-    });
+      addCssLink('/styleguide_at_rules.css');
+      addCssLink('/app.css', {noReload: true});
+    }());
   </script>
-
-</div></body>
+  <script type="text/ng-template" id="userStyles.html">
+    <style>
+      @import url('/styleguide.css');
+      @import url('/styleguide_pseudo_styles.css');
+      @import url('/css/styleguide_helper_elements.css');
+    </style>
+  </script>
+  <title ng-bind-html="$root.pageTitle | unsafe">Component Styleguide</title>
+  
+  <base href="/" />
+</head>
+<body class="sg">
+  <div class="sg view-index" ui-view></div>
+  <script src="/js/vendor.js"></script>
+  <script src="/js/app.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</body>
 </html>

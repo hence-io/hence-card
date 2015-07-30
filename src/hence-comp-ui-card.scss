@@ -1,19 +1,33 @@
+/*
+  Optional Libraries
 
+  Style guide: Libraries
+*/
+// Core
 @import 'compass';
+// Grid/Responsive
 @import 'susy';
 @import 'breakpoint';
+// Spacing
 @import 'modular-scale';
+/*
+  Optional Libraries
 
+  Style guide: Libraries
+*/
+// Font awesome
 $fa-font-path: '/bower_components/font-awesome/fonts/' !default;
 @import 'font-awesome';
+//
+/*
+ Component Styles: hence-comp-ui-card
 
-// hence-comp-ui-card
-//
-// A web component
-//
-// Markup: hence-comp-ui-card.html
-//
-// Style guide: component
+ A web component
+
+ Markup: hence-comp-ui-card.html
+
+ Style guide: component
+*/
 :host {
   $ms-ratio: $minor-second;
 }
@@ -94,7 +108,8 @@ $dark-blue: #000080;
 }
 
 #toggleOptions {
-  @extend .fa, .fa-ellipsis-v;
+  @extend .fa;
+  @extend .fa-ellipsis-v;
 }
 
 #options {
@@ -110,17 +125,19 @@ $dark-blue: #000080;
   @extend %fullWidthContainer;
 }
 
-// callToAction
-//
-// Your standard button suitable for clicking.
-//
-// .left - Aligns to the left
-// .right - Aligns to the right
-//
-// Markup:
-// <button id="callToAction"></button>
-//
-// Style guide: component.button
+/*
+ callToAction
+
+ Your standard button suitable for clicking.
+
+ .left - Aligns to the left
+ .right - Aligns to the right
+
+ Markup:
+ <button id="callToAction"></button>
+
+ Style guide: component.button
+*/
 #callToAction {
   &.right {
     text-align: right;

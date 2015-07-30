@@ -25,7 +25,7 @@ global.paths = {
   // JS sources.
   'js': srcDir + '**/*.js',
   // SASS sources.
-  'sass': srcDir + '**/*.scss',
+  'sass': srcDir + global.comp.name + '.scss',
   // Fonts
   'fonts': './fonts/**',
   // Image sources.
