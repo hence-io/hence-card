@@ -1,0 +1,150 @@
+/***************************
+** Essentials
+****************************/
+// Core
+@import 'compass';
+// Grid/Responsive
+@import 'susy';
+@import 'breakpoint';
+// Spacing
+@import 'modular-scale';
+
+//
+/***************************
+** Optional
+****************************/
+// Font awesome
+$fa-font-path: '/bower_components/font-awesome/fonts/' !default;
+@import 'font-awesome';
+//
+/***************************
+** Component Base Styles
+****************************/
+/*
+ hence-comp-ui-card
+
+ A web component
+
+ Markup: hence-comp-ui-card.html
+
+ Style guide: component
+*/
+:host {
+  $ms-ratio: $minor-second;
+}
+
+$black: #000;
+$dark-blue: #000080;
+
+%fullWidthContainer {
+  @include clearfix;
+  @include container(97%);
+  @include span(1 of 1);
+  font-size: ms(.25);
+  padding: ms(.25);
+}
+
+.padded {
+  padding: ms(.25);
+}
+
+#wrapper {
+  @include container(100%);
+  border: 1px solid $black;
+  margin: ms(.25) 0;
+}
+
+#image {
+  img {
+    height: auto;
+    width: 100%;
+  }
+}
+
+// Card Title
+//
+// The cards title
+//
+// Markup:
+// <div id="title">Card Title</div>
+//
+// Style guide: component.typography
+#title {
+  color: $dark-blue;
+  font-size: ms(2);
+  padding: ms(2 * -.75); // a margin of 25% the font-size
+  // xs view
+  @include breakpoint(320px) {
+    @include span(5 of 6);
+  }
+
+  // tablet view
+  @include breakpoint(600px) {
+    @include span(4 of 6);
+  }
+
+  // desktop view
+  @include breakpoint(900px) {
+    @include span(9 of 10);
+  }
+}
+
+#optionsWrapper {
+  text-align: right;
+
+  // xs view
+  @include breakpoint(320px) {
+    @include span(1 of 6 last);
+  }
+
+  // tablet view
+  @include breakpoint(600px) {
+    @include span(2 of 6 last);
+  }
+
+  // desktop view
+  @include breakpoint(900px) {
+    @include span(1 of 10 last);
+  }
+}
+
+#toggleOptions {
+  @extend .fa;
+  @extend .fa-ellipsis-v;
+}
+
+#options {
+  border: 1px solid $black;
+  height: auto;
+  position: absolute;
+  right: 10px;
+  width: auto;
+}
+
+#description,
+#callToAction {
+  @extend %fullWidthContainer;
+}
+
+/*
+ callToAction
+
+ Your standard button suitable for clicking.
+
+ .left - Aligns to the left
+ .right - Aligns to the right
+
+ Markup:
+ <button id="callToAction"></button>
+
+ Style guide: component.button
+*/
+#callToAction {
+  &.right {
+    text-align: right;
+  }
+
+  &.center {
+    text-align: center;
+  }
+}
