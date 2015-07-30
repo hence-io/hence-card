@@ -1,25 +1,22 @@
-/***************************
-** Essentials
-****************************/
-// Core
+
 @import 'compass';
-// Grid/Responsive
 @import 'susy';
 @import 'breakpoint';
-// Spacing
 @import 'modular-scale';
 
-//
-/***************************
-** Optional
-****************************/
-// Font awesome
 $fa-font-path: '/bower_components/font-awesome/fonts/' !default;
 @import 'font-awesome';
+
+// hence-comp-ui-card
 //
-/***************************
-** Component Base Styles
-****************************/
+// A web component
+//
+// Markup: hence-comp-ui-card.html
+//
+// Style guide: component
+:host {
+  $ms-ratio: $minor-second;
+}
 
 $black: #000;
 $dark-blue: #000080;
@@ -30,10 +27,6 @@ $dark-blue: #000080;
   @include span(1 of 1);
   font-size: ms(.25);
   padding: ms(.25);
-}
-
-:host {
-  $ms-ratio: $minor-second;
 }
 
 .padded {
@@ -53,6 +46,14 @@ $dark-blue: #000080;
   }
 }
 
+// Card Title
+//
+// The cards title
+//
+// Markup:
+// <div id="title">Card Title</div>
+//
+// Style guide: component.typography
 #title {
   color: $dark-blue;
   font-size: ms(2);
@@ -109,6 +110,17 @@ $dark-blue: #000080;
   @extend %fullWidthContainer;
 }
 
+// callToAction
+//
+// Your standard button suitable for clicking.
+//
+// .left - Aligns to the left
+// .right - Aligns to the right
+//
+// Markup:
+// <button id="callToAction"></button>
+//
+// Style guide: component.button
 #callToAction {
   &.right {
     text-align: right;

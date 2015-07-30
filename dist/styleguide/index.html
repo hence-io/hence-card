@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <title>KSS: Living Styleguide</title>
+  <meta name="description" content="">
+  <meta name="generator" content="kss-node" />
+
+  <meta name="viewport" content="width=device-width">
+
+  <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="public/kss.css">
+  <link rel="stylesheet" href="public/style.css">
+
+</head>
+<body><div id="kss-wrapper">
+  <div id="kss-nav">
+    <header id="kss-header">
+      <hgroup><h1>kss-node Styleguide</h1></hgroup>
+    </header>
+    <aside>
+      <nav><ul>
+        <li><a href="index.html">0.0: Overview</a></li>
+      </ul></nav>
+    </aside>
+  </div>
+  <div role="main" id="kss-main">
+    <article id="kss-content">
+        <h1 id="hence-io-component-stack">Hence.io Component Stack</h1>
+<h2 id="hence-comp-ui-card">hence-comp-ui-card</h2>
+<blockquote>
+</blockquote>
+<p>A basic card element.</p>
+<h2 id="using-this-component">Using this component</h2>
+<p>Add this component to your polymer project with:</p>
+<pre><code>&lt;link rel=&quot;import&quot; href=&quot;bower_components/hence-comp-ui-card.html&quot; &gt;
+</code></pre><h1 id="development">Development</h1>
+<p>All development takes place leveraging the files in the /src &amp; /test folders.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>Element dependencies are managed via NPM &amp; <a href="http://bower.io/">Bower</a>. You can
+install that via:</p>
+<pre><code>npm install -g bower
+</code></pre><p>Then, go ahead and download the element&#39;s dependencies:</p>
+<pre><code>npm i &amp;&amp; bower i
+</code></pre><h2 id="available-gulp-commands">Available Gulp Commands</h2>
+<p><code>$ gulp</code>
+Will compile assets, serve your web component with live reload, transpile es6, and lint your js/scss all while watching your src files</p>
+<p><code>$ gulp build</code>
+Will compile your component for consumption, exporting it to a /dist folder</p>
+<p><code>$ gulp test</code>
+Will execute the wct test tool to perform selenium tests on your web component</p>
+<p><code>$ gulp test:karma</code><br>Will execute es6 unit testing on your web component&#39;s script files</p>
+<p><code>$ gulp test:karma-watch</code><br>Will execute the karma tests and set a watcher on the component and test script files</p>
+<h3 id="inspired-by">Inspired By</h3>
+<p><a href="https://github.com/alexweber/es6-jspm-gulp-boilerplate">https://github.com/alexweber/es6-jspm-gulp-boilerplate</a></p>
+
+    </article>
+  </div>
+  <footer>
+    
+  </footer>
+  <!-- SCRIPTS -->
+  <script src="public/kss.js"></script>
+  <script src="public/prettify.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      var sidebarAdjust = function() {
+        // Match footer/body height
+        var height = Math.max($(window).height(), $('#kss-main').height());
+
+        if ($(window).width() <= 768) {
+          $('#kss-main, #kss-nav').height('auto');
+        } else {
+          $('#kss-main, #kss-nav').height(height);
+        }
+      };
+
+      $(window).resize(sidebarAdjust);
+      $(window).scroll(sidebarAdjust);
+      sidebarAdjust();
+
+      // Ensure code blocks are highlighted properly...
+      $('pre>code').addClass('prettyprint');
+      prettyPrint();
+
+    });
+  </script>
+
+</div></body>
+</html>
