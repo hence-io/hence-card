@@ -49,9 +49,13 @@ let sassCompilation = function (opts) {
       .pipe(compass(compassOptions))
       .pipe(gulpif(opts.replace, replace(opts.replace.this, opts.replace.with)))
       .pipe(concat(opts.concat ? opts.concat : compSassFilename))
-      .pipe(autoprefixer())
-      .pipe(gulpif(opts.styleguide,opts.styleguide.applyStyles()))
-      .pipe(gulpif(!opts.bypassSourcemap, sourcemaps.init({loadMaps: true})))
+      .pipe(autoprefixer());
+
+    if (opts.styleguide) {
+      data.pipe(opts.styleguide.applyStyles());
+    }
+
+    data.pipe(gulpif(!opts.bypassSourcemap, sourcemaps.init({loadMaps: true})))
       .pipe(gulpif(opts.dist, minifyCss()))
       .pipe(gulpif(opts.dist, rename({suffix: '.min'})))
       .pipe(gulpif(!opts.bypassSourcemap, sourcemaps.write('./')))

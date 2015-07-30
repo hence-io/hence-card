@@ -69,9 +69,10 @@ let HenceCompUiCard = HenceComp({
    * @param {Event} e The event executing this function
    */
     eventToggleOptions(e) {
+    let self = this;
     // Update the property, using this.set to fire any expecting listeners
-    this.set('displayOptions', !this.displayOptions);
-    console.log('this.displayOptions is now', e, this.displayOptions);
+    self.set('displayOptions', !self.displayOptions);
+    self.updateDisplayOptions();
   },
 
   /**
@@ -151,8 +152,10 @@ let HenceCompUiCard = HenceComp({
         });
       }
 
-      self.set('callToAction', callToAction); // make sure to fire any watchers
+      self.set('callToAction, callToAction); // make sure to fire any watchers
     }
+
+    self.updateDisplayOptions();
 
     //console.log('comp is ', self.properties);
   },
@@ -161,7 +164,12 @@ let HenceCompUiCard = HenceComp({
    * Element Behaviour
    ********************************************************************************************************************/
 
-  behaviors: []
+  behaviors: [],
+
+  updateDisplayOptions() {
+    let self = this;
+    self.toggleClass('open',self.displayOptions, self.$$('#options'));
+  }
 });
 
 export {is};

@@ -15,7 +15,7 @@
 ** Optional
 ****************************/
 // Font awesome
-$fa-font-path: '/bower_components/font-awesome/fonts/' !default;
+$fa-font-path : '/bower_components/font-awesome/fonts/' !default;
 @import 'font-awesome';
 //
 /***************************
@@ -24,20 +24,43 @@ $fa-font-path: '/bower_components/font-awesome/fonts/' !default;
 // styleguide:ignore:end
 
 /*
- Component Styles: hence-comp-ui-card
+Component Elements
 
- A web component
+A web component
 
- Markup: hence-comp-ui-card.html
+Styleguide 1.0
+*/
 
- Style guide: component
+/*
+Main colors
+
+$black - Primary color
+$dark-blue - Secondary color
+
+markup:
+<div style="background: {$modifiers};" class="styleguide-color">{$modifiers}</div>
+
+Styleguide 1.1
+*/
+$black : #000;
+$dark-blue : #000080;
+
+/*
+Component Variations
+
+Styleguide 2.0
+*/
+/*
+Default
+
+Markup:
+<hence-comp-ui-card></hence-comp-ui-card>
+
+Styleguide 2.1
 */
 :host {
   $ms-ratio : $minor-second;
 }
-
-$black : #000;
-$dark-blue : #000080;
 
 %fullWidthContainer {
   @include clearfix;
@@ -65,14 +88,20 @@ $dark-blue : #000080;
 }
 
 /*
- Card Title
+Typography
 
- The cards title
+Styleguide 1.2.0
+*/
 
- Markup:
- <div id="title">Card Title</div>
+/*
+Card Title
 
- Style guide: component.typography
+The cards title
+
+Markup:
+<div id="title">Card Title</div>
+
+Styleguide 1.2.1
 */
 #title {
   color     : $dark-blue;
@@ -91,6 +120,47 @@ $dark-blue : #000080;
   // desktop view
   @include breakpoint(900px) {
     @include span(9 of 10);
+  }
+}
+
+/*
+Options Menu
+
+Styleguide 1.3.0
+*/
+
+/*
+Menu Toggle
+
+.closed - Hides the menu
+.open - Displays the menu
+
+Markup:
+<div id="optionsWrapper" class="style-scope hence-comp-ui-card">
+    <button id="toggleOptions" class="style-scope hence-comp-ui-card"></button>
+      <div id="options" class="style-scope hence-comp-ui-card {$modifiers}">
+          <span class="link style-scope hence-comp-ui-card"><a class="style-scope hence-comp-ui-card">Test</a></span>
+        <template is="dom-repeat" as="opt" class="style-scope hence-comp-ui-card"></template>
+      </div>
+    <template is="dom-if" class="style-scope hence-comp-ui-card"></template>
+  <template is="dom-if" class="style-scope hence-comp-ui-card"></template>
+</div>
+
+Styleguide 1.3.1
+*/
+#options {
+  border   : 1px solid $black;
+  height   : auto;
+  position : absolute;
+  right    : 10px;
+  width    : auto;
+
+  &.closed {
+    display : none;
+  }
+
+  &.open {
+    display : block;
   }
 }
 
@@ -118,31 +188,27 @@ $dark-blue : #000080;
   @extend .fa-ellipsis-v;
 }
 
-#options {
-  border   : 1px solid $black;
-  height   : auto;
-  position : absolute;
-  right    : 10px;
-  width    : auto;
-}
-
-#description,
-#callToAction {
-  @extend %fullWidthContainer;
-}
-
 /*
- callToAction
+Buttons
 
- Your standard button suitable for clicking.
+Styleguide 1.4
+*/
+/*
+callToAction
 
- .left - Aligns to the left
- .right - Aligns to the right
+Your standard button suitable for clicking.
 
- Markup:
- <button id="callToAction"></button>
+.left - Aligns to the left
+.right - Aligns to the right
 
- Style guide: component.button
+Markup:
+<div id="callToAction" class="style-scope hence-comp-ui-card {$modifiers}">
+  <label for="callToActionInput" class="style-scope hence-comp-ui-card">Enter your email here:</label>
+  <input id="callToActionInput" class="style-scope hence-comp-ui-card" placeholder="Email" type="text">
+  <button class="style-scope hence-comp-ui-card">Sign Up Now!</button>
+</div>
+
+Styleguide 1.4.1
 */
 #callToAction {
   &.right {
@@ -152,4 +218,9 @@ $dark-blue : #000080;
   &.center {
     text-align : center;
   }
+}
+
+#description,
+#callToAction {
+  @extend %fullWidthContainer;
 }

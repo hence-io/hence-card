@@ -13,13 +13,11 @@
       <div id="optionsWrapper">
         <template is="dom-if" if="{{options}}">
           <button id="toggleOptions" on-tap="eventToggleOptions"></button>
-          <template is="dom-if" if="{{displayOptions}}">
-            <div id="options">
-              <template is="dom-repeat" items="{{options}}" as="opt">
-                <span class="link"><a on-tap="eventOptionAction">{{opt.label}}</a></span>
-              </template>
-            </div>
-          </template>
+          <div id="options" class="closed">
+            <template is="dom-repeat" items="{{options}}" as="opt">
+              <span class="link"><a on-tap="eventOptionAction">{{opt.label}}</a></span>
+            </template>
+          </div>
         </template>
       </div>
       <div id="description">

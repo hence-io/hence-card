@@ -13,11 +13,12 @@ import {compassOptions} from './../sass';
 import browserSyncConstructor from 'browser-sync';
 let browserSync = browserSyncConstructor.create();
 
-
 /**
  * Sass Tasks
  */
-gulp.task('kss', ['kss:generate', 'kss:apply'],function() {
+gulp.task('kss', ['kss:generate', 'kss:apply']);
+
+gulp.task('kss:serve', ['kss'], function () {
   browserSync.init({
     server: {
       baseDir: ['./dist/styleguide'],
@@ -26,6 +27,8 @@ gulp.task('kss', ['kss:generate', 'kss:apply'],function() {
       }
     }
   });
+
+  gulp.watch([global.paths.sass], ['kss']).on('change', function () { return browserSync.reload(); });
 });
 
 gulp.task('kss:generate', function () {
@@ -36,7 +39,7 @@ gulp.task('kss:generate', function () {
       css: 'scss',
       rootPath: styleguideDir,
       overviewPath: 'README.md',
-      disableEncapsulation:true,
+      disableEncapsulation: true,
       extraHead: [
         `
         <script src=../../../webcomponentsjs/webcomponents-lite.min.js></script>
