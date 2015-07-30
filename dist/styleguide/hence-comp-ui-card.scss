@@ -1,6 +1,8 @@
-/***************************
-** Essentials
-****************************/
+/*
+  Essential Libraries
+
+  Style guide: Libraries
+*/
 // Core
 @import 'compass';
 // Grid/Responsive
@@ -9,19 +11,16 @@
 // Spacing
 @import 'modular-scale';
 
-//
-/***************************
-** Optional
-****************************/
-// Font awesome
-$fa-font-path: '/bower_components/font-awesome/fonts/' !default;
-@import 'font-awesome';
-//
-/***************************
-** Component Base Styles
-****************************/
 /*
- hence-comp-ui-card
+  Optional Libraries
+
+  Style guide: Libraries
+*/
+// Font awesome
+$fa-font-path : '/bower_components/font-awesome/fonts/' !default;
+@import 'font-awesome';
+/*
+ Component Styles: hence-comp-ui-card
 
  A web component
 
@@ -30,49 +29,51 @@ $fa-font-path: '/bower_components/font-awesome/fonts/' !default;
  Style guide: component
 */
 :host {
-  $ms-ratio: $minor-second;
+  $ms-ratio : $minor-second;
 }
 
-$black: #000;
-$dark-blue: #000080;
+$black : #000;
+$dark-blue : #000080;
 
 %fullWidthContainer {
   @include clearfix;
   @include container(97%);
   @include span(1 of 1);
-  font-size: ms(.25);
-  padding: ms(.25);
+  font-size : ms(.25);
+  padding   : ms(.25);
 }
 
 .padded {
-  padding: ms(.25);
+  padding : ms(.25);
 }
 
 #wrapper {
   @include container(100%);
-  border: 1px solid $black;
-  margin: ms(.25) 0;
+  border : 1px solid $black;
+  margin : ms(.25) 0;
 }
 
 #image {
   img {
-    height: auto;
-    width: 100%;
+    height : auto;
+    width  : 100%;
   }
 }
 
-// Card Title
-//
-// The cards title
-//
-// Markup:
-// <div id="title">Card Title</div>
-//
-// Style guide: component.typography
+/*
+ Card Title
+
+ The cards title
+
+ Markup:
+ <div id="title">Card Title</div>
+
+ Style guide: component.typography
+*/
 #title {
-  color: $dark-blue;
-  font-size: ms(2);
-  padding: ms(2 * -.75); // a margin of 25% the font-size
+  color     : $dark-blue;
+  font-size : ms(2);
+  padding   : ms(2 * -.75); // a margin of 25% the font-size
   // xs view
   @include breakpoint(320px) {
     @include span(5 of 6);
@@ -90,7 +91,7 @@ $dark-blue: #000080;
 }
 
 #optionsWrapper {
-  text-align: right;
+  text-align : right;
 
   // xs view
   @include breakpoint(320px) {
@@ -114,11 +115,11 @@ $dark-blue: #000080;
 }
 
 #options {
-  border: 1px solid $black;
-  height: auto;
-  position: absolute;
-  right: 10px;
-  width: auto;
+  border   : 1px solid $black;
+  height   : auto;
+  position : absolute;
+  right    : 10px;
+  width    : auto;
 }
 
 #description,
@@ -141,10 +142,10 @@ $dark-blue: #000080;
 */
 #callToAction {
   &.right {
-    text-align: right;
+    text-align : right;
   }
 
   &.center {
-    text-align: center;
+    text-align : center;
   }
 }

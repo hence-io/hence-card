@@ -1,10 +1,14 @@
 @charset "UTF-8";
-/***************************
-** Essentials
-****************************/
-/***************************
-** Optional
-****************************/
+/*
+  Essential Libraries
+
+  Style guide: Libraries
+*/
+/*
+  Optional Libraries
+
+  Style guide: Libraries
+*/
 /*!
  *  Font Awesome 4.3.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
@@ -2353,11 +2357,8 @@
   content: "";
 }
 
-/***************************
-** Component Base Styles
-****************************/
 /*
- hence-comp-ui-card
+ Component Styles: hence-comp-ui-card
 
  A web component
 
@@ -2408,6 +2409,16 @@
   width: 100%;
 }
 
+/*
+ Card Title
+
+ The cards title
+
+ Markup:
+ <div id="title">Card Title</div>
+
+ Style guide: component.typography
+*/
 #title {
   color: #000080;
   font-size: 2.61803em;
