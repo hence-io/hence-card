@@ -8,7 +8,7 @@ let styleguideDir = global.paths.dist + 'styleguide/';
 let compSass = global.comp.name + '.scss';
 let compCss = global.comp.name + '.css';
 
-import {compassOptions} from './../sass';
+import {styleOptions} from './../sass';
 
 import browserSyncConstructor from 'browser-sync';
 let browserSync = browserSyncConstructor.create();
@@ -52,7 +52,7 @@ gulp.task('kss:generate', function () {
 
 gulp.task('kss:apply', function () {
   return gulp.src(global.paths.sass)
-    .pipe(compass(compassOptions))
+    .pipe(compass(styleOptions))
     .pipe(styleguide.applyStyles())
     .pipe(gulp.dest(styleguideDir));
 });

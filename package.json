@@ -47,6 +47,7 @@
     "gulp-insert": "^0.4.0",
     "gulp-minify-css": "^1.1.6",
     "gulp-minify-html": "^1.0.3",
+    "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.3",
     "gulp-scss-lint": "^0.2.0",
@@ -79,6 +80,7 @@
   },
   "dependencies": {
     "consoler": "git://github.com/blitzcodes/consoler",
+    "doc-ready": "^1.0.3",
     "hence-comp": "git://github.com/hence-io/hence-comp",
     "lodash": "^3.10.0",
     "moment": "^2.10.3",

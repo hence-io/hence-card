@@ -168,7 +168,7 @@ let HenceCompUiCard = HenceComp({
 
   updateDisplayOptions() {
     let self = this;
-    self.toggleClass('open',self.displayOptions, self.$$('#options'));
+    self.toggleClass('open', self.displayOptions, self.$$('#options'));
   }
 });
 

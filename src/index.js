@@ -1,7 +1,9 @@
 'use strict';
 
 import HenceCompUiCard from './hence-comp-ui-card';
+import docReady from 'doc-ready';
 
+// Some common defaults
 let options = [
   {
     label: 'Test',
@@ -24,25 +26,31 @@ let callToAction = {
   }
 };
 
-HenceCompUiCard.appendElementTo({
-  title: 'Padded example w/ options',
-  padded: true,
-  options: options,
-  image: 'http://placehold.it/350x50'
-}, document.getElementsByTagName('body'));
-HenceCompUiCard.appendElementTo({
-  title: 'Example w/ options pre-opened',
-  displayOptions: true,
-  options: options
-});
-HenceCompUiCard.appendElementTo({
-  title: 'Example w/ call to action',
-  callToAction: callToAction
-});
-HenceCompUiCard.appendElementTo({
-  title: 'Kitchen Sink',
-  displayOptions: true,
-  options: options,
-  callToAction: callToAction
-});
+// Ensure we're waiting for the document to actually be loaded before interacting with it.
+docReady(()=> {
+  // Location to bind preview components too. Use this to ensure the style guide will display these too.
+  let componentPreviewBox = document.getElementById('component-previews');
 
+  // Spawn various states of the component to preview them side by side
+  HenceCompUiCard.appendElementTo({
+    title: 'Padded example w/ options',
+    padded: true,
+    options: options,
+    image: 'http://placehold.it/350x50'
+  }, componentPreviewBox);
+  HenceCompUiCard.appendElementTo({
+    title: 'Example w/ options pre-opened',
+    displayOptions: true,
+    options: options
+  }, componentPreviewBox);
+  HenceCompUiCard.appendElementTo({
+    title: 'Example w/ call to action',
+    callToAction: callToAction
+  }, componentPreviewBox);
+  HenceCompUiCard.appendElementTo({
+    title: 'Kitchen Sink',
+    displayOptions: true,
+    options: options,
+    callToAction: callToAction
+  }, componentPreviewBox);
+});

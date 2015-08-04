@@ -16,7 +16,7 @@ import gulpif from 'gulp-if';
 import browserSyncConstructor from 'browser-sync';
 let browserSync = browserSyncConstructor.create();
 
-let compassOptions = {
+let styleOptions = {
   style: 'expanded',
   time: true,
   sourcemap: true,
@@ -44,7 +44,6 @@ let sassCompilation = function (opts) {
     replace: false,
     concat: false,
     bypassSourcemap: false,
-    styleguide: false,
     browserSync: browserSync // fall back to prevent issues with live injection
   });
 
@@ -55,16 +54,10 @@ let sassCompilation = function (opts) {
 
     let data = gulp.src(global.paths.sass)
       .pipe(plumber())
-      .pipe(compass(compassOptions))
+      .pipe(gulpif(!opts.bypassSourcemap, sourcemaps.init()))
+      .pipe(compass(styleOptions))
       .pipe(gulpif(opts.replace, replace(opts.replace.this, opts.replace.with)))
-      .pipe(concat(opts.concat ? opts.concat : compCssFilename));
-
-    // Doesn't work in a gulpif being an object with methods.
-    if (opts.styleguide) {
-      data.pipe(opts.styleguide.applyStyles());
-    }
-
-    data.pipe(gulpif(!opts.bypassSourcemap, sourcemaps.init({loadMaps: true})))
+      .pipe(concat(opts.concat ? opts.concat : compCssFilename))
       .pipe(autoprefixer())
       .pipe(gulpif(opts.dist, minifyCss()))
       .pipe(gulpif(opts.dist, rename({suffix: '.min'})))
@@ -75,5 +68,5 @@ let sassCompilation = function (opts) {
     return data;
   });
 };
-
+export {styleOptions};
 export default sassCompilation;
