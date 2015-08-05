@@ -26,7 +26,7 @@ let HenceCompUiCard = HenceComp({
     },
     image: {
       type: String,
-      value: 'http://placehold.it/350x150'
+      value: 'http://placehold.it/450x50'
     },
     title: {
       type: String,

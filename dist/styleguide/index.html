@@ -2,16 +2,16 @@
 <html lang="en" ng-app="sgApp">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" href="/assets/img/favicon.ico">
+  <link rel="icon" href="/dist/styleguide/assets/img/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
     var _styleguideConfig = {"title":"Component Styleguide","disableEncapsulation":true,"disableHtml5Mode":true};
     (function() {
       'use strict';
       var userStyleFiles = [
-          '/styleguide.css',
-          '/styleguide_pseudo_styles.css',
-          '/styleguide_helper_elements.css'
+          '/dist/styleguide/styleguide.css',
+          '/dist/styleguide/styleguide_pseudo_styles.css',
+          '/dist/styleguide/styleguide_helper_elements.css'
         ],
         head = document.querySelector('head');
 
@@ -31,27 +31,27 @@
         userStyleFiles.forEach(addCssLink);
       }
 
-      addCssLink('/styleguide_at_rules.css');
-      addCssLink('/app.css', {noReload: true});
+      addCssLink('/dist/styleguide/styleguide_at_rules.css');
+      addCssLink('/dist/styleguide/app.css', {noReload: true});
     }());
   </script>
   <script type="text/ng-template" id="userStyles.html">
     <style>
-      @import url('/styleguide.css');
-      @import url('/styleguide_pseudo_styles.css');
-      @import url('/css/styleguide_helper_elements.css');
+      @import url('/dist/styleguide/styleguide.css');
+      @import url('/dist/styleguide/styleguide_pseudo_styles.css');
+      @import url('/dist/styleguide/css/styleguide_helper_elements.css');
     </style>
   </script>
   <title ng-bind-html="$root.pageTitle | unsafe">Component Styleguide</title>
   
-        <script src=../../../webcomponentsjs/webcomponents-lite.min.js></script>
-        <link rel=import href=../hence-comp-ui-card.html>
+        <script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+        <link rel=import href="/dist/styleguide/hence-comp-ui-card-styleguide.html">
         
-  <base href="/" />
+  <base href="/dist/styleguide/" />
 </head>
 <body class="sg">
   <div class="sg view-index" ui-view></div>
-  <script src="/js/vendor.js"></script>
-  <script src="/js/app.js"></script>
+  <script src="/dist/styleguide/js/vendor.js"></script>
+  <script src="/dist/styleguide/js/app.js"></script>
 </body>
 </html>

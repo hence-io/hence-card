@@ -25,9 +25,7 @@
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-transform: translate(0, 0);
-      -ms-transform: translate(0, 0);
-          transform: translate(0, 0);
+  transform: translate(0, 0);
 }
 
 /* makes the font 33% larger relative to the icon container */
@@ -169,8 +167,7 @@
 :root .fa-rotate-270,
 :root .fa-flip-horizontal,
 :root .fa-flip-vertical {
-  -webkit-filter: none;
-          filter: none;
+  filter: none;
 }
 
 .fa-stack {
@@ -2354,15 +2351,8 @@
 }
 
 /***************************
-** Component Base Styles
+** Vars
 ****************************/
-/*
-Component Elements
-
-A web component
-
-Styleguide 1.0
-*/
 /*
 Main colors
 
@@ -2374,6 +2364,16 @@ markup:
 
 Styleguide 1.1
 */
+/***************************
+** Component Base Styles
+****************************/
+/*
+Component Elements
+
+A web component
+
+Styleguide 1.0
+*/
 /*
 Component Variations
 
@@ -2383,6 +2383,7 @@ Styleguide 2.0
 Default
 
 Markup:
+<div id="component-previews"></div>
 <hence-comp-ui-card></hence-comp-ui-card>
 
 Styleguide 2.1
@@ -2563,3 +2564,5 @@ Styleguide 1.4.1
 #callToAction.center {
   text-align: center;
 }
+
+/*# sourceMappingURL=hence-comp-ui-card.css.map */

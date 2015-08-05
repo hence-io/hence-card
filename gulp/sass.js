@@ -52,20 +52,18 @@ let sassCompilation = function (opts) {
     //gulp.src(global.paths.fonts)
     //  .pipe(gulp.dest(dest + 'fonts'));
 
-    let data = gulp.src(global.paths.sass)
+    return gulp.src(global.paths.sass)
       .pipe(plumber())
-      .pipe(gulpif(!opts.bypassSourcemap, sourcemaps.init()))
+      .pipe(gulpif(!opts.bypassSourcemap && !opts.dist, sourcemaps.init()))
       .pipe(compass(styleOptions))
       .pipe(gulpif(opts.replace, replace(opts.replace.this, opts.replace.with)))
       .pipe(concat(opts.concat ? opts.concat : compCssFilename))
       .pipe(autoprefixer())
       .pipe(gulpif(opts.dist, minifyCss()))
       .pipe(gulpif(opts.dist, rename({suffix: '.min'})))
-      .pipe(gulpif(!opts.bypassSourcemap, sourcemaps.write('./')))
+      .pipe(gulpif(!opts.bypassSourcemap && !opts.dist, sourcemaps.write('./')))
       .pipe(gulp.dest(opts.dest))
       .pipe(opts.browserSync.stream());
-
-    return data;
   });
 };
 export {styleOptions};

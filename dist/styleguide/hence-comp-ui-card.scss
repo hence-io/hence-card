@@ -10,27 +10,18 @@
 // Spacing
 @import 'modular-scale';
 
-//
 /***************************
 ** Optional
 ****************************/
 // Font awesome
 $fa-font-path : '/bower_components/font-awesome/fonts/' !default;
 @import 'font-awesome';
-//
-/***************************
-** Component Base Styles
-****************************/
+
 // styleguide:ignore:end
 
-/*
-Component Elements
-
-A web component
-
-Styleguide 1.0
-*/
-
+/***************************
+** Vars
+****************************/
 /*
 Main colors
 
@@ -45,6 +36,16 @@ Styleguide 1.1
 $black : #000;
 $dark-blue : #000080;
 
+/***************************
+** Component Base Styles
+****************************/
+/*
+Component Elements
+
+A web component
+
+Styleguide 1.0
+*/
 /*
 Component Variations
 
@@ -54,6 +55,7 @@ Styleguide 2.0
 Default
 
 Markup:
+<div id="component-previews"></div>
 <hence-comp-ui-card></hence-comp-ui-card>
 
 Styleguide 2.1
