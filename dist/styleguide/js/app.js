@@ -358,10 +358,10 @@ angular.module('sgApp')
   .controller('MainCtrl', ["$scope", "$location", "$state", "Styleguide", "Variables", "localStorageService", "Socket", function($scope, $location, $state, Styleguide, Variables, localStorageService, Socket) {
 
     $scope.isNavCollapsed = false;
-    $scope.markupSection = {isVisible: true};
+    $scope.markupSection = {isVisible: false};
     $scope.designerTool = {isVisible: false};
 
-    localStorageService.bind($scope, 'markupSection', {isVisible: true});
+    localStorageService.bind($scope, 'markupSection', {isVisible: false});
     localStorageService.bind($scope, 'designerTool', {isVisible: false});
 
     // Bind scope variables to service updates

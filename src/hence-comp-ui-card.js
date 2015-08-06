@@ -3,7 +3,7 @@
  * @module hence-comp-ui-card
  */
 import console from 'consoler';
-import HenceComp from 'hence-comp';
+import HenceComp from 'hence-polycore';
 
 /*import _extend from 'lodash/object/extend';*/
 import _defaults from 'lodash/object/defaults';
