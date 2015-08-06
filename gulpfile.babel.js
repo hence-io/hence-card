@@ -39,7 +39,9 @@ global.paths = {
   // Temp folder.
   'tmp': tmpDir,
   // WCT Test folder
-  'testBehaviour': './test/behaviour/**'
+  'testBehaviour': './test/behaviour/**/*',
+  // Unit Test folder
+  'testUnit': './test/unit/**/*'
 };
 
 // Require all tasks in the 'gulp' folder.

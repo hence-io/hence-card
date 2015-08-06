@@ -1,18 +1,18 @@
 'use strict';
 
 import gulp from 'gulp';
-import {execSync} from 'child_process';
+import {exec,execSync} from 'child_process';
 import {test as webComponentTester} from 'web-component-tester';
 import util from 'gulp-util';
 
 /***********************************************************************************************************************
  * Karma Unit Testing
  **********************************************************************************************************************/
-gulp.task('test:karma', function () {
-  execSync('npm run test', {stdio: 'inherit'});
+gulp.task('karma', function () {
+  exec('npm run test', (err,stdout)=>{ console.log(stdout); });
 });
 
-gulp.task('test:karma-watch', function () {
+gulp.task('karma:watch', function () {
   execSync('npm run test:watch', {stdio: 'inherit'});
 });
 
