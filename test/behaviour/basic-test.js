@@ -1,15 +1,15 @@
-var component = document.querySelector('hence-comp-ui-card');
+var component = document.querySelector('hence-card');
 
-suite('<hence-comp-ui-card>', function () {
+suite('<hence-card>', function () {
 
-  test('default title is set', function () {
-    assert.equal(component.title, 'Lorem ipsum dolor sit amet');
+  test('says hello', function () {
+    assert.equal(component.greeting, 'test greeting');
   });
 
-  test('toggle menu', function () {
-    component.eventToggleOptions();
-    assert.equal(component.displayOptions, true);
-    component.eventToggleOptions();
-    assert.equal(component.displayOptions, false);
+  test('says hello', function () {
+    assert.equal(component.sayHello(), 'hence-card says, Hello World!');
+
+    var greetings = component.sayHello('greetings Earthlings');
+    assert.equal(greetings, 'hence-card says, greetings Earthlings');
   });
 });

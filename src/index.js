@@ -1,6 +1,6 @@
 'use strict';
 
-import HenceCompUiCard from './hence-comp-ui-card';
+import HenceCard from './hence-card';
 import docReady from 'doc-ready';
 
 // Some common defaults
@@ -32,22 +32,22 @@ docReady(()=> {
   let componentPreviewBox = document.getElementById('component-previews');
 
   // Spawn various states of the component to preview them side by side
-  HenceCompUiCard.appendElementTo({
+  HenceCard.appendElementTo({
     title: 'Padded example w/ options',
     padded: true,
     options: options,
     image: 'http://placehold.it/350x50'
   }, componentPreviewBox);
-  HenceCompUiCard.appendElementTo({
+  HenceCard.appendElementTo({
     title: 'Example w/ options pre-opened',
     displayOptions: true,
     options: options
   }, componentPreviewBox);
-  HenceCompUiCard.appendElementTo({
+  HenceCard.appendElementTo({
     title: 'Example w/ call to action',
     callToAction: callToAction
   }, componentPreviewBox);
-  HenceCompUiCard.appendElementTo({
+  HenceCard.appendElementTo({
     title: 'Kitchen Sink',
     displayOptions: true,
     options: options,

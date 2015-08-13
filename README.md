@@ -1,15 +1,15 @@
 # Hence.io Component Stack
-## hence-comp-ui-card
+## hence-card
 
 > 
 
-A basic card element.
+An element providing a starting point for your own reusable Polymer elements.
 
 ## Using this component
 
 Add this component to your polymer project with:
 
-    <link rel="import" href="bower_components/hence-comp-ui-card.html" >
+    <link rel="import" href="bower_components/hence-card.html" >
 
 # Development
 

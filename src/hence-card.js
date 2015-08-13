@@ -1,20 +1,17 @@
 'use strict';
 /**
- * @module hence-comp-ui-card
+ * @module hence-card
  */
 import console from 'consoler';
 import HenceComp from 'hence-polycore';
 
-/*import _extend from 'lodash/object/extend';*/
-import _defaults from 'lodash/object/defaults';
-
-let is = 'hence-comp-ui-card';
+let is = 'hence-card';
 
 /**
- * HenceCompUiCard Component
- * @constructor
+ * HenceCard Component
+  * @constructor
  */
-let HenceCompUiCard = HenceComp({
+let HenceCard = HenceComp({
   is, // auto set as is : is, es6 laziness joy!
   /********************************************************************************************************************
    * Initialization
@@ -173,4 +170,4 @@ let HenceCompUiCard = HenceComp({
 });
 
 export {is};
-export default HenceCompUiCard;
+export default HenceCard;

@@ -2,6 +2,7 @@
 
 // Common
 import gulp from 'gulp';
+import plumber from 'gulp-plumber';
 import concat from 'gulp-concat';
 import rename from 'gulp-rename';
 import replace from 'gulp-replace';
@@ -9,16 +10,9 @@ import runSeq from 'run-sequence';
 import sourcemaps from 'gulp-sourcemaps';
 import util from 'gulp-util';
 
-// Html
-import minifyHtml from 'gulp-minify-html';
-
 // Images
 import pngquant from 'imagemin-pngquant';
 import imagemin from 'gulp-imagemin';
-
-// Sass
-import autoprefixer from 'gulp-autoprefixer';
-import minifyCss from 'gulp-minify-css';
 
 // JS
 import uglify from 'gulp-uglify';
@@ -42,7 +36,7 @@ htmlCompilation({taskName: 'buildhtml', dist: true});
 
 // One build task to rule them all.
 gulp.task('build', (done)=> {
-  runSeq('clean', ['buildsass', 'buildimg', 'buildjs', 'kss'], 'buildhtml', done);
+  runSeq('clean', ['buildsass', 'buildimg', 'buildjs', 'kss:build'], 'buildhtml', done);
 });
 
 gulp.task('build:serve', (done)=> {
@@ -59,6 +53,7 @@ gulp.task('build:serve', (done)=> {
 // Build images for distribution.
 gulp.task('buildimg', ()=> {
   gulp.src(global.paths.img)
+    .pipe(plumber())
     .pipe(imagemin({
       progressive: true,
       svgoPlugins: [{removeViewBox: false}],

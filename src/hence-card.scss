@@ -1,6 +1,6 @@
 // styleguide:ignore:start
 /***************************
-** Essentials
+** Essentials Libraries
 ****************************/
 // Core
 @import 'compass';
@@ -11,14 +11,13 @@
 @import 'modular-scale';
 
 /***************************
-** Optional
+** Optional Libraries
 ****************************/
-// Font awesome
+// Font awesome, do not include unless needed
 $fa-font-path: '/bower_components/font-awesome/fonts/' !default;
 @import 'font-awesome';
-
 // styleguide:ignore:end
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /***************************
 ** Vars
 ****************************/
@@ -56,7 +55,7 @@ Default
 
 Markup:
 <div id="component-previews"></div>
-<hence-comp-ui-card></hence-comp-ui-card>
+<hence-card></hence-card>
 
 Styleguide 2.1
 */
@@ -138,14 +137,14 @@ Menu Toggle
 .open - Displays the menu
 
 Markup:
-<div id="optionsWrapper" class="style-scope hence-comp-ui-card">
-    <button id="toggleOptions" class="style-scope hence-comp-ui-card"></button>
-      <div id="options" class="style-scope hence-comp-ui-card {$modifiers}">
-          <span class="link style-scope hence-comp-ui-card"><a class="style-scope hence-comp-ui-card">Test</a></span>
-        <template is="dom-repeat" as="opt" class="style-scope hence-comp-ui-card"></template>
+<div id="optionsWrapper" class="style-scope hence-card">
+    <button id="toggleOptions" class="style-scope hence-card"></button>
+      <div id="options" class="style-scope hence-card {$modifiers}">
+          <span class="link style-scope hence-card"><a class="style-scope hence-card">Test</a></span>
+        <template is="dom-repeat" as="opt" class="style-scope hence-card"></template>
       </div>
-    <template is="dom-if" class="style-scope hence-comp-ui-card"></template>
-  <template is="dom-if" class="style-scope hence-comp-ui-card"></template>
+    <template is="dom-if" class="style-scope hence-card"></template>
+  <template is="dom-if" class="style-scope hence-card"></template>
 </div>
 
 Styleguide 1.3.1
@@ -204,10 +203,10 @@ Your standard button suitable for clicking.
 .right - Aligns to the right
 
 Markup:
-<div id="callToAction" class="style-scope hence-comp-ui-card {$modifiers}">
-  <label for="callToActionInput" class="style-scope hence-comp-ui-card">Enter your email here:</label>
-  <input id="callToActionInput" class="style-scope hence-comp-ui-card" placeholder="Email" type="text">
-  <button class="style-scope hence-comp-ui-card">Sign Up Now!</button>
+<div id="callToAction" class="style-scope hence-card {$modifiers}">
+  <label for="callToActionInput" class="style-scope hence-card">Enter your email here:</label>
+  <input id="callToActionInput" class="style-scope hence-card" placeholder="Email" type="text">
+  <button class="style-scope hence-card">Sign Up Now!</button>
 </div>
 
 Styleguide 1.4.1

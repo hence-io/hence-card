@@ -1,4 +1,4 @@
 'use strict';
 
-import HenceCompUiCard from './../../src/hence-comp-ui-card';
-HenceCompUiCard.registerElement();
+import HenceCard from './../../src/hence-card';
+HenceCard.registerElement();

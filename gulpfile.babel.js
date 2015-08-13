@@ -5,9 +5,14 @@ var srcDir = './src/';
 var tmpDir = './.tmp/';
 var buildSrcDir = './gulp/src/';
 
+var name = 'hence-card';
 global.comp = {
-  name: 'hence-comp-ui-card',
-  camel: 'HenceCompUiCard'
+  name: name,
+  js: name + '.js',
+  scss: name + '.scss',
+  css: name + '.css',
+  html: name + '.html',
+  camel: 'HenceCard'
 };
 
 // Specify paths & globbing patterns for tasks.
@@ -23,9 +28,11 @@ global.paths = {
   // Dev JS file
   'devjs': srcDir + 'index.js',
   // JS sources.
+  'gulp': srcDir + 'gulp/**/*.js',
+  // JS sources.
   'js': srcDir + '**/*.js',
   // SASS sources.
-  'sass': srcDir + global.comp.name + '.scss',
+  'sass': srcDir + '**/*.scss',
   // Fonts
   'fonts': './fonts/**',
   // Image sources.
@@ -38,6 +45,9 @@ global.paths = {
   'dist': './dist/',
   // Temp folder.
   'tmp': tmpDir,
+  // Output css filepath
+  tmpCssOutput: `${tmpDir}css/`,
+  tmpCssOutputFile: `${tmpDir}css/${global.comp.name}.css`,
   // WCT Test folder
   'testBehaviour': './test/behaviour/**/*',
   // Unit Test folder

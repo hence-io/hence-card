@@ -6,7 +6,6 @@
 docs/
 node_modules/
 bower_components/
-- adding bower_components to the .gitignore as it was missed
 .sass-cache/
 npm-debug.log
 

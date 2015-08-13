@@ -2,6 +2,7 @@
 
 import _ from 'lodash';
 import gulp  from 'gulp';
+import plumber from 'gulp-plumber';
 import util from 'gulp-util';
 import sourcemaps from 'gulp-sourcemaps';
 import source from 'vinyl-source-stream';
@@ -25,7 +26,7 @@ let jsCompilation = function (opts) {
     dist: false,
     sourcemap: true,
     browserify: {
-      debug: false
+      debug: true
     }
   });
 
@@ -35,12 +36,13 @@ let jsCompilation = function (opts) {
       //.add(require.resolve('babelify/polyfill'))
       .transform(babelify)
       .bundle().on('error', util.log.bind(util, 'Browserify Error'))
-      .pipe(source(global.comp.name + '.js'))
+      .pipe(plumber())
+      .pipe(source(global.comp.js))
       .pipe(buffer())
       .pipe(gulpif(opts.dist, rename({suffix: '.min'})))
-      .pipe(gulpif(opts.sourcemap,sourcemaps.init({loadMaps: true}))) // loads map from browserify file
+      .pipe(gulpif(opts.sourcemap, sourcemaps.init({loadMaps: true}))) // loads map from browserify file
       .pipe(gulpif(opts.dist, uglify({mangle: false})))
-      .pipe(gulpif(opts.sourcemap,sourcemaps.write('./'))) // writes .map file
+      .pipe(gulpif(opts.sourcemap, sourcemaps.write('./'))) // writes .map file
       .pipe(gulp.dest(opts.dest));
   });
 };
