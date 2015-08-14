@@ -1,0 +1,227 @@
+// styleguide:ignore:start
+/***************************
+** Essentials Libraries
+****************************/
+// Core
+@import 'compass';
+// Grid/Responsive
+@import 'susy';
+@import 'breakpoint';
+// Spacing
+@import 'modular-scale';
+
+/***************************
+** Optional Libraries
+****************************/
+// Font awesome, do not include unless needed
+$fa-font-path: '/bower_components/font-awesome/fonts/' !default;
+@import 'font-awesome';
+// styleguide:ignore:end
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/***************************
+** Vars
+****************************/
+/*
+Main colors
+
+$black - Primary color
+$dark-blue - Secondary color
+
+markup:
+<div style="background: {$modifiers};" class="styleguide-color">{$modifiers}</div>
+
+Styleguide 1.1
+*/
+$black: #000;
+$dark-blue: #000080;
+
+/***************************
+** Component Base Styles
+****************************/
+/*
+Component Elements
+
+A web component
+
+Styleguide 1.0
+*/
+/*
+Component Variations
+
+Styleguide 2.0
+*/
+/*
+Default
+
+Markup:
+<div id="component-previews"></div>
+<hence-card></hence-card>
+
+Styleguide 2.1
+*/
+:host {
+  $ms-ratio: $minor-second;
+}
+
+%fullWidthContainer {
+  @include clearfix;
+  @include container(97%);
+  @include span(1 of 1);
+  font-size: ms(.25);
+  padding: ms(.25);
+}
+
+.padded {
+  padding: ms(.25);
+}
+
+#wrapper {
+  @include container(100%);
+  border: 1px solid $black;
+  margin: ms(.25) 0;
+}
+
+#image {
+  img {
+    height: auto;
+    width: 100%;
+  }
+}
+
+/*
+Typography
+
+Styleguide 1.2.0
+*/
+
+/*
+Card Title
+
+The cards title
+
+Markup:
+<div id="title">Card Title</div>
+
+Styleguide 1.2.1
+*/
+#title {
+  color: $dark-blue;
+  font-size: ms(2);
+  padding: ms(2 * -.75); // a margin of 25% the font-size
+  // xs view
+  @include breakpoint(320px) {
+    @include span(5 of 6);
+  }
+
+  // tablet view
+  @include breakpoint(600px) {
+    @include span(4 of 6);
+  }
+
+  // desktop view
+  @include breakpoint(900px) {
+    @include span(9 of 10);
+  }
+}
+
+/*
+Options Menu
+
+Styleguide 1.3.0
+*/
+
+/*
+Menu Toggle
+
+.closed - Hides the menu
+.open - Displays the menu
+
+Markup:
+<div id="optionsWrapper" class="style-scope hence-card">
+    <button id="toggleOptions" class="style-scope hence-card"></button>
+      <div id="options" class="style-scope hence-card {$modifiers}">
+          <span class="link style-scope hence-card"><a class="style-scope hence-card">Test</a></span>
+        <template is="dom-repeat" as="opt" class="style-scope hence-card"></template>
+      </div>
+    <template is="dom-if" class="style-scope hence-card"></template>
+  <template is="dom-if" class="style-scope hence-card"></template>
+</div>
+
+Styleguide 1.3.1
+*/
+#options {
+  border: 1px solid $black;
+  height: auto;
+  position: absolute;
+  right: 10px;
+  width: auto;
+
+  &.closed {
+    display: none;
+  }
+
+  &.open {
+    display: block;
+  }
+}
+
+#optionsWrapper {
+  text-align: right;
+
+  // xs view
+  @include breakpoint(320px) {
+    @include span(1 of 6 last);
+  }
+
+  // tablet view
+  @include breakpoint(600px) {
+    @include span(2 of 6 last);
+  }
+
+  // desktop view
+  @include breakpoint(900px) {
+    @include span(1 of 10 last);
+  }
+}
+
+#toggleOptions {
+  @extend .fa;
+  @extend .fa-ellipsis-v;
+}
+
+/*
+Buttons
+
+Styleguide 1.4
+*/
+/*
+callToAction
+
+Your standard button suitable for clicking.
+
+.left - Aligns to the left
+.right - Aligns to the right
+
+Markup:
+<div id="callToAction" class="style-scope hence-card {$modifiers}">
+  <label for="callToActionInput" class="style-scope hence-card">Enter your email here:</label>
+  <input id="callToActionInput" class="style-scope hence-card" placeholder="Email" type="text">
+  <button class="style-scope hence-card">Sign Up Now!</button>
+</div>
+
+Styleguide 1.4.1
+*/
+#callToAction {
+  &.right {
+    text-align: right;
+  }
+
+  &.center {
+    text-align: center;
+  }
+}
+
+#description,
+#callToAction {
+  @extend %fullWidthContainer;
+}
