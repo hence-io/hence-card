@@ -3,7 +3,8 @@
  * @module hence-card
  */
 import console from 'consoler';
-import HenceComp from 'hence-polycore';
+import {HenceUi} from 'hence-polycore';
+import _defaults from 'lodash/object/defaultsDeep.js';
 
 let is = 'hence-card';
 
@@ -11,7 +12,7 @@ let is = 'hence-card';
  * HenceCard Component
   * @constructor
  */
-let HenceCard = HenceComp({
+let HenceCard = HenceUi({
   is, // auto set as is : is, es6 laziness joy!
   /********************************************************************************************************************
    * Initialization
@@ -76,8 +77,9 @@ let HenceCard = HenceComp({
    * @param {Event} e The event executing this function
    */
     eventCallToAction(e) {
-    console.log('eventCallToAction', e, this.callToAction.input);
-    this.callToAction.action(e, this.callToAction.input);
+    let callToAction = this.callToAction;
+    console.log('eventCallToAction', e, callToAction.input);
+    callToAction.action(e, callToAction.input);
   },
 
   eventOptionAction(e) {
