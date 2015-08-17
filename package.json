@@ -13,8 +13,8 @@
     "sassdocs": "sassdoc src/scss",
     "jsdocs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose",
     "install-deps": "npm i -g gulp && gulp install-deps",
-    "coverage": "istanbul cover _mocha --report lcovonly",
-    "coveralls": "istanbul cover _mocha --report lcovonly && istanbul-coveralls"
+    "coverage": "./node_modules/.bin/babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
+    "coveralls": "npm run coverage && istanbul-coveralls"
   },
   "browserify": {
     "transform": [
@@ -33,6 +33,7 @@
     "bs-html-injector": "^2.0.4",
     "chai": "^3.0.0",
     "chai-as-promised": "^5.1.0",
+    "coveralls": "^2.11.2",
     "del": "^1.2.0",
     "esdoc": "^0.1.2",
     "eslint": "^0.24.0",
@@ -56,6 +57,9 @@
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.6",
     "imagemin-pngquant": "^4.1.0",
+    "isparta": "^3.0.3",
+    "istanbul": "^0.3.5",
+    "istanbul-coveralls": "^1.0.1",
     "jsdoc": "^3.3.2",
     "karma": "^0.12.36",
     "karma-babel-preprocessor": "^5.2.1",
@@ -77,10 +81,7 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.2.3",
-    "web-component-tester": "^3.2.0",
-    "coveralls": "^2.11.2",
-    "istanbul": "^0.3.5",
-    "istanbul-coveralls": "^1.0.1"
+    "web-component-tester": "^3.2.0"
   },
   "dependencies": {
     "consoler": "blitzcodes/consoler",
