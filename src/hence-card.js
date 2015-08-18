@@ -3,17 +3,15 @@
  * @module hence-card
  */
 import console from 'consoler';
-import {HenceUi} from 'hence-polycore';
+import Hence from 'hence-component-framework';
 import _defaults from 'lodash/object/defaultsDeep.js';
-
-let is = 'hence-card';
 
 /**
  * HenceCard Component
-  * @constructor
+ * @constructor
  */
-let HenceCard = HenceUi({
-  is, // auto set as is : is, es6 laziness joy!
+let HenceCard = Hence.Ui({
+  is: 'hence-card',
   /********************************************************************************************************************
    * Initialization
    ********************************************************************************************************************/
@@ -76,17 +74,12 @@ let HenceCard = HenceUi({
   /**
    * @param {Event} e The event executing this function
    */
-    eventCallToAction(e) {
-    let callToAction = this.callToAction;
-    console.log('eventCallToAction', e, callToAction.input);
-    callToAction.action(e, callToAction.input);
-  },
+  eventCallToAction: Hence.Hook('callToAction', (data, model)=> {
+    // update the data before it gets sent back through the hook
+    data.input.value += ' has been processed!';
+  }),
 
-  eventOptionAction(e) {
-    let opt = e.model.opt;
-    console.log(e, opt, opt.action);
-    opt.action();
-  },
+  eventOptionAction: Hence.Hook('opt'),
 
   /*********************************************************************************************************************
    * Element DOM Hooks
@@ -171,5 +164,4 @@ let HenceCard = HenceUi({
   }
 });
 
-export {is};
 export default HenceCard;

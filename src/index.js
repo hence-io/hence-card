@@ -7,7 +7,7 @@ import docReady from 'doc-ready';
 let options = [
   {
     label: 'Test',
-    action: ()=> {
+    action: (e, data, model)=> {
       alert('this is my option!');
     }
   }
@@ -16,8 +16,8 @@ let options = [
 let callToAction = {
   label: 'Sign Up Now!',
   align: 'right', // left/center/right
-  action: (e, input)=> {
-    alert(`Successful submission with: ${input.value}`);
+  action: (e, data, model)=> {
+    alert(`Successful submission with: ${data.input.value}`);
   },
   input: {
     label: 'Enter your email here:',
