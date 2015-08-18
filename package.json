@@ -13,7 +13,7 @@
     "sassdocs": "sassdoc src/scss",
     "jsdocs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose",
     "install-deps": "npm i -g gulp && gulp install-deps",
-    "coverage": "./node_modules/.bin/babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha",
+    "coverage": "./node_modules/.bin/babel-node ./node_modules/.bin/isparta cover ./node_modules/.bin/_mocha ./test/behaviour",
     "coveralls": "npm run coverage && istanbul-coveralls"
   },
   "browserify": {
@@ -81,7 +81,8 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.2.3",
-    "web-component-tester": "^3.2.0"
+    "web-component-tester": "^3.2.0",
+    "web-component-tester-istanbul": "^0.8.0"
   },
   "dependencies": {
     "consoler": "blitzcodes/consoler",
