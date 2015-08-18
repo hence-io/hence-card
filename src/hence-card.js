@@ -74,12 +74,12 @@ let HenceCard = Hence.Ui({
   /**
    * @param {Event} e The event executing this function
    */
-  eventCallToAction: Hence.Hook('callToAction', (data, model)=> {
+  eventCallToAction: Hence.hook('callToAction', (data, model)=> {
     // update the data before it gets sent back through the hook
     data.input.value += ' has been processed!';
   }),
 
-  eventOptionAction: Hence.Hook('opt'),
+  eventOptionAction: Hence.hook('opt'),
 
   /*********************************************************************************************************************
    * Element DOM Hooks
