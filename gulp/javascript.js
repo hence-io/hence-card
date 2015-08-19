@@ -32,7 +32,7 @@ let jsCompilation = function (opts) {
 
   // Build JS for distribution.
   gulp.task(opts.taskName, requiredTasks, ()=> {
-    browserify(opts.source, opts.browserify)
+    return browserify(opts.source, opts.browserify)
       //.add(require.resolve('babelify/polyfill'))
       .transform(babelify)
       .bundle().on('error', util.log.bind(util, 'Browserify Error'))
