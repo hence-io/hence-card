@@ -46,7 +46,9 @@ let HenceCard = Hence.Ui({
       type: Object,
       notify: true,
       value: null
-    }
+    },
+    _config: Object,
+    root: Object
   },
 
   /*********************************************************************************************************************
