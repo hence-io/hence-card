@@ -71,15 +71,18 @@ let HenceCard = Hence.Ui({
     self.updateDisplayOptions();
   },
 
-  /**
-   * @param {Event} e The event executing this function
-   */
-  eventCallToAction: Hence.hook('callToAction', (data, model, e)=> {
+  hooks: {
+    callToAction: 'processCallToAction',
+    opt:''
+  },
+
+  processCallToAction(data, model, e) {
     // update the data before it gets sent back through the hook
     data.input.value += ' has been processed!';
-  }),
+    alert(`${this.callToAction.input.value} != ${data.input.value}`);
+  },
 
-  eventOptionAction: Hence.hook('opt'),
+  //'hook.opt': Hence.hook('opt'),
 
   /*********************************************************************************************************************
    * Element DOM Hooks
@@ -112,7 +115,6 @@ let HenceCard = Hence.Ui({
   _prepareData() {
     let self = this;
     let $ = self.$;
-    let options = self.options;
     let callToAction = self.callToAction;
 
     // WARNING, updating DOM elements HERE may override variable revisions in the factoryImpl function if created
@@ -121,13 +123,6 @@ let HenceCard = Hence.Ui({
     // If flagged as padded, as the style class for it
     if (self.padded) {
       $.wrapper.classList.add('padded');
-    }
-
-    // If options were added, fill in their event bindings
-    if (options && options.length) {
-      options.forEach((opt)=> {
-        self.set(`event_${opt.action.name}`, opt.action);
-      });
     }
 
     // If call to action was provided, sanitize it's input if also provided

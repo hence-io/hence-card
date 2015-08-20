@@ -15,7 +15,7 @@
           <button id="toggleOptions" on-tap="eventToggleOptions"></button>
           <div id="options" class="closed">
             <template is="dom-repeat" items="{{options}}" as="opt">
-              <span class="link"><a on-tap="eventOptionAction">{{opt.label}}</a></span>
+              <span class="link"><a on-tap="hook.opt">{{opt.label}}</a></span>
             </template>
           </div>
         </template>
@@ -34,7 +34,7 @@
                    value="{{callToAction.input.value::input}}"
                    placeholder="{{callToAction.input.placeholder}}">
           </template>
-          <button on-tap="eventCallToAction">{{callToAction.label}}</button>
+          <button on-tap="hook.callToAction">{{callToAction.label}}</button>
         </template>
       </div>
     </div>
