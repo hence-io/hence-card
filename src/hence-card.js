@@ -73,7 +73,7 @@ let HenceCard = Hence.Ui({
 
   hooks: {
     callToAction: 'processCallToAction',
-    opt:''
+    opt: ''
   },
 
   processCallToAction(data, model, e) {
@@ -131,13 +131,12 @@ let HenceCard = Hence.Ui({
         $.callToAction.classList.add(callToAction.align);
       }
 
-      if (callToAction.input) {
-        _defaults(callToAction.input, {
-          type: 'text',
-          placeholder: '',
-          label: ''
-        });
-      }
+      // Ensure that the input object is properly configured
+      callToAction.input = _defaults(callToAction.input || {}, {
+        type: 'text',
+        placeholder: '',
+        label: ''
+      });
 
       self.set('callToAction', callToAction); // make sure to fire any watchers
     }
