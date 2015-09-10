@@ -18,8 +18,9 @@
     "/comp/test/"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.0.0",
-    "font-awesome": "~4.3.0"
+    "font-awesome": "~4.3.0",
+    "juicy-html": "1.0.0-pre.1",
+    "polymer": "Polymer/polymer#^1.0.0"
   },
   "devDependencies": {
     "web-component-tester": "*"

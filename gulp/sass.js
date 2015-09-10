@@ -2,6 +2,7 @@
 
 import _ from 'lodash';
 import gulp from 'gulp';
+import util from 'gulp-util';
 import plumber from 'gulp-plumber';
 import autoprefixer from 'gulp-autoprefixer';
 import rename from 'gulp-rename';
@@ -12,10 +13,6 @@ import sourcemaps from 'gulp-sourcemaps';
 import minifyCss from 'gulp-minify-css';
 import gulpif from 'gulp-if';
 
-// Fall back include
-import browserSyncConstructor from 'browser-sync';
-let browserSync = browserSyncConstructor.create();
-
 let styleOptions = {
   style: 'expanded',
   time: true,
@@ -24,7 +21,6 @@ let styleOptions = {
   css: global.paths.tmp + 'css',
   require: ['susy', 'modular-scale', 'breakpoint', 'font-awesome-sass']
 };
-
 
 /**
  * Sass Tasks
@@ -43,28 +39,30 @@ let sassCompilation = function (opts) {
     replace: false,
     concat: false,
     bypassSourcemap: false,
-    browserSync: browserSync // fall back to prevent issues with live injection
+    browserSync: {stream: util.noop, notify: util.noop} // fall back to prevent issues with live injection
   });
 
   // Compile SASS with sourcemaps + livereload.
   gulp.task(opts.taskName, requiredTasks, function () {
+    let {dist, bypassSourcemap, browserSync} = opts;
+
     //gulp.src(global.paths.fonts)
     //  .pipe(gulp.dest(dest + 'fonts'));
 
-    let data = gulp.src(global.paths.sass)
+    browserSync.notify("Compiling SASS, please wait!");
+
+    return gulp.src(global.paths.sass)
       .pipe(plumber())
-      .pipe(gulpif(!opts.bypassSourcemap && !opts.dist, sourcemaps.init({loadMaps: true})))
+      .pipe(gulpif(!bypassSourcemap && !dist, sourcemaps.init({loadMaps: true})))
       .pipe(compass(styleOptions))
       .pipe(gulpif(opts.replace, replace(opts.replace.this, opts.replace.with)))
       .pipe(concat(opts.concat ? opts.concat : global.comp.css))
       .pipe(autoprefixer())
-      .pipe(gulpif(opts.dist, minifyCss()))
-      .pipe(gulpif(opts.dist, rename({suffix: '.min'})))
-      .pipe(gulpif(!opts.bypassSourcemap && !opts.dist, sourcemaps.write('./')))
+      .pipe(gulpif(dist, minifyCss()))
+      .pipe(gulpif(dist, rename({suffix: '.min'})))
+      .pipe(gulpif(!bypassSourcemap && !dist, sourcemaps.write('./')))
       .pipe(gulp.dest(opts.dest))
-      .pipe(opts.browserSync.stream());
-
-    return data;
+      .pipe(browserSync.stream());
   });
 };
 

@@ -4,7 +4,8 @@
  */
 import console from 'consoler';
 import Hence from 'hence-component-framework';
-import _defaults from 'lodash/object/defaultsDeep.js';
+import _defaults from 'lodash/object/defaultsDeep';
+import _isString from 'lodash/lang/isString';
 
 /**
  * HenceCard Component
@@ -21,17 +22,13 @@ let HenceCard = Hence.Ui({
       value: false
     },
     image: {
-      type: String,
-      value: 'http://placehold.it/450x50'
+      type: String
     },
     title: {
-      type: String,
-      value: 'Lorem ipsum dolor sit amet'
+      type: String
     },
     description: {
-      type: String,
-      value: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam consequatur ex id iste modi natus ' +
-      'nostrum numquam odio porro praesentium quisquam quos, rem reprehenderit sequi unde vero vitae voluptatem?'
+      type: String
     },
     options: {
       type: Array,
@@ -79,7 +76,6 @@ let HenceCard = Hence.Ui({
   processCallToAction(data, model, e) {
     // update the data before it gets sent back through the hook
     data.input.value += ' has been processed!';
-    alert(`${this.callToAction.input.value} != ${data.input.value}`);
   },
 
   //'hook.opt': Hence.hook('opt'),
@@ -114,11 +110,16 @@ let HenceCard = Hence.Ui({
 
   _prepareData() {
     let self = this;
-    let $ = self.$;
-    let callToAction = self.callToAction;
+    let {$, callToAction, description} = self;
 
     // WARNING, updating DOM elements HERE may override variable revisions in the factoryImpl function if created
     // with the createElement function,leveraging the components defaults instead. If the element is embedded, no issue.
+
+    if (description instanceof HTMLElement) {
+      $.description.appendChild(description);
+    } else if (_isString(description)) {
+      $.description.innerHTML = description;
+    }
 
     // If flagged as padded, as the style class for it
     if (self.padded) {

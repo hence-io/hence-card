@@ -1,4 +1,3 @@
-
 var srcDir = './src/';
 var tmpDir = './.tmp/';
 var buildSrcDir = './gulp/src/';

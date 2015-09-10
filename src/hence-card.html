@@ -1,41 +1,44 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/juicy-html/juicy-html.html">
 
 <dom-module id="hence-card">
+  <style>
+    /* IE 10 support for HTML5 hidden attr */
+    [hidden] {
+      display: none !important;
+    }
+  </style>
   <template>
     <!-- local DOM for your element -->
     <div id="wrapper">
-      <template is="dom-if" if="{{image}}">
-        <div id="image">
-          <img src$="{{image}}" alt="">
-        </div>
-      </template>
-      <div id="title">{{title}}</div>
-      <div id="optionsWrapper">
-        <template is="dom-if" if="{{options}}">
-          <button id="toggleOptions" on-tap="eventToggleOptions"></button>
-          <div id="options" class="closed">
-            <template is="dom-repeat" items="{{options}}" as="opt">
-              <span class="link"><a on-tap="hook.opt">{{opt.label}}</a></span>
-            </template>
+      <div hidden$="[[!image]]" id="image">
+        <img src$="{{image}}" alt="">
+      </div>
+      <div id="intro">
+        <div id="title">{{title}}</div>
+        <div id="optionsWrapper">
+          <div hidden$="[[!options]]">
+            <button id="toggleOptions" on-tap="eventToggleOptions"></button>
+            <div id="options" class="closed">
+              <template is="dom-repeat" items="{{options}}" as="opt">
+                <span class="link"><a on-tap="hook.opt">{{opt.label}}</a></span>
+              </template>
+            </div>
           </div>
-        </template>
+        </div>
       </div>
-      <div id="description">
-        <template is="dom-if" if="{{description}}">{{description}}</template>
-        <template is="dom-if" if="{{!description}}">
-          <content></content>
-        </template>
+      <div id="content">
+        <div hidden$="[[!description]]" id="description"></div>
+        <content></content>
       </div>
-      <div id="callToAction">
-        <template is="dom-if" if="{{callToAction}}">
-          <template is="dom-if" if="{{callToAction.input}}">
-            <label for="callToActionInput">{{callToAction.input.label}}</label>
-            <input id="callToActionInput" type="{{callToAction.input.type}}"
-                   value="{{callToAction.input.value::input}}"
-                   placeholder="{{callToAction.input.placeholder}}">
-          </template>
-          <button on-tap="hook.callToAction">{{callToAction.label}}</button>
-        </template>
+      <div hidden$="[[!callToAction]]" id="callToAction">
+        <div hidden$="[[!callToAction.input]]">
+          <label for="callToActionInput">{{callToAction.input.label}}</label>
+          <input id="callToActionInput" type="{{callToAction.input.type}}"
+                 value="{{callToAction.input.value::input}}"
+                 placeholder="{{callToAction.input.placeholder}}">
+        </div>
+        <button on-tap="hook.callToAction">{{callToAction.label}}</button>
       </div>
     </div>
   </template>

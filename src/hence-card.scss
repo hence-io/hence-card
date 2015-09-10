@@ -71,6 +71,12 @@ Styleguide 2.1
   padding: ms(.25);
 }
 
+#intro,
+#content,
+#callToAction {
+  @extend %fullWidthContainer;
+}
+
 .padded {
   padding: ms(.25);
 }
@@ -84,6 +90,7 @@ Styleguide 2.1
 #image {
   img {
     height: auto;
+    max-height: 480px;
     width: 100%;
   }
 }
@@ -107,7 +114,8 @@ Styleguide 1.2.1
 #title {
   color: $dark-blue;
   font-size: ms(2);
-  padding: ms(2 * -.75); // a margin of 25% the font-size
+  //padding: ms(2 * -.75); // a margin of 25% the font-size
+
   // xs view
   @include breakpoint(320px) {
     @include span(5 of 6);
@@ -219,9 +227,4 @@ Styleguide 1.4.1
   &.center {
     text-align: center;
   }
-}
-
-#description,
-#callToAction {
-  @extend %fullWidthContainer;
 }

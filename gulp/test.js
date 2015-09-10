@@ -30,15 +30,15 @@ gulp.task('test:watch', ['wct:local'], function (done) {
 });
 
 let wctIstanbul = {
-  "web-component-tester-istanbul": {
-    dir: "./coverage",
-    reporters: ["text-summary", "lcov"],
-    include: [
-      `**/dist/js/${global.comp.name}.min.js`,
-      `**/test/behaviour/*.js`
-    ],
-    workingDir: `/components/${global.comp.name}/`
-  }
+  //"web-component-tester-istanbul": {
+  //  dir: "./coverage",
+  //  reporters: ["text-summary", "lcov"],
+  //  include: [
+  //    `**/dist/js/${global.comp.name}.min.js`,
+  //    `**/test/behaviour/*.js`
+  //  ],
+  //  workingDir: `/components/${global.comp.name}/`
+  //}
 };
 
 gulp.task('wct:local', ['build'], function (done) {
