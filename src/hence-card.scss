@@ -33,6 +33,7 @@ markup:
 Styleguide 1.1
 */
 $black: #000;
+$white: #fff;
 $dark-blue: #000080;
 
 /***************************
@@ -60,7 +61,21 @@ Markup:
 Styleguide 2.1
 */
 :host {
+  @include container(100%);
   $ms-ratio: $minor-second;
+  background-color: $white;
+  background-size: 100%;
+  background-position: center center;
+  border: 1px solid $black;
+  border-radius: 2px;
+  box-sizing: border-box;
+  display: block;
+  margin: ms(.25);
+  position: relative;
+
+  &.padded {
+    padding: ms(.25);
+  }
 }
 
 %fullWidthContainer {
@@ -71,27 +86,105 @@ Styleguide 2.1
   padding: ms(.25);
 }
 
-#intro,
+header,
 #content,
-#callToAction {
+footer {
   @extend %fullWidthContainer;
 }
 
-.padded {
-  padding: ms(.25);
+#avatarTopColumn {
+  // xs view
+  @include breakpoint(32em) {
+    @include span(2 of 6);
+  }
+
+  // tablet view
+  @include breakpoint(48em) {
+    @include span(1 of 6);
+  }
+
+  // desktop view
+  @include breakpoint(62em) {
+    @include span(2 of 12);
+  }
+
+  // large desktop view
+  @include breakpoint(75em) {
+    @include span(1 of 12);
+  }
 }
 
-#wrapper {
-  @include container(100%);
-  border: 1px solid $black;
-  margin: ms(.25) 0;
+header .titles {
+  // xs view
+  @include breakpoint(34em) {
+    @include span(4 of 6 last);
+  }
+
+  // tablet view
+  @include breakpoint(48em) {
+    @include span(5 of 6 last);
+  }
+
+  // desktop view
+  @include breakpoint(62em) {
+    @include span(10 of 12 last);
+  }
+
+  // large desktop view
+  @include breakpoint(75em) {
+    @include span(11 of 12 last);
+  }
 }
 
-#image {
-  img {
-    height: auto;
-    max-height: 480px;
-    width: 100%;
+#imageTopContainer {
+  position: relative;
+}
+
+.image {
+  height: auto;
+  max-height: 480px;
+  width: 100%;
+}
+
+.avatar {
+  border-radius: 50%;
+  height: 100px;
+  max-height: 100px;
+  max-width: 100px;
+  width: 100px;
+}
+
+#avatarCentered {
+  border: 5px solid $white;
+}
+
+#avatarCenteredContainer {
+  margin: -55px auto 0;
+  position: relative;
+  width: 100px;
+}
+
+#imageTopContainer {
+  overflow: hidden;
+}
+
+#titleCentered {
+  background: rgba(0, 0, 0, .5);
+  bottom: 5px;
+  padding: 10px 20px;
+  position: absolute;
+  text-align: center;
+  width: 96%;
+
+  .title {
+    color: $white;
+  }
+}
+
+:host.background-tile {
+  .title,
+  .subtitle {
+    color: $white;
   }
 }
 
@@ -111,25 +204,15 @@ Markup:
 
 Styleguide 1.2.1
 */
-#title {
+.title {
   color: $dark-blue;
   font-size: ms(2);
   //padding: ms(2 * -.75); // a margin of 25% the font-size
+}
 
-  // xs view
-  @include breakpoint(320px) {
-    @include span(5 of 6);
-  }
-
-  // tablet view
-  @include breakpoint(600px) {
-    @include span(4 of 6);
-  }
-
-  // desktop view
-  @include breakpoint(900px) {
-    @include span(9 of 10);
-  }
+.subtitle {
+  color: $dark-blue;
+  font-size: ms(1);
 }
 
 /*
@@ -220,6 +303,8 @@ Markup:
 Styleguide 1.4.1
 */
 #callToAction {
+  font-size: ms(1);
+
   &.right {
     text-align: right;
   }

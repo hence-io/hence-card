@@ -3,34 +3,64 @@
 
 <dom-module id="hence-card">
   <style>
+    :host {
+      --image-background: '';
+      background-image: var(--image-background);
+    }
+
     /* IE 10 support for HTML5 hidden attr */
     [hidden] {
       display: none !important;
     }
   </style>
   <template>
-    <!-- local DOM for your element -->
-    <div id="wrapper">
-      <div hidden$="[[!image]]" id="image">
-        <img src$="{{image}}" alt="">
+    <header hidden$="[[!displayTopAvatar]]">
+      <div id="avatarTopColumn">
+        <img id="avatarTop" class="avatar" src$="{{avatar}}" alt="">
       </div>
-      <div id="intro">
-        <div id="title">{{title}}</div>
-        <div id="optionsWrapper">
-          <div hidden$="[[!options]]">
-            <button id="toggleOptions" on-tap="eventToggleOptions"></button>
-            <div id="options" class="closed">
-              <template is="dom-repeat" items="{{options}}" as="opt">
-                <span class="link"><a on-tap="hook.opt">{{opt.label}}</a></span>
-              </template>
+      <div class="titles">
+        <div id="titleTop" class="title">{{title}}</div>
+        <div id="subtitleTop" class="subtitle">{{subtitle}}</div>
+      </div>
+    </header>
+    <section>
+      <div id="imageTopContainer" hidden$="[[!displayTopImage]]">
+        <img id="imageTop" class="image" src$="{{image}}" alt="">
+
+        <div hidden$="[[avatar.length]]" id="titleCentered">
+          <div class="title">{{title}}</div>
+        </div>
+      </div>
+      <div id="avatarCenteredContainer" hidden$="[[!displayCenteredAvatar]]">
+        <img id="avatarCentered" class="avatar" src$="{{avatar}}" alt="">
+      </div>
+      <div id="content">
+        <div id="intro">
+          <div class="titles" hidden$="[[displayTopAvatar]]">
+            <div hidden$="[[!displayCenteredAvatar && displayTopImage]]">
+              <div id="titleContent" class="title">{{title}}</div>
+            </div>
+            <div>
+              <div id="subtitleContent" class="subtitle">{{subtitle}}</div>
+            </div>
+          </div>
+          <div id="optionsWrapper">
+            <div hidden$="[[!options]]">
+              <button id="toggleOptions" on-tap="eventToggleOptions"></button>
+              <div id="options" class="closed">
+                <template is="dom-repeat" items="{{options}}" as="opt">
+                  <span class="link"><a on-tap="hook.opt">{{opt.label}}</a></span>
+                </template>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div id="content">
+
         <div hidden$="[[!description]]" id="description"></div>
         <content></content>
       </div>
+    </section>
+    <footer>
       <div hidden$="[[!callToAction]]" id="callToAction">
         <div hidden$="[[!callToAction.input]]">
           <label for="callToActionInput">{{callToAction.input.label}}</label>
@@ -40,6 +70,6 @@
         </div>
         <button on-tap="hook.callToAction">{{callToAction.label}}</button>
       </div>
-    </div>
+    </footer>
   </template>
 </dom-module>

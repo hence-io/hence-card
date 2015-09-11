@@ -35,14 +35,38 @@ docReady(()=> {
 
   // Spawn various states of the component to preview them side by side
   HenceCard.appendElementTo({
-    title: 'Padded example w/ options',
     padded: true,
+    title: 'Padded example w/ options',
+    subtitle: 'Padded example w/ options',
     options: options,
-    image: 'http://placehold.it/350x50'
+    image: 'http://lorempixel.com/350/100/nature'
   }, componentPreviewBox);
   HenceCard.appendElementTo({
-    title: 'Example w/ options pre-opened',
+    title: 'Padded example w/ options',
+    subtitle: 'Padded example w/ options',
+    options: options,
+    image: 'http://lorempixel.com/350/100/nature'
+  }, componentPreviewBox);
+  HenceCard.appendElementTo({
+    title: 'Example w/ options & avatar',
+    subtitle: 'Example w/ options',
+    options: options,
+    image: 'http://lorempixel.com/350/100/nature',
+    avatar: 'http://lorempixel.com/100/100/people'
+  }, componentPreviewBox);
+  HenceCard.appendElementTo({
+    title: 'Example w/ options & avatar centered',
+    subtitle: 'Example w/ options',
+    options: options,
+    image: 'http://lorempixel.com/350/100/nature',
+    avatar: 'http://lorempixel.com/100/100/people',
+    avatarPosition: 'center'
+  }, componentPreviewBox);
+  HenceCard.appendElementTo({
+    title: 'Example w/ options pre-opened, background image',
     displayOptions: true,
+    image: 'http://lorempixel.com/350/100/nature',
+    imagePosition: 'background',
     options: options
   }, componentPreviewBox);
   HenceCard.appendElementTo({

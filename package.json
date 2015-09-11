@@ -85,7 +85,7 @@
     "web-component-tester-istanbul": "^0.8.0"
   },
   "dependencies": {
-    "consoler": "blitzcodes/consoler",
+
     "doc-ready": "^1.0.3",
     "hence-component-framework": "hence-io/hence-component-framework",
     "inflection": "^1.7.1",

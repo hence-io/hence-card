@@ -2,7 +2,7 @@
 /**
  * @module hence-card
  */
-import console from 'consoler';
+
 import Hence from 'hence-component-framework';
 import _defaults from 'lodash/object/defaultsDeep';
 import _isString from 'lodash/lang/isString';
@@ -17,33 +17,102 @@ let HenceCard = Hence.Ui({
    * Initialization
    ********************************************************************************************************************/
   properties: {
-    padded: {
-      type: Boolean,
-      value: false
+    padded: Boolean,
+    avatar: String,
+    avatarPosition: {
+      type: String,
+      value: 'top'
     },
-    image: {
-      type: String
+    image: String,
+    imagePosition: {
+      type: String,
+      value: 'top'
     },
-    title: {
-      type: String
-    },
-    description: {
-      type: String
-    },
-    options: {
-      type: Array,
-      notify: true,
-      value: null
-    },
-    displayOptions: {
-      type: Boolean,
-      value: false
-    },
+    backgroundImage: String,
+    title: String,
+    subtitle: String,
+    description: String,
+    options: Array,
     callToAction: {
       type: Object,
-      notify: true,
-      value: null
+      notify: true
+    },
+    displayOptions: Boolean,
+    displayTopAvatar: Boolean,
+    displayCenteredAvatar: Boolean,
+    displayTopImage: Boolean,
+    displayBackgroundImage: Boolean
+  },
+
+  /*********************************************************************************************************************
+   * Observers
+   ********************************************************************************************************************/
+  observers: [
+    '_padded(padded)',
+    '_displayDescription(description)',
+    '_displayCallToAction(callToAction)',
+    '_displayTopAvatar(avatar, avatarPosition)',
+    '_displayCenteredAvatar(avatar, avatarPosition)',
+    '_displayTopImage(image, imagePosition)',
+    '_displayBackgroundImage(image, imagePosition)',
+    '_updateDisplayOptions(displayOptions)'
+  ],
+
+  _padded(padded) {
+    // If flagged as padded, as the style class for it
+    this.toggleClass('padded', padded);
+  },
+
+  _displayDescription(description) {
+    let {$} = this;
+    if (description instanceof HTMLElement) {
+      $.description.appendChild(description);
+    } else {
+      $.description.innerHTML = description || '';
     }
+  },
+
+  _displayCallToAction(callToAction) {
+    let {$} = this;
+
+    // If call to action was provided, sanitize it's input if also provided
+    if (callToAction) {
+      if (callToAction.align) {
+        $.callToAction.classList.add(callToAction.align);
+      }
+
+      // Ensure that the input object is properly configured
+      callToAction.input = _defaults(callToAction.input || {}, {
+        type: 'text',
+        placeholder: '',
+        label: ''
+      });
+    }
+  },
+
+  _displayTopAvatar(avatar, avatarPosition) {
+    this.set('displayTopAvatar', !!avatar && avatarPosition === 'top');
+  },
+
+  _displayCenteredAvatar(avatar, avatarPosition) {
+    this.set('displayCenteredAvatar', !!avatar && avatarPosition === 'center');
+  },
+
+  _displayTopImage(image, imagePosition) {
+    this.set('displayTopImage', !!image && imagePosition === 'top');
+  },
+
+  _displayBackgroundImage(image, imagePosition) {
+    this.set('displayBackgroundImage', !!image && imagePosition === 'background');
+    if (this.displayBackgroundImage) {
+      this.toggleClass('background-tile', true);
+      this.customStyle['--image-background'] = `url('${image}')`;
+      this.updateStyles();
+    }
+  },
+
+  _updateDisplayOptions(displayOptions) {
+    this.toggleClass('open', !!displayOptions, this.$$('#options'));
   },
 
   /*********************************************************************************************************************
@@ -62,10 +131,8 @@ let HenceCard = Hence.Ui({
    * @param {Event} e The event executing this function
    */
     eventToggleOptions(e) {
-    let self = this;
     // Update the property, using this.set to fire any expecting listeners
-    self.set('displayOptions', !self.displayOptions);
-    self.updateDisplayOptions();
+    this.set('displayOptions', !this.displayOptions);
   },
 
   hooks: {
@@ -101,62 +168,19 @@ let HenceCard = Hence.Ui({
    * loading resources, etc).
    */
     attached() {
-    this._prepareData();
 
     this.async(()=> {
       // access sibling or parent elements here
     });
-  },
 
-  _prepareData() {
-    let self = this;
-    let {$, callToAction, description} = self;
-
-    // WARNING, updating DOM elements HERE may override variable revisions in the factoryImpl function if created
-    // with the createElement function,leveraging the components defaults instead. If the element is embedded, no issue.
-
-    if (description instanceof HTMLElement) {
-      $.description.appendChild(description);
-    } else if (_isString(description)) {
-      $.description.innerHTML = description;
-    }
-
-    // If flagged as padded, as the style class for it
-    if (self.padded) {
-      $.wrapper.classList.add('padded');
-    }
-
-    // If call to action was provided, sanitize it's input if also provided
-    if (callToAction) {
-      if (callToAction.align) {
-        $.callToAction.classList.add(callToAction.align);
-      }
-
-      // Ensure that the input object is properly configured
-      callToAction.input = _defaults(callToAction.input || {}, {
-        type: 'text',
-        placeholder: '',
-        label: ''
-      });
-
-      self.set('callToAction', callToAction); // make sure to fire any watchers
-    }
-
-    self.updateDisplayOptions();
-
-    //console.log('comp is ', self.properties);
+    console.log(this.debugThis());
   },
 
   /*********************************************************************************************************************
    * Element Behaviour
    ********************************************************************************************************************/
 
-  behaviors: [],
-
-  updateDisplayOptions() {
-    let self = this;
-    self.toggleClass('open', self.displayOptions, self.$$('#options'));
-  }
+  behaviors: []
 });
 
 export default HenceCard;
