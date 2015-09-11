@@ -63,14 +63,14 @@ Styleguide 2.1
 :host {
   @include container(100%);
   $ms-ratio: $minor-second;
-  background-color: $white;
+  background: $white center center;
   background-size: 100%;
-  background-position: center center;
   border: 1px solid $black;
   border-radius: 2px;
   box-sizing: border-box;
   display: block;
   margin: ms(.25);
+  overflow: hidden;
   position: relative;
 
   &.padded {
@@ -82,7 +82,7 @@ Styleguide 2.1
   @include clearfix;
   @include container(97%);
   @include span(1 of 1);
-  font-size: ms(.25);
+  //font-size: ms(.25);
   padding: ms(.25);
 }
 
@@ -144,6 +144,7 @@ header .titles {
   height: auto;
   max-height: 480px;
   width: 100%;
+  pointer-events: none;
 }
 
 .avatar {
@@ -152,6 +153,13 @@ header .titles {
   max-height: 100px;
   max-width: 100px;
   width: 100px;
+}
+
+#avatarTopColumn {
+  &.float-right {
+    float: right;
+    text-align: right;
+  }
 }
 
 #avatarCentered {
@@ -166,10 +174,10 @@ header .titles {
 
 #imageTopContainer {
   overflow: hidden;
+  width: 100%;
 }
 
 #titleCentered {
-  background: rgba(0, 0, 0, .5);
   bottom: 5px;
   padding: 10px 20px;
   position: absolute;
@@ -188,6 +196,14 @@ header .titles {
   }
 }
 
+#content .titles {
+  margin-bottom: ms(.25);
+}
+
+footer {
+  border-top: 2px solid rgba(0, 0, 0, .5);
+}
+
 /*
 Typography
 
@@ -204,7 +220,8 @@ Markup:
 
 Styleguide 1.2.1
 */
-.title {
+.title,
+:host ::content .title {
   color: $dark-blue;
   font-size: ms(2);
   //padding: ms(2 * -.75); // a margin of 25% the font-size

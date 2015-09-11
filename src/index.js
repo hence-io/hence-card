@@ -4,6 +4,9 @@ import HenceCard from './hence-card';
 import docReady from 'doc-ready';
 
 // Some common defaults
+let description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto aspernatur assumenda commodi' +
+  ' cumque dolorem eaque eligendi id illum magnam nemo neque praesentium quam quas, saepe sequi soluta, tempore totam, voluptate?';
+
 let options = [
   {
     label: 'Test',
@@ -41,19 +44,24 @@ docReady(()=> {
     options: options,
     image: 'http://lorempixel.com/350/100/nature'
   }, componentPreviewBox);
+
   HenceCard.appendElementTo({
     title: 'Padded example w/ options',
     subtitle: 'Padded example w/ options',
     options: options,
-    image: 'http://lorempixel.com/350/100/nature'
+    image: 'http://lorempixel.com/350/100/nature',
+    description: description
   }, componentPreviewBox);
+
   HenceCard.appendElementTo({
     title: 'Example w/ options & avatar',
     subtitle: 'Example w/ options',
     options: options,
     image: 'http://lorempixel.com/350/100/nature',
-    avatar: 'http://lorempixel.com/100/100/people'
+    avatar: 'http://lorempixel.com/100/100/people',
+    description: description
   }, componentPreviewBox);
+
   HenceCard.appendElementTo({
     title: 'Example w/ options & avatar centered',
     subtitle: 'Example w/ options',
@@ -62,6 +70,7 @@ docReady(()=> {
     avatar: 'http://lorempixel.com/100/100/people',
     avatarPosition: 'center'
   }, componentPreviewBox);
+
   HenceCard.appendElementTo({
     title: 'Example w/ options pre-opened, background image',
     displayOptions: true,
@@ -69,10 +78,12 @@ docReady(()=> {
     imagePosition: 'background',
     options: options
   }, componentPreviewBox);
+
   HenceCard.appendElementTo({
     title: 'Example w/ call to action',
     callToAction: callToAction
   }, componentPreviewBox);
+
   HenceCard.appendElementTo({
     title: 'Kitchen Sink',
     displayOptions: true,

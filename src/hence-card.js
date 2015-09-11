@@ -37,6 +37,7 @@ let HenceCard = Hence.Ui({
       type: Object,
       notify: true
     },
+    displayIntroTitle: Boolean,
     displayOptions: Boolean,
     displayTopAvatar: Boolean,
     displayCenteredAvatar: Boolean,
@@ -51,6 +52,7 @@ let HenceCard = Hence.Ui({
     '_padded(padded)',
     '_displayDescription(description)',
     '_displayCallToAction(callToAction)',
+    '_displayIntroTitle(displayCenteredAvatar, displayTopImage)',
     '_displayTopAvatar(avatar, avatarPosition)',
     '_displayCenteredAvatar(avatar, avatarPosition)',
     '_displayTopImage(image, imagePosition)',
@@ -90,8 +92,16 @@ let HenceCard = Hence.Ui({
     }
   },
 
+  _displayIntroTitle(displayCenteredAvatar, displayTopImage) {
+    this.set('displayIntroTitle', displayCenteredAvatar || !displayTopImage);
+  },
+
   _displayTopAvatar(avatar, avatarPosition) {
-    this.set('displayTopAvatar', !!avatar && avatarPosition === 'top');
+    let [pos, alignment] = avatarPosition.split(/-/);
+    this.set('displayTopAvatar', !!avatar && pos === 'top');
+    if (alignment === 'right') {
+      this.$$('#avatarTopColumn').classList.add('float-right');
+    }
   },
 
   _displayCenteredAvatar(avatar, avatarPosition) {

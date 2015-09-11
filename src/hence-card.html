@@ -21,6 +21,7 @@
       <div class="titles">
         <div id="titleTop" class="title">{{title}}</div>
         <div id="subtitleTop" class="subtitle">{{subtitle}}</div>
+        <content select=".header-titles"></content>
       </div>
     </header>
     <section>
@@ -37,7 +38,7 @@
       <div id="content">
         <div id="intro">
           <div class="titles" hidden$="[[displayTopAvatar]]">
-            <div hidden$="[[!displayCenteredAvatar && displayTopImage]]">
+            <div hidden$="[[!displayIntroTitle]]">
               <div id="titleContent" class="title">{{title}}</div>
             </div>
             <div>
@@ -60,8 +61,8 @@
         <content></content>
       </div>
     </section>
-    <footer>
-      <div hidden$="[[!callToAction]]" id="callToAction">
+    <footer hidden$="[[!callToAction]]">
+      <div id="callToAction">
         <div hidden$="[[!callToAction.input]]">
           <label for="callToActionInput">{{callToAction.input.label}}</label>
           <input id="callToActionInput" type="{{callToAction.input.type}}"
