@@ -37,6 +37,7 @@
     "del": "^1.2.0",
     "esdoc": "^0.1.2",
     "eslint": "^0.24.0",
+    "faker": "^3.0.1",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-babel": "^5.1.0",
@@ -85,7 +86,6 @@
     "web-component-tester-istanbul": "^0.8.0"
   },
   "dependencies": {
-
     "doc-ready": "^1.0.3",
     "hence-component-framework": "hence-io/hence-component-framework",
     "inflection": "^1.7.1",

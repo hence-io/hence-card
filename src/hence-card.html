@@ -45,31 +45,23 @@
               <div id="subtitleContent" class="subtitle">{{subtitle}}</div>
             </div>
           </div>
-          <div id="optionsWrapper">
-            <div hidden$="[[!options]]">
-              <button id="toggleOptions" on-tap="eventToggleOptions"></button>
-              <div id="options" class="closed">
-                <template is="dom-repeat" items="{{options}}" as="opt">
-                  <span class="link"><a on-tap="hook.opt">{{opt.label}}</a></span>
-                </template>
-              </div>
-            </div>
-          </div>
         </div>
-
-        <div hidden$="[[!description]]" id="description"></div>
-        <content></content>
+        <div id="details">
+          <div hidden$="[[!description]]" id="description"></div>
+          <content select=".details"></content>
+        </div>
       </div>
     </section>
-    <footer hidden$="[[!callToAction]]">
-      <div id="callToAction">
-        <div hidden$="[[!callToAction.input]]">
-          <label for="callToActionInput">{{callToAction.input.label}}</label>
-          <input id="callToActionInput" type="{{callToAction.input.type}}"
-                 value="{{callToAction.input.value::input}}"
-                 placeholder="{{callToAction.input.placeholder}}">
+    <footer>
+      <div id="actions">
+        <div hidden$="[[!actions]]">
+          <template is="dom-repeat" items="{{actions}}" as="action">
+            <button on-tap="hook.action">
+              <span class="label" hidden$="[[!action.label]]">{{action.label}}</span><i class$="{{action.iconClass}}"></i>
+            </button>
+          </template>
         </div>
-        <button on-tap="hook.callToAction">{{callToAction.label}}</button>
+        <content select=".actions"></content>
       </div>
     </footer>
   </template>
