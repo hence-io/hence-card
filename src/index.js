@@ -13,27 +13,16 @@ let description = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Arc
 let action = (label = true)=> {
   return {
     label: label ? fake.commerce.product() : '',
-    icon: _sample(['apple', 'android', 'facebook', 'google', 'github', 'linux', 'rebel', 'steam', 'windows  ']),
+    icon: _sample(['apple', 'android', 'facebook', 'google', 'github', 'linux', 'rebel', 'steam', 'windows', '']),
+    float: _sample(['', 'left', 'right']),
     action: (model, e)=> {
       alert('this is my option!');
     }
   };
 };
 
-let callToAction = {
-  label: 'Sign Up Now!',
-  align: 'right', // left/center/right
-  action: (data, model, e)=> {
-    console.log('call to action', [this, data, model, e]);
-    alert(`Successful submission with: ${data.input.value}`);
-  },
-  input: {
-    label: 'Enter your email here:',
-    type: 'text',
-    placeholder: 'Email',
-    value: ''
-  }
-};
+let image = 'http://lorempixel.com/250/150/nature';
+let avatar = 'http://lorempixel.com/100/100/people';
 
 // Ensure we're waiting for the document to actually be loaded before interacting with it.
 docReady(()=> {
@@ -46,42 +35,58 @@ docReady(()=> {
     title: 'Padded example w/ actions',
     subtitle: 'Padded example w/ actions',
     actions: [action()],
-    image: 'http://lorempixel.com/350/100/nature'
+    image
   }, componentPreviewBox);
 
   HenceCard.appendElementTo({
-    title: 'Padded example w/ actions',
-    subtitle: 'Padded example w/ actions',
+    title: 'Example w/ actions, middle image',
+    subtitle: 'Example w/ actions, middle image',
     actions: [action(false), action(false)],
-    image: 'http://lorempixel.com/350/100/nature',
-    description: description
+    image,
+    imagePosition: 'center',
+    description
   }, componentPreviewBox);
+
 
   HenceCard.appendElementTo({
     title: 'Example w/ actions & avatar',
     subtitle: 'Example w/ actions',
     actions: [action(), action(), action()],
     actionsCentered: true,
-    image: 'http://lorempixel.com/350/100/nature',
-    avatar: 'http://lorempixel.com/100/100/people',
-    description: description
+    image,
+    avatar,
+    description,
+    avatarShape: _sample(['square', 'circle'])
   }, componentPreviewBox);
 
   HenceCard.appendElementTo({
     title: 'Example w/ actions & avatar centered',
     subtitle: 'Example w/ actions',
-    actions: [action(false), action(false), action(false), action(false)],
-    image: 'http://lorempixel.com/350/100/nature',
-    avatar: 'http://lorempixel.com/100/100/people',
-    avatarPosition: 'center'
+    actions: [action(), action(), action(), action()],
+    image,
+    avatar,
+    avatarPosition: 'center',
+    avatarShape: _sample(['square', 'circle'])
   }, componentPreviewBox);
 
   HenceCard.appendElementTo({
     title: 'Example w/ actions pre-opened, background image',
     displayOptions: true,
-    image: 'http://lorempixel.com/350/100/nature',
+    image,
     imagePosition: 'background',
-    actions: [action(), action(), action(), action(), action()]
+    actions: [action(), action(), action(), action()],
+    description
+  }, componentPreviewBox);
+
+  HenceCard.appendElementTo({
+    title: 'Example w/ actions pre-opened, background image',
+    displayOptions: true,
+    image,
+    imagePosition: 'background',
+    avatar,
+    avatarShape: _sample(['square', 'circle']),
+    actions: [action(), action(), action(), action()],
+    description
   }, componentPreviewBox);
 
   HenceCard.appendElementTo({

@@ -7,15 +7,24 @@
 
   <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <link rel="import" href="./hence-card.html">
+  <style>
+    hence-card:nth-last-child(n+2),
+    hence-card:nth-last-child(n+2) ~ hence-card{
+      float: left;
+      margin: 1%;
+      width: 48%;
+    }
+  </style>
 </head>
 <body>
 <div id="component-previews">
-  <hence-card title="Simple Sample">
+  <hence-card title="Simple Sample" subtitle="And subtitle">
     <div class="details">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. A architecto blanditiis consequuntur delectus distinctio doloremque dolorum ducimus facere libero mollitia natus odio, perspiciatis porro quidem, repellendus reprehenderit, sit tenetur veniam.
     </div>
   </hence-card>
-  <hence-card avatar="http://lorempixel.com/100/100/people" avatar-position="top-right">
+  <hence-card avatar="http://lorempixel.com/100/100/people" avatar-position="top-right" actions-bordered="true"
+              avatar-shape="square">
     <div class="header-titles">
       <b>Label</b>
       <div class="title">My Custom Title yo</div>

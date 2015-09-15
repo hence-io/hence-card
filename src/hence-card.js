@@ -17,43 +17,60 @@ let HenceCard = Hence.Ui({
    ********************************************************************************************************************/
   properties: {
     padded: Boolean,
+    // Avatar
     avatar: String,
     avatarPosition: {
       type: String,
       value: 'top'
     },
+    avatarShape: {
+      type: String,
+      value: 'circle'
+    },
+    displayAvatarTop: Boolean,
+    displayAvatarCentered: Boolean,
+    // Image
     image: String,
     imagePosition: {
       type: String,
       value: 'top'
     },
-    backgroundImage: String,
+    displayImageTop: Boolean,
+    displayImageCentered: Boolean,
+    displayImageBackground: Boolean,
+    // Content
     title: String,
     subtitle: String,
     description: String,
+    displayIntroTitle: {
+      type: Boolean,
+      computed: '_displayIntroTitle(displayAvatarCentered, displayImageTop)'
+    },
+    // Actions
     actions: Array,
     actionsCentered: Boolean,
-    displayIntroTitle: Boolean,
-    displayOptions: Boolean,
-    displayTopAvatar: Boolean,
-    displayCenteredAvatar: Boolean,
-    displayTopImage: Boolean,
-    displayBackgroundImage: Boolean
+    actionsBordered: Boolean
   },
+
+  /*********************************************************************************************************************
+   * Computed
+   ********************************************************************************************************************/
+    _displayIntroTitle(displayAvatarCentered, displayImageTop) {
+    return displayAvatarCentered || !displayImageTop;
+  },
+
 
   /*********************************************************************************************************************
    * Observers
    ********************************************************************************************************************/
   observers: [
     '_padded(padded)',
+    '_avatarShape(avatarShape)',
     '_actionsCentered(actionsCentered)',
+    '_actionsBordered(actionsBordered)',
     '_displayDescription(description)',
-    '_displayCallToAction(callToAction)',
-    '_displayIntroTitle(displayCenteredAvatar, displayTopImage)',
-    '_displayTopAvatar(avatar, avatarPosition)',
-    '_displayCenteredAvatar(avatar, avatarPosition)',
-    '_displayTopImage(image, imagePosition)',
-    '_displayBackgroundImage(image, imagePosition)',
+    '_displayAvatar(avatar, avatarPosition)',
+    '_displayImage(image, imagePosition)',
     '_prepareActions(actions.*)'
   ],
 
@@ -67,8 +84,23 @@ let HenceCard = Hence.Ui({
     this.toggleClass('centered', actionsCentered, this.$.actions);
   },
 
+  _avatarShape(avatarShape) {
+    let selectors = ['avatarTop', 'avatarCentered'];
+
+    selectors.forEach(selector => {
+      this.toggleClass('circle', avatarShape === 'circle', this.$[selector]);
+      console.log('toggle circle on', avatarShape, avatarShape === 'circle', this.$[selector]);
+    });
+  },
+
+  _actionsBordered(actionsBordered) {
+    // If flagged as padded, as the style class for it
+    this.toggleClass('bordered', actionsBordered, this.$.actions);
+  },
+
   _displayDescription(description) {
     let {$} = this;
+
     if (description instanceof HTMLElement) {
       $.description.appendChild(description);
     } else {
@@ -76,50 +108,32 @@ let HenceCard = Hence.Ui({
     }
   },
 
-  _displayCallToAction(callToAction) {
-    let {$} = this;
+  _displayAvatar(img, position) {
+    if (img) {
+      let [pos, alignment] = position.split(/-/);
 
-    // If call to action was provided, sanitize it's input if also provided
-    if (callToAction) {
-      if (callToAction.align) {
-        $.callToAction.classList.add(callToAction.align);
+      this.displayAvatarTop = pos === 'top';
+      this.displayAvatarCentered = pos === 'center';
+
+      if (alignment === 'right') {
+        this.$$('#avatarTopColumn').classList.add('float-right');
       }
-
-      // Ensure that the input object is properly configured
-      callToAction.input = _defaults(callToAction.input || {}, {
-        type: 'text',
-        placeholder: '',
-        label: ''
-      });
     }
   },
 
-  _displayIntroTitle(displayCenteredAvatar, displayTopImage) {
-    this.set('displayIntroTitle', displayCenteredAvatar || !displayTopImage);
-  },
+  _displayImage(img, position) {
+    if (img) {
+      let [pos, alignment] = position.split(/-/);
 
-  _displayTopAvatar(avatar, avatarPosition) {
-    let [pos, alignment] = avatarPosition.split(/-/);
-    this.set('displayTopAvatar', !!avatar && pos === 'top');
-    if (alignment === 'right') {
-      this.$$('#avatarTopColumn').classList.add('float-right');
-    }
-  },
+      this.displayImageTop = pos === 'top';
+      this.displayImageCentered = pos === 'center';
+      this.displayImageBackground = pos === 'background';
 
-  _displayCenteredAvatar(avatar, avatarPosition) {
-    this.set('displayCenteredAvatar', !!avatar && avatarPosition === 'center');
-  },
-
-  _displayTopImage(image, imagePosition) {
-    this.set('displayTopImage', !!image && imagePosition === 'top');
-  },
-
-  _displayBackgroundImage(image, imagePosition) {
-    this.set('displayBackgroundImage', !!image && imagePosition === 'background');
-    if (this.displayBackgroundImage) {
-      this.toggleClass('background-tile', true);
-      this.customStyle['--image-background'] = `url('${image}')`;
-      this.updateStyles();
+      if (this.displayImageBackground) {
+        this.toggleClass('background-tile', true);
+        this.style.backgroundImage = `url('${img}')`;
+        this.updateStyles();
+      }
     }
   },
 
@@ -127,7 +141,10 @@ let HenceCard = Hence.Ui({
     if (actions && actions.value) {
       actions.value.forEach(action=> {
         if (action.icon) {
-          action.iconClass = `fa-${action.icon}`;
+          action.iconClass += ` fa-${action.icon} `;
+        }
+        if (action.float) {
+          action.class += ` float-${action.float} `;
         }
       });
     }
@@ -142,6 +159,10 @@ let HenceCard = Hence.Ui({
   /*********************************************************************************************************************
    * Element DOM Hooks
    ********************************************************************************************************************/
+
+    attached() {
+    //console.log('this.$', this.$);
+  },
 
   /*********************************************************************************************************************
    * Element Behaviour

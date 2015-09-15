@@ -4,8 +4,6 @@
 <dom-module id="hence-card">
   <style>
     :host {
-      --image-background: '';
-      background-image: var(--image-background);
     }
 
     /* IE 10 support for HTML5 hidden attr */
@@ -14,7 +12,7 @@
     }
   </style>
   <template>
-    <header hidden$="[[!displayTopAvatar]]">
+    <header hidden$="[[!displayAvatarTop]]">
       <div id="avatarTopColumn">
         <img id="avatarTop" class="avatar" src$="{{avatar}}" alt="">
       </div>
@@ -25,25 +23,21 @@
       </div>
     </header>
     <section>
-      <div id="imageTopContainer" hidden$="[[!displayTopImage]]">
+      <div id="imageTopContainer" hidden$="[[!displayImageTop]]">
         <img id="imageTop" class="image" src$="{{image}}" alt="">
 
         <div hidden$="[[avatar.length]]" id="titleCentered">
           <div class="title">{{title}}</div>
         </div>
       </div>
-      <div id="avatarCenteredContainer" hidden$="[[!displayCenteredAvatar]]">
+      <div id="avatarCenteredContainer" hidden$="[[!displayAvatarCentered]]">
         <img id="avatarCentered" class="avatar" src$="{{avatar}}" alt="">
       </div>
       <div id="content">
-        <div id="intro">
-          <div class="titles" hidden$="[[displayTopAvatar]]">
-            <div hidden$="[[!displayIntroTitle]]">
-              <div id="titleContent" class="title">{{title}}</div>
-            </div>
-            <div>
-              <div id="subtitleContent" class="subtitle">{{subtitle}}</div>
-            </div>
+        <div id="intro" hidden$="[[displayAvatarTop]]">
+          <div class="titles">
+            <div hidden$="[[!displayIntroTitle]]" id="titleContent" class="title">{{title}}</div>
+            <div id="subtitleContent" class="subtitle">{{subtitle}}</div>
           </div>
         </div>
         <div id="details">
@@ -52,12 +46,15 @@
         </div>
       </div>
     </section>
+    <div id="imageCenterContainer" hidden$="[[!displayImageCentered]]">
+      <img id="imageCenter" class="image" src$="{{image}}" alt="">
+    </div>
     <footer>
       <div id="actions">
         <div hidden$="[[!actions]]">
           <template is="dom-repeat" items="{{actions}}" as="action">
-            <button on-tap="hook.action">
-              <span class="label" hidden$="[[!action.label]]">{{action.label}}</span><i class$="{{action.iconClass}}"></i>
+            <button on-tap="hook.action" class$="[[action.class]]">
+              <span class="label" hidden$="[[!action.label]]">{{action.label}}</span><i class$="[[action.iconClass]]"></i>
             </button>
           </template>
         </div>

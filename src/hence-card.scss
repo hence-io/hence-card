@@ -36,6 +36,26 @@ $black: #000;
 $white: #fff;
 $dark-blue: #000080;
 
+%fullWidthContainer {
+  @include clearfix;
+  @include container(96.5%);
+  @include span(1 of 1);
+  //font-size: ms(.25);
+  padding: ms(.25);
+}
+
+%raisedShadow {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
 /***************************
 ** Component Base Styles
 ****************************/
@@ -62,13 +82,13 @@ Styleguide 2.1
 */
 :host {
   @include container(100%);
+  @extend %raisedShadow;
   $ms-ratio: $minor-second;
-  background: $white center center;
-  background-size: 100%;
+  background: no-repeat center center;
+  background-size: cover;
   //border: 1px solid $black;
   border-radius: 2px;
   box-sizing: border-box;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   display: block;
   margin: ms(.25);
   overflow: hidden;
@@ -77,136 +97,85 @@ Styleguide 2.1
   &.padded {
     padding: ms(.25);
   }
+
+  &.background-tile {
+    padding-top: 300px;
+
+    header,
+    #content,
+    #actions {
+      background: rgba(0, 0, 0, .4);
+    }
+  }
 }
 
-%fullWidthContainer {
-  @include clearfix;
-  @include container(97%);
-  @include span(1 of 1);
-  //font-size: ms(.25);
-  padding: ms(.25);
-}
+/*
+Containers
 
+Styleguide 2.2
+*/
 header,
 #content,
 #actions {
   @extend %fullWidthContainer;
 }
 
-#avatarTopColumn {
-  // xs view
-  @include breakpoint(32em) {
-    @include span(2 of 6);
+header {
+  #avatarTopColumn {
+    float: left;
+    padding-right: 20px;
+
+    &.float-right {
+      @extend .float-right;
+      padding-right: 10px;
+      text-align: right;
+    }
   }
 
-  // tablet view
-  @include breakpoint(48em) {
-    @include span(1 of 6);
-  }
-
-  // desktop view
-  @include breakpoint(62em) {
-    @include span(2 of 12);
-  }
-
-  // large desktop view
-  @include breakpoint(75em) {
-    @include span(1 of 12);
-  }
-}
-
-header .titles {
-  // xs view
-  @include breakpoint(34em) {
-    @include span(4 of 6 last);
-  }
-
-  // tablet view
-  @include breakpoint(48em) {
-    @include span(5 of 6 last);
-  }
-
-  // desktop view
-  @include breakpoint(62em) {
-    @include span(10 of 12 last);
-  }
-
-  // large desktop view
-  @include breakpoint(75em) {
-    @include span(11 of 12 last);
+  .titles {
+    float: left;
+    max-width: 80%;
   }
 }
 
 #imageTopContainer {
   position: relative;
+  overflow: hidden;
+  width: 100%;
 }
 
+/*
+Elements
+
+Styleguide 2.3
+*/
 .image {
   height: auto;
   max-height: 480px;
-  width: 100%;
   pointer-events: none;
+  width: 100%;
 }
 
 .avatar {
-  border-radius: 50%;
   height: 100px;
   max-height: 100px;
   max-width: 100px;
   width: 100px;
-}
 
-#avatarTopColumn {
-  &.float-right {
-    float: right;
-    text-align: right;
+  &.circle {
+    border-radius: 50%;
   }
-}
-
-#avatarCentered {
-  border: 5px solid $white;
 }
 
 #avatarCenteredContainer {
   margin: -55px auto 0;
   position: relative;
-  width: 100px;
-}
+  width: 110px;
 
-#imageTopContainer {
-  overflow: hidden;
-  width: 100%;
-}
-
-#titleCentered {
-  bottom: 5px;
-  padding: 10px 20px;
-  position: absolute;
-  text-align: center;
-  width: 96%;
-
-  .title {
-    color: $white;
+  #avatarCentered {
+    @extend %raisedShadow;
+    border: 5px solid $white;
   }
-}
-
-:host.background-tile {
-  .title,
-  .subtitle {
-    color: $white;
-  }
-
-  #actions {
-    border-color: $white;
-  }
-
-  .action {
-    color: $white;
-  }
-}
-
-#content .titles {
-  margin-bottom: ms(.25);
 }
 
 /*
@@ -222,20 +191,88 @@ The cards title
 
 Markup:
 <div id="title">Card Title</div>
+<div id="subtitle">Card Title</div>
 
 Styleguide 1.2.1
 */
 .title,
 :host ::content .title {
-  color: $dark-blue;
   font-size: ms(2);
-  //padding: ms(2 * -.75); // a margin of 25% the font-size
+  margin-bottom: ms(-3);
+}
+
+.subtitle,
+:host ::content .subtitle {
+  font-size: ms(1);
+}
+
+#titleCentered {
+  background: rgba(0, 0, 0, .3);
+  bottom: 5px;
+  padding: 16px 20px;
+  position: absolute;
+  text-align: center;
+
+  .title {
+    margin: 0;
+  }
+}
+
+#content .titles {
+  margin-bottom: ms(.25);
+}
+
+#details {
+  font-size: ms(.33);
+  line-height: 1.5;
+}
+
+#titleCentered, #actions {
+  width: 94.5%;
+}
+
+/*
+Card Title with background filled
+
+Markup:
+<div class="background-tile" style="color: #00f">
+<div id="title">Card Title</div>
+<div id="subtitle">Card Title</div>
+</div>
+
+Styleguide 1.2.2
+*/
+.title,
+:host ::content .title {
+  color: $dark-blue;
 }
 
 .subtitle,
 :host ::content .subtitle {
   color: $dark-blue;
-  font-size: ms(1);
+}
+
+#titleCentered {
+  .title {
+    color: $white;
+  }
+}
+
+.background-tile,
+:host.background-tile {
+  .title,
+  :host ::content .title
+  .subtitle,
+  :host ::content .subtitle,
+  #details,
+  :host ::content .details,
+  #actions,
+  #actions > div,
+  :host ::content .actions,
+  button,
+  :host ::content button {
+    color: $white;
+  }
 }
 
 /*
@@ -264,9 +301,17 @@ Markup:
 Styleguide 1.3.1
 */
 
+//#actions > div,
+//:host ::content .actions {
+//
+//}
+
 #actions {
-  border-top: 2px solid rgba(0, 0, 0, .5);
-  width: 100%;
+  padding-top: 10px;
+
+  &.bordered {
+    border-top: 2px solid rgba(0, 0, 0, .5);
+  }
 
   &.centered button {
     text-align: center;

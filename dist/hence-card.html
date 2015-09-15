@@ -3,44 +3,64 @@
 
 <dom-module id="hence-card">
   <style>
+    :host {
+    }
+
     /* IE 10 support for HTML5 hidden attr */
     [hidden] {
       display: none !important;
     }
   </style>
   <template>
-    <!-- local DOM for your element -->
-    <div id="wrapper">
-      <div hidden$="[[!image]]" id="image">
-        <img src$="{{image}}" alt="">
+    <header hidden$="[[!displayAvatarTop]]">
+      <div id="avatarTopColumn">
+        <img id="avatarTop" class="avatar" src$="{{avatar}}" alt="">
       </div>
-      <div id="intro">
-        <div id="title">{{title}}</div>
-        <div id="optionsWrapper">
-          <div hidden$="[[!options]]">
-            <button id="toggleOptions" on-tap="eventToggleOptions"></button>
-            <div id="options" class="closed">
-              <template is="dom-repeat" items="{{options}}" as="opt">
-                <span class="link"><a on-tap="hook.opt">{{opt.label}}</a></span>
-              </template>
-            </div>
-          </div>
+      <div class="titles">
+        <div id="titleTop" class="title">{{title}}</div>
+        <div id="subtitleTop" class="subtitle">{{subtitle}}</div>
+        <content select=".header-titles"></content>
+      </div>
+    </header>
+    <section>
+      <div id="imageTopContainer" hidden$="[[!displayImageTop]]">
+        <img id="imageTop" class="image" src$="{{image}}" alt="">
+
+        <div hidden$="[[avatar.length]]" id="titleCentered">
+          <div class="title">{{title}}</div>
         </div>
+      </div>
+      <div id="avatarCenteredContainer" hidden$="[[!displayAvatarCentered]]">
+        <img id="avatarCentered" class="avatar" src$="{{avatar}}" alt="">
       </div>
       <div id="content">
-        <div hidden$="[[!description]]" id="description"></div>
-        <content></content>
-      </div>
-      <div hidden$="[[!callToAction]]" id="callToAction">
-        <div hidden$="[[!callToAction.input]]">
-          <label for="callToActionInput">{{callToAction.input.label}}</label>
-          <input id="callToActionInput" type="{{callToAction.input.type}}"
-                 value="{{callToAction.input.value::input}}"
-                 placeholder="{{callToAction.input.placeholder}}">
+        <div id="intro" hidden$="[[displayAvatarTop]]">
+          <div class="titles">
+            <div hidden$="[[!displayIntroTitle]]" id="titleContent" class="title">{{title}}</div>
+            <div id="subtitleContent" class="subtitle">{{subtitle}}</div>
+          </div>
         </div>
-        <button on-tap="hook.callToAction">{{callToAction.label}}</button>
+        <div id="details">
+          <div hidden$="[[!description]]" id="description"></div>
+          <content select=".details"></content>
+        </div>
       </div>
+    </section>
+    <div id="imageCenterContainer" hidden$="[[!displayImageCentered]]">
+      <img id="imageCenter" class="image" src$="{{image}}" alt="">
     </div>
+    <footer>
+      <div id="actions">
+        <div hidden$="[[!actions]]">
+          <template is="dom-repeat" items="{{actions}}" as="action">
+            <button on-tap="hook.action" class$="[[action.class]]">
+              <span class="label" hidden$="[[!action.label]]">{{action.label}}</span><i class$="[[action.iconClass]]"></i>
+            </button>
+          </template>
+        </div>
+        <content select=".actions"></content>
+      </div>
+    </footer>
   </template>
 <link rel="import" type="css" href="css/hence-card.min.css">
         <script src="js/hence-card.min.js"></script>
