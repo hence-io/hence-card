@@ -3,13 +3,13 @@
 
 <dom-module id="hence-card">
   <style>
-    :host {
-    }
+    /*.title, :host ::content .title {*/
+      /*color: var(--hence-card-title-color);*/
+    /*}*/
 
-    /* IE 10 support for HTML5 hidden attr */
-    [hidden] {
-      display: none !important;
-    }
+    /*:host.background-tile .title, :host.background-tile ::content .title {*/
+      /*color: var(--hence-card-cover-title-color);*/
+    /*}*/
   </style>
   <template>
     <header hidden$="[[!displayAvatarTop]]">

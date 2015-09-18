@@ -36,6 +36,11 @@ $black: #000;
 $white: #fff;
 $dark-blue: #000080;
 
+/* IE 10 support for HTML5 hidden attr */
+[hidden] {
+  display: none !important;
+}
+
 %fullWidthContainer {
   @include clearfix;
   @include container(96.5%);
@@ -222,9 +227,11 @@ Styleguide 1.2.1
   margin-bottom: ms(.25);
 }
 
-#details {
+#details,
+:host ::content .details {
   font-size: ms(.33);
   line-height: 1.5;
+  @apply(--hence-card-details);
 }
 
 #titleCentered, #actions {
@@ -244,7 +251,9 @@ Styleguide 1.2.2
 */
 .title,
 :host ::content .title {
-  color: $dark-blue;
+  color: $dark-blue; // default
+  color: var(--hence-card-title-color);
+  font-family: var(--hence-card-title-font);
 }
 
 .subtitle,
@@ -255,6 +264,7 @@ Styleguide 1.2.2
 #titleCentered {
   .title {
     color: $white;
+    color: var(--hence-card-cover-title-color);
   }
 }
 
@@ -271,7 +281,9 @@ Styleguide 1.2.2
   :host ::content .actions,
   button,
   :host ::content button {
-    color: $white;
+    color: $white; // default
+    color: var(--hence-card-cover-title-color);
+    font-family: var(--hence-card-title-font);
   }
 }
 
