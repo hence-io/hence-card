@@ -131,6 +131,9 @@ Styleguide 2.1
       {
         @include span(1 of 2 last);
       }
+      &:only-of-type {
+        @include span(1 of 1);
+      }
     }
 
     // desktop view
