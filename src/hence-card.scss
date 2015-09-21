@@ -43,14 +43,14 @@ $dark-blue: #000080;
 
 %fullWidthContainer {
   @include clearfix;
-  @include container(96.5%);
-  @include span(1 of 1);
+  @include container(90%);
+  //@include span(1 of 1);
   //font-size: ms(.25);
-  padding: ms(.25);
+  padding: 5%;
 }
 
 %raisedShadow {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
 }
 
 .float-left {
@@ -86,9 +86,9 @@ Markup:
 Styleguide 2.1
 */
 :host {
-  @include container(100%);
-  @extend %raisedShadow;
   $ms-ratio: $minor-second;
+  @extend %raisedShadow;
+  @include container(100%);
   background: no-repeat center center;
   background-size: cover;
   //border: 1px solid $black;
@@ -96,6 +96,8 @@ Styleguide 2.1
   box-sizing: border-box;
   display: block;
   margin: ms(.25);
+  margin-left: 2px !important; // essential for box shadow; DO NOT REMOVE ಠ_ಠ
+  margin-right: 2px !important; // essential for box shadow; DO NOT REMOVE ಠ_ಠ
   overflow: hidden;
   position: relative;
 
@@ -110,6 +112,33 @@ Styleguide 2.1
     #content,
     #actions {
       background: rgba(0, 0, 0, .4);
+    }
+  }
+
+  & {
+    // xs view
+    @include breakpoint(32em) {
+      @include span(1 of 1);
+    }
+
+    // tablet view
+    @include breakpoint(48em) {
+      &:nth-of-type(odd)
+      {
+        @include span(1 of 2);
+      }
+      &:nth-of-type(even)
+      {
+        @include span(1 of 2 last);
+      }
+    }
+
+    // desktop view
+    @include breakpoint(62em) {
+    }
+
+    // large desktop view
+    @include breakpoint(75em) {
     }
   }
 }
@@ -127,25 +156,48 @@ header,
 
 header {
   #avatarTopColumn {
-    float: left;
-    padding-right: 20px;
-
     &.float-right {
       @extend .float-right;
-      padding-right: 10px;
       text-align: right;
+    }
+
+    // xs view
+    @include breakpoint(32em) {
+      @include span(1 of 1);
+    }
+
+    // tablet view
+    @include breakpoint(48em) {
+      @include span(5 of 24);
+    }
+
+    // desktop view
+    @include breakpoint(62em) {
+      @include span(2 of 8);
     }
   }
 
   .titles {
-    float: left;
-    max-width: 80%;
+    // xs view
+    @include breakpoint(32em) {
+      @include span(1 of 1);
+    }
+
+    // tablet view
+    @include breakpoint(48em) {
+      @include span(18 of 24);
+    }
+
+    // desktop view
+    @include breakpoint(62em) {
+      @include span(5 of 8);
+    }
   }
 }
 
 #imageTopContainer {
-  position: relative;
   overflow: hidden;
+  position: relative;
   width: 100%;
 }
 
@@ -202,7 +254,7 @@ Styleguide 1.2.1
 */
 .title,
 :host ::content .title {
-  font-size: ms(2);
+  font-size: ms(1.75);
   margin-bottom: ms(-3);
 }
 
@@ -214,9 +266,10 @@ Styleguide 1.2.1
 #titleCentered {
   background: rgba(0, 0, 0, .3);
   bottom: 5px;
-  padding: 16px 20px;
+  padding: 5% 20px;
   position: absolute;
   text-align: center;
+  width: 100%;
 
   .title {
     margin: 0;
@@ -232,10 +285,6 @@ Styleguide 1.2.1
   font-size: ms(.33);
   line-height: 1.5;
   @apply(--hence-card-details);
-}
-
-#titleCentered, #actions {
-  width: 94.5%;
 }
 
 /*
@@ -319,7 +368,7 @@ Styleguide 1.3.1
 //}
 
 #actions {
-  padding-top: 10px;
+  padding: 3% 5%;
 
   &.bordered {
     border-top: 2px solid rgba(0, 0, 0, .5);
@@ -327,6 +376,10 @@ Styleguide 1.3.1
 
   &.centered button {
     text-align: center;
+
+    button {
+      padding: 0;
+    }
 
     // 2 exist
     &:nth-last-child(n+3),
@@ -359,7 +412,7 @@ Styleguide 1.3.1
 button,
 :host ::content button {
   background: none;
-  border: 0;
+  border: 1px solid transparent;
   cursor: pointer;
   display: inline-block;
   font-size: ms(1);
@@ -377,6 +430,7 @@ button,
   .label + i {
     padding-left: 10px;
   }
+
   .label[hidden] + i {
     padding-left: 0;
   }
@@ -391,5 +445,13 @@ button,
       float: right;
       padding: 0;
     }
+  }
+}
+
+.background-tile,
+:host.background-tile {
+  button:hover {
+    background: rgba(0, 0, 0, .4);
+    border-color: $white;
   }
 }

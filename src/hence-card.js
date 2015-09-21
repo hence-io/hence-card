@@ -89,7 +89,6 @@ let HenceCard = Hence.Ui({
 
     selectors.forEach(selector => {
       this.toggleClass('circle', avatarShape === 'circle', this.$[selector]);
-      console.log('toggle circle on', avatarShape, avatarShape === 'circle', this.$[selector]);
     });
   },
 
@@ -110,7 +109,7 @@ let HenceCard = Hence.Ui({
 
   _displayAvatar(img, position) {
     if (img) {
-      let [pos, alignment] = position.split(/-/);
+      let [pos, alignment] = String(position || '').split(/-/);
 
       this.displayAvatarTop = pos === 'top';
       this.displayAvatarCentered = pos === 'center';
@@ -123,7 +122,7 @@ let HenceCard = Hence.Ui({
 
   _displayImage(img, position) {
     if (img) {
-      let [pos, alignment] = position.split(/-/);
+      let [pos, alignment] = String(position || '').split(/-/);
 
       this.displayImageTop = pos === 'top';
       this.displayImageCentered = pos === 'center';

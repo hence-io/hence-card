@@ -32,8 +32,8 @@ docReady(()=> {
   // Spawn various states of the component to preview them side by side
   HenceCard.appendElementTo({
     padded: true,
-    title: 'Padded example w/ actions',
-    subtitle: 'Padded example w/ actions',
+    title: 'Padded example w/ an action',
+    subtitle: 'Padded example w/ an action',
     actions: [action()],
     image
   }, componentPreviewBox);
@@ -62,7 +62,7 @@ docReady(()=> {
   HenceCard.appendElementTo({
     title: 'Example w/ actions & avatar centered',
     subtitle: 'Example w/ actions',
-    actions: [action(), action(), action(), action()],
+    actions: [action(), action(), action()],
     image,
     avatar,
     avatarPosition: 'center',
@@ -74,7 +74,7 @@ docReady(()=> {
     displayOptions: true,
     image,
     imagePosition: 'background',
-    actions: [action(), action(), action(), action()],
+    actions: [action(), action(), action()],
     description
   }, componentPreviewBox);
 
@@ -85,13 +85,14 @@ docReady(()=> {
     imagePosition: 'background',
     avatar,
     avatarShape: _sample(['square', 'circle']),
-    actions: [action(), action(), action(), action()],
+    actions: [action(), action(), action()],
     description
   }, componentPreviewBox);
 
   HenceCard.appendElementTo({
-    title: 'Kitchen Sink',
+    title: 'Icon Filled Actions',
     displayOptions: true,
-    actions: [action(false), action(false), action(false), action(false), action(false), action(false)]
+    actions: [action(false), action(false), action(false), action(false), action(false), action(false)],
+    description
   }, componentPreviewBox);
 });
