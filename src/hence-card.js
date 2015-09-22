@@ -146,6 +146,8 @@ let HenceCard = Hence.Ui({
           action.class += ` float-${action.float} `;
         }
       });
+
+      this.$.actions.classList.add('padded');
     }
   },
 
