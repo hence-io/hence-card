@@ -53,7 +53,8 @@ let HenceCard = Hence.Ui({
       value: 'left'
     },
     displayActionsCentered: Boolean,
-    displayActionsSeparator: Boolean
+    displayActionsSeparator: Boolean,
+    source: String
   },
 
   /*********************************************************************************************************************
@@ -76,7 +77,8 @@ let HenceCard = Hence.Ui({
     '_displayAvatar(avatar, avatarPosition)',
     '_displayImage(image, imagePosition)',
     '_displayActions(actions, actionsPosition)',
-    '_prepareActions(actions.*)'
+    '_prepareActions(actions.*)',
+    '_displaySource(source)'
   ],
 
   _padded(padded) {
@@ -109,6 +111,16 @@ let HenceCard = Hence.Ui({
       $.description.appendChild(description);
     } else {
       $.description.innerHTML = description || '';
+    }
+  },
+
+  _displaySource(source) {
+    let {$} = this;
+
+    if (source instanceof HTMLElement) {
+      $.source.appendChild(source);
+    } else {
+      $.source.innerHTML = source || '';
     }
   },
 
