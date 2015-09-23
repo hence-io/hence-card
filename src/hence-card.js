@@ -48,8 +48,12 @@ let HenceCard = Hence.Ui({
     },
     // Actions
     actions: Array,
-    actionsCentered: Boolean,
-    actionsBordered: Boolean
+    actionsPosition: {
+      type: String,
+      value: 'left'
+    },
+    displayActionsCentered: Boolean,
+    displayActionsSeparator: Boolean
   },
 
   /*********************************************************************************************************************
@@ -66,11 +70,12 @@ let HenceCard = Hence.Ui({
   observers: [
     '_padded(padded)',
     '_avatarShape(avatarShape)',
-    '_actionsCentered(actionsCentered)',
-    '_actionsBordered(actionsBordered)',
+    '_displayActionsCentered(displayActionsCentered)',
+    '_displayActionsSeparator(displayActionsSeparator)',
     '_displayDescription(description)',
     '_displayAvatar(avatar, avatarPosition)',
     '_displayImage(image, imagePosition)',
+    '_displayActions(actions, actionsPosition)',
     '_prepareActions(actions.*)'
   ],
 
@@ -79,9 +84,9 @@ let HenceCard = Hence.Ui({
     this.toggleClass('padded', padded);
   },
 
-  _actionsCentered(actionsCentered) {
+  _displayActionsCentered(displayActionsCentered) {
     // If flagged as padded, as the style class for it
-    this.toggleClass('centered', actionsCentered, this.$.actions);
+    this.toggleClass('centered', displayActionsCentered, this.$.actions);
   },
 
   _avatarShape(avatarShape) {
@@ -92,9 +97,9 @@ let HenceCard = Hence.Ui({
     });
   },
 
-  _actionsBordered(actionsBordered) {
+  _displayActionsSeparator(displayActionsSeparator) {
     // If flagged as padded, as the style class for it
-    this.toggleClass('bordered', actionsBordered, this.$.actions);
+    this.toggleClass('bordered', displayActionsSeparator, this.$.actions);
   },
 
   _displayDescription(description) {
@@ -136,6 +141,16 @@ let HenceCard = Hence.Ui({
     }
   },
 
+
+  _displayActions(actions, position) {
+    if (actions && position) {
+      let [pos, separator] = String(position || '').split(/-/);
+
+      this.set('displayActionsCentered', pos === 'center');
+      this.set('displayActionsSeparator', separator === 'separator');
+    }
+  },
+
   _prepareActions(actions) {
     if (actions && actions.value) {
       actions.value.forEach(action=> {
@@ -160,7 +175,9 @@ let HenceCard = Hence.Ui({
    ********************************************************************************************************************/
 
     attached() {
-    //console.log('this.$', this.$);
+    let {$,$$} = this;
+
+    //console.log('dist content',Polymer.dom($$('content')).getDistributedNodes());
   },
 
   /*********************************************************************************************************************

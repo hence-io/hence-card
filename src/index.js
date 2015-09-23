@@ -52,7 +52,7 @@ docReady(()=> {
     title: 'Example w/ actions & avatar',
     subtitle: 'Example w/ actions',
     actions: [action(), action(), action()],
-    actionsCentered: true,
+    displayActionsCentered: true,
     image,
     avatar,
     description,
@@ -71,16 +71,15 @@ docReady(()=> {
 
   HenceCard.appendElementTo({
     title: 'Example w/ actions pre-opened, background image',
-    displayOptions: true,
     image,
     imagePosition: 'background',
     actions: [action(), action(), action()],
+    actionsPosition: 'center',
     description
   }, componentPreviewBox);
 
   HenceCard.appendElementTo({
     title: 'Example w/ actions pre-opened, background image',
-    displayOptions: true,
     image,
     imagePosition: 'background',
     avatar,
@@ -91,7 +90,6 @@ docReady(()=> {
 
   HenceCard.appendElementTo({
     title: 'Icon Filled Actions',
-    displayOptions: true,
     actions: [action(false), action(false), action(false), action(false), action(false), action(false)],
     description
   }, componentPreviewBox);

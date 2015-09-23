@@ -125,6 +125,7 @@ Styleguide 2.1
     @include breakpoint(48em) {
       &:nth-of-type(odd)
       {
+        @include clearfix;
         @include span(1 of 2);
       }
       &:nth-of-type(even)
@@ -284,7 +285,7 @@ Styleguide 1.2.1
 }
 
 #details,
-:host ::content .details {
+:host ::content .description {
   font-size: ms(.33);
   line-height: 1.5;
   @apply(--hence-card-details);
@@ -327,7 +328,7 @@ Styleguide 1.2.2
   .subtitle,
   :host ::content .subtitle,
   #details,
-  :host ::content .details,
+  :host ::content .description,
   #actions,
   #actions > div,
   :host ::content .actions,
