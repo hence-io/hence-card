@@ -50,9 +50,10 @@ let HenceCard = Hence.Ui({
     actions: Array,
     actionsPosition: {
       type: String,
-      value: 'left'
+      value: 'bottom'
     },
     displayActionsCentered: Boolean,
+    displayActionsBottom: Boolean,
     displayActionsSeparator: Boolean,
     source: String
   },
@@ -71,11 +72,11 @@ let HenceCard = Hence.Ui({
   observers: [
     '_padded(padded)',
     '_avatarShape(avatarShape)',
-    '_displayActionsCentered(displayActionsCentered)',
     '_displayActionsSeparator(displayActionsSeparator)',
     '_displayDescription(description)',
     '_displayAvatar(avatar, avatarPosition)',
     '_displayImage(image, imagePosition)',
+    '_displayImageBackground(displayImageBackground)',
     '_displayActions(actions, actionsPosition)',
     '_prepareActions(actions.*)',
     '_displaySource(source)'
@@ -84,11 +85,6 @@ let HenceCard = Hence.Ui({
   _padded(padded) {
     // If flagged as padded, as the style class for it
     this.toggleClass('padded', padded);
-  },
-
-  _displayActionsCentered(displayActionsCentered) {
-    // If flagged as padded, as the style class for it
-    this.toggleClass('centered', displayActionsCentered, this.$.actions);
   },
 
   _avatarShape(avatarShape) {
@@ -128,8 +124,8 @@ let HenceCard = Hence.Ui({
     if (img) {
       let [pos, alignment] = String(position || '').split(/-/);
 
-      this.displayAvatarTop = pos === 'top';
-      this.displayAvatarCentered = pos === 'center';
+      this.set('displayAvatarTop', pos === 'top');
+      this.set('displayAvatarCentered', pos === 'center');
 
       if (alignment === 'right') {
         this.$$('#avatarTopColumn').classList.add('float-right');
@@ -141,24 +137,24 @@ let HenceCard = Hence.Ui({
     if (img) {
       let [pos, alignment] = String(position || '').split(/-/);
 
-      this.displayImageTop = pos === 'top';
-      this.displayImageCentered = pos === 'center';
-      this.displayImageBackground = pos === 'background';
-
-      if (this.displayImageBackground) {
-        this.toggleClass('background-tile', true);
-        this.style.backgroundImage = `url('${img}')`;
-        this.updateStyles();
-      }
+      this.set('displayImageTop', pos === 'top');
+      this.set('displayImageCentered', pos === 'center');
+      this.set('displayImageBackground', pos === 'background');
     }
   },
 
+  _displayImageBackground(displayImageBackground){
+    this.toggleClass('background-tile', displayImageBackground);
+    this.style.backgroundImage = displayImageBackground ? `url('${this.image}')` : '';
+    this.updateStyles();
+  },
 
   _displayActions(actions, position) {
     if (actions && position) {
       let [pos, separator] = String(position || '').split(/-/);
 
       this.set('displayActionsCentered', pos === 'center');
+      this.set('displayActionsBottom', pos === 'bottom' || !this.displayActionsCentered);
       this.set('displayActionsSeparator', separator === 'separator');
     }
   },
@@ -175,6 +171,7 @@ let HenceCard = Hence.Ui({
       });
 
       this.$.actions.classList.add('padded');
+      this.$.actionsCentered.classList.add('padded');
     }
   },
 

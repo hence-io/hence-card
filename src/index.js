@@ -90,7 +90,9 @@ docReady(()=> {
 
   HenceCard.appendElementTo({
     title: 'Icon Filled Actions',
+    subtitle: 'Icon Filled Actions',
     actions: [action(false), action(false), action(false), action(false), action(false), action(false)],
+    actionsPosition: 'center',
     description
   }, componentPreviewBox);
 });

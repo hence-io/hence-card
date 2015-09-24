@@ -51,6 +51,15 @@ $dark-blue: #000080;
 
 %raisedShadow {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
+  transition: all 0.2s ease-out;
+}
+
+%raisedShadowMedium {
+  box-shadow: 0 8px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 15px 2.5px rgba(0, 0, 0, 0.12), 0 4px 5px -3.5px rgba(0, 0, 0, 0.3);
+}
+
+%raisedShadowThick {
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
 }
 
 .float-left {
@@ -100,6 +109,10 @@ Styleguide 2.1
   margin-right: 2px !important; // essential for box shadow; DO NOT REMOVE ಠ_ಠ
   overflow: hidden;
   position: relative;
+
+  &:hover {
+    @extend %raisedShadowMedium;
+  }
 
   &.padded {
     padding: ms(.25);
@@ -292,7 +305,7 @@ Styleguide 1.2.1
 :host ::content .description {
   font-size: ms(.33);
   line-height: 1.5;
-  padding-top: 16px;
+  //padding-bottom: 16px;
   @apply (--hence-card-description);
 }
 
@@ -307,13 +320,27 @@ Markup:
 
 Styleguide 1.2.2
 */
+#intro {
+  padding: 24px 0 16px;
+}
+
 .title,
 :host ::content .title {
   color: $dark-blue; // default
   color: var(--hence-card-title-color);
   font-family: var(--hence-card-title-font);
 }
-
+#intro {
+  .title,
+  :host ::content .title {
+    padding-bottom: 12px;
+    line-height: 1;
+  }
+  .subtitle,
+  :host ::content .subtitle {
+    line-height: 1;
+  }
+}
 .subtitle,
 :host ::content .subtitle {
   color: $dark-blue;
@@ -376,7 +403,8 @@ Styleguide 1.3.1
 //
 //}
 
-#actions {
+#actions,
+#actionsCentered {
   max-width: 100%;
   padding: 0;
 
@@ -420,6 +448,7 @@ Styleguide 1.3.1
 }
 
 #actions.padded,
+#actionsCentered.padded,
 :host ::content .actions {
   padding: 8px;
 }

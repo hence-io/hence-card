@@ -1,15 +1,6 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
 
 <dom-module id="hence-card">
-  <style>
-    /*.title, :host ::content .title {*/
-      /*color: var(--hence-card-title-color);*/
-    /*}*/
-
-    /*:host.background-tile .title, :host.background-tile ::content .title {*/
-      /*color: var(--hence-card-cover-title-color);*/
-    /*}*/
-  </style>
   <template>
     <header hidden$="[[!displayAvatarTop]]">
       <div id="avatarTopColumn">
@@ -39,6 +30,16 @@
             <div id="subtitleContent" class="subtitle">{{subtitle}}</div>
           </div>
         </div>
+        <div id="actionsCentered" hidden$="[[!displayActionsCentered]]">
+          <div hidden$="[[!actions]]">
+            <template is="dom-repeat" items="{{actions}}" as="action">
+              <button on-tap="hook.action" class$="[[action.class]]">
+                <span class="label" hidden$="[[!action.label]]">{{action.label}}</span><i class$="[[action.iconClass]]"></i>
+              </button>
+            </template>
+          </div>
+          <content select=".actions"></content>
+        </div>
         <div id="details">
           <span id="source"></span>
           <div hidden$="[[!description]]" id="description"></div>
@@ -50,7 +51,7 @@
       <img id="imageCenter" class="image" src$="{{image}}" alt="">
     </div>
     <footer>
-      <div id="actions">
+      <div id="actions" hidden$="[[!displayActionsBottom]]">
         <div hidden$="[[!actions]]">
           <template is="dom-repeat" items="{{actions}}" as="action">
             <button on-tap="hook.action" class$="[[action.class]]">
