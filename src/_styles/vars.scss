@@ -1,0 +1,56 @@
+@import "imports";
+/***************************
+** Vars
+****************************/
+/*
+Main colors
+
+$black - Primary color
+$dark-blue - Secondary color
+
+markup:
+<div style="background: {$modifiers};" class="styleguide-color">{$modifiers}</div>
+
+Styleguide 1.1
+*/
+$black: #000;
+$white: #fff;
+$dark-blue: #000080;
+
+/* IE 10 support for HTML5 hidden attr */
+[hidden] {
+  display: none !important;
+}
+
+%fullWidthContainer {
+  @include clearfix;
+  @include container(100%);
+  //@include span(1 of 1);
+  //font-size: ms(.25);
+  //padding: 16px;
+}
+
+%raisedShadow {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
+  transition: all 0.2s ease-out;
+}
+
+%raisedShadowMedium {
+  box-shadow: 0 8px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 15px 2.5px rgba(0, 0, 0, 0.12), 0 4px 5px -3.5px rgba(0, 0, 0, 0.3);
+}
+
+%raisedShadowThick {
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.clear {
+  clear: both;
+}

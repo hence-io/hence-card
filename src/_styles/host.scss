@@ -1,0 +1,91 @@
+@import "vars";
+
+/***************************
+** Component Base Styles
+****************************/
+/*
+Component Elements
+
+A web component
+
+Styleguide 1.0
+*/
+/*
+Component Variations
+
+Styleguide 2.0
+*/
+/*
+Default
+
+Markup:
+<div id="component-previews"></div>
+<hence-card></hence-card>
+
+Styleguide 2.1
+*/
+:host {
+  $ms-ratio: $minor-second;
+  @extend %raisedShadow;
+  @include container(100%);
+  background: no-repeat center center;
+  background-size: cover;
+  border-top: 1px solid #eee;
+  border-radius: 2px;
+  box-sizing: border-box;
+  display: block;
+  margin: ms(.25);
+  margin-left: 2px !important; // essential for box shadow; DO NOT REMOVE ಠ_ಠ
+  margin-right: 2px !important; // essential for box shadow; DO NOT REMOVE ಠ_ಠ
+  overflow: hidden;
+  position: relative;
+
+  &:hover {
+    @extend %raisedShadowMedium;
+  }
+
+  &.padded {
+    padding: ms(.25);
+  }
+
+  &.background-tile {
+    padding-top: 300px;
+
+    header,
+    #content,
+    #actions {
+      background: rgba(0, 0, 0, .4);
+    }
+  }
+
+  & {
+    // xs view
+    @include breakpoint(32em) {
+      @include span(1 of 1);
+    }
+
+    // tablet view
+    @include breakpoint(48em) {
+      &:nth-of-type(odd) {
+        @include clearfix;
+        @include span(1 of 2);
+
+        clear: both;
+      }
+      &:nth-of-type(even) {
+        @include span(1 of 2 last);
+      }
+      &:only-of-type {
+        @include span(1 of 1);
+      }
+    }
+
+    // desktop view
+    @include breakpoint(62em) {
+    }
+
+    // large desktop view
+    @include breakpoint(75em) {
+    }
+  }
+}

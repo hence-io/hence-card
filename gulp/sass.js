@@ -38,9 +38,13 @@ let sassCompilation = function (opts) {
     dist: false,
     replace: false,
     concat: false,
-    bypassSourcemap: false,
+    bypassSourcemap: true,
     browserSync: {stream: util.noop, notify: util.noop} // fall back to prevent issues with live injection
   });
+
+  if(opts.bypassSourcemap) {
+    styleOptions.sourcemap = false;
+  }
 
   // Compile SASS with sourcemaps + livereload.
   gulp.task(opts.taskName, requiredTasks, function () {

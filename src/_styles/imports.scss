@@ -1,0 +1,19 @@
+// styleguide:ignore:start
+/***************************
+** Essentials Libraries
+****************************/
+// Core
+@import 'compass';
+// Grid/Responsive
+@import 'susy';
+@import 'breakpoint';
+// Spacing
+@import 'modular-scale';
+
+/***************************
+** Optional Libraries
+****************************/
+// Font awesome, do not include unless needed
+$fa-font-path: '/bower_components/font-awesome/fonts/' !default;
+@import 'font-awesome';
+// styleguide:ignore:end

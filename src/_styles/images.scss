@@ -1,0 +1,37 @@
+@import "vars";
+
+
+/*
+Elements
+
+Styleguide 2.3
+*/
+.image {
+  height: auto;
+  max-height: 480px;
+  pointer-events: none;
+  width: 100%;
+}
+
+.avatar {
+  $avatarSize: 50px;
+  height: $avatarSize;
+  max-height: $avatarSize;
+  max-width: $avatarSize;
+  width: $avatarSize;
+
+  &.circle {
+    border-radius: 50%;
+  }
+}
+
+:host.background-tile,
+#avatarCenteredContainer {
+  .avatar {
+    $avatarSize: 100px;
+    height: $avatarSize;
+    max-height: $avatarSize;
+    max-width: $avatarSize;
+    width: $avatarSize;
+  }
+}

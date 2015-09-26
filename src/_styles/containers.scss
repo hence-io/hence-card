@@ -1,0 +1,71 @@
+@import "vars";
+
+/*
+Containers
+
+Styleguide 2.2
+*/
+header,
+#content,
+#actions {
+  @extend %fullWidthContainer;
+}
+
+header {
+  #avatarTopColumn {
+    @extend .float-left;
+    padding-right: 16px;
+
+    &.float-right {
+      @extend .float-right;
+      text-align: right;
+      padding-right: 0;
+    }
+  }
+
+  .titles {
+  }
+}
+
+#imageTopContainer {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+#imageTopContainer,
+#imageCenterContainer {
+  margin-bottom: -5px;
+}
+
+header {
+  padding: 0;
+}
+
+#avatarTopContainer {
+  padding: 16px;
+}
+
+#avatarCenteredContainer {
+  margin: -55px auto 0;
+  position: relative;
+  width: 110px;
+
+  #avatarCentered {
+    @extend %raisedShadow;
+    border: 5px solid $white;
+  }
+}
+
+#titleCentered {
+  background: rgba(0, 0, 0, .3);
+  bottom: 5px;
+  padding: 5%;
+  position: absolute;
+  text-align: center;
+  width: 90%;
+
+  .title {
+    margin: 0;
+  }
+}

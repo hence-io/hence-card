@@ -1,0 +1,154 @@
+@import "vars";
+
+/*
+Typography
+
+Styleguide 1.2.0
+*/
+
+/*
+Card Title
+
+The cards title
+
+Markup:
+<div id="title">Card Title</div>
+<div id="subtitle">Card Title</div>
+
+Styleguide 1.2.1
+*/
+.title,
+:host ::content .title {
+  font-size: ms(1.75);
+  line-height: 1;
+  //margin-bottom: ms(-3);
+}
+
+.subtitle,
+:host ::content .subtitle {
+  font-size: ms(.33);
+  line-height: 1;
+}
+
+#avatarTopContainer {
+  .title {
+    font-size: ms(.33);
+  }
+
+  .subtitle {
+    padding-top: 14px;
+  }
+}
+
+:host.background-tile #avatarTopContainer {
+  .title {
+    font-size: ms(1.75);
+  }
+
+  .subtitle {
+    font-size: ms(1);
+    padding-top: 32px;
+  }
+}
+
+#content {
+  padding: 0 16px;
+
+  #intro {
+    padding: 24px 0 16px;
+
+    .title,
+    :host ::content .title {
+      line-height: 1;
+    }
+
+    .subtitle,
+    :host ::content .subtitle {
+      padding-top: 12px;
+      line-height: 1;
+    }
+
+    &[hidden] + #actionsCentered[hidden] + #details {
+      padding-top: 16px;
+    }
+  }
+}
+
+#imageTopContainer[hidden] + #avatarCenteredContainer[hidden] + #content #intro {
+  //padding-top: 0;
+}
+
+#content .titles {
+  //margin-bottom: ms(.25);
+}
+
+#description,
+:host ::content .description {
+  font-size: ms(.33);
+  line-height: 1.5;
+  padding-bottom: 16px;
+  @apply (--hence-card-description);
+}
+
+#tagLine,
+:host ::content .tagLine {
+  font-size: ms(.15);
+  line-height: 1;
+  padding: 16px;
+  @apply (--hence-card-line-item);
+}
+
+/*
+Card Title with background filled
+
+Markup:
+<div class="background-tile" style="color: #00f">
+<div id="title">Card Title</div>
+<div id="subtitle">Card Title</div>
+</div>
+
+Styleguide 1.2.2
+*/
+.title,
+:host ::content .title {
+  color: lighten($black, 13%); // default
+  color: var(--hence-card-title-color);
+  font-family: var(--hence-card-title-font);
+}
+
+#tagLine,
+:host ::content .tagLine,
+.subtitle,
+:host ::content .subtitle {
+  color: lighten($black, 46%);
+}
+
+#titleCentered {
+  .title {
+    color: $white;
+    color: var(--hence-card-cover-title-color);
+  }
+}
+
+:host.background-tile {
+  .title,
+  & ::content .title,
+  #description,
+  & ::content .description,
+  #actions,
+  #actions > div,
+  & ::content .actions,
+  button,
+  & ::content button {
+    color: $white; // default
+    color: var(--hence-card-cover-title-color);
+    font-family: var(--hence-card-title-font);
+  }
+
+  #tagLine,
+  & ::content .tagLine,
+  .subtitle,
+  & ::content .subtitle {
+    color: darken($white, 30%);
+  }
+}

@@ -1,22 +1,31 @@
 <link rel="import" href="../../polymer/polymer.html">
 
+<paper-fab icon="add"></paper-fab>
+
 <dom-module id="hence-card">
   <template>
-    <header hidden$="[[!displayAvatarTop]]">
-      <div id="avatarTopColumn">
-        <img id="avatarTop" class="avatar" src$="{{avatar}}" alt="">
+    <header>
+      <div id="tagLineContainer">
+        <span id="tagLine" hidden$="[[!tagLine]]"></span>
+        <content select=".tagLine"></content>
       </div>
-      <div class="titles">
-        <div id="titleTop" class="title">{{title}}</div>
-        <div id="subtitleTop" class="subtitle">{{subtitle}}</div>
-        <content select=".header-titles"></content>
+      <div id="avatarTopContainer" hidden$="[[!displayAvatarTop]]">
+        <div id="avatarTopColumn">
+          <img id="avatarTop" class="avatar" src$="{{avatar}}" alt="">
+        </div>
+        <div class="titles">
+          <div id="titleTop" class="title">{{title}}</div>
+          <div hidden$="[[!subtitle]]" id="subtitleTop" class="subtitle">{{subtitle}}</div>
+          <content select=".header-titles"></content>
+        </div>
+        <div class="clear"></div>
       </div>
     </header>
     <section>
       <div id="imageTopContainer" hidden$="[[!displayImageTop]]">
         <img id="imageTop" class="image" src$="{{image}}" alt="">
 
-        <div hidden$="[[avatar.length]]" id="titleCentered">
+        <div hidden$="[[!displayTitleCentered]]" id="titleCentered">
           <div class="title">{{title}}</div>
         </div>
       </div>
@@ -24,10 +33,10 @@
         <img id="avatarCentered" class="avatar" src$="{{avatar}}" alt="">
       </div>
       <div id="content">
-        <div id="intro" hidden$="[[displayAvatarTop]]">
+        <div id="intro" hidden$="[[!displayIntroTitles]]">
           <div class="titles">
             <div hidden$="[[!displayIntroTitle]]" id="titleContent" class="title">{{title}}</div>
-            <div id="subtitleContent" class="subtitle">{{subtitle}}</div>
+            <div hidden$="[[!subtitle]]" id="subtitleContent" class="subtitle">{{subtitle}}</div>
           </div>
         </div>
         <div id="actionsCentered" hidden$="[[!displayActionsCentered]]">
@@ -38,10 +47,11 @@
               </button>
             </template>
           </div>
-          <content select=".actions"></content>
+          <div class="clear"></div>
         </div>
         <div id="details">
           <span id="source"></span>
+
           <div hidden$="[[!description]]" id="description"></div>
           <content select=".description"></content>
         </div>
@@ -60,6 +70,7 @@
           </template>
         </div>
         <content select=".actions"></content>
+        <div class="clear"></div>
       </div>
     </footer>
   </template>

@@ -42,9 +42,18 @@ let HenceCard = Hence.Ui({
     title: String,
     subtitle: String,
     description: String,
+    tagLine: String,
     displayIntroTitle: {
       type: Boolean,
       computed: '_displayIntroTitle(displayAvatarCentered, displayImageTop)'
+    },
+    displayTitleCentered: {
+      type: Boolean,
+      computed: '_displayTitleCentered(avatar, title)'
+    },
+    displayIntroTitles: {
+      type: Boolean,
+      computed: '_displayIntroTitles(displayAvatarTop, displayIntroTitle, subtitle)'
     },
     // Actions
     actions: Array,
@@ -64,7 +73,12 @@ let HenceCard = Hence.Ui({
     _displayIntroTitle(displayAvatarCentered, displayImageTop) {
     return displayAvatarCentered || !displayImageTop;
   },
-
+   _displayTitleCentered(avatar, title) {
+    return !avatar && title;
+  },
+  _displayIntroTitles(displayAvatarTop, displayIntroTitle, subtitle) {
+    return !displayAvatarTop && (displayIntroTitle || subtitle);
+  },
 
   /*********************************************************************************************************************
    * Observers
@@ -74,6 +88,7 @@ let HenceCard = Hence.Ui({
     '_avatarShape(avatarShape)',
     '_displayActionsSeparator(displayActionsSeparator)',
     '_displayDescription(description)',
+    '_displayLineItem(tagLine)',
     '_displayAvatar(avatar, avatarPosition)',
     '_displayImage(image, imagePosition)',
     '_displayImageBackground(displayImageBackground)',
@@ -105,8 +120,8 @@ let HenceCard = Hence.Ui({
 
     if (description instanceof HTMLElement) {
       $.description.appendChild(description);
-    } else {
-      $.description.innerHTML = description || '';
+    } else if(description) {
+      $.description.innerHTML = description;
     }
   },
 
@@ -115,8 +130,18 @@ let HenceCard = Hence.Ui({
 
     if (source instanceof HTMLElement) {
       $.source.appendChild(source);
-    } else {
-      $.source.innerHTML = source || '';
+    } else if(source) {
+      $.source.innerHTML = source;
+    }
+  },
+
+  _displayLineItem(tagLine) {
+    let {$} = this;
+
+    if (tagLine instanceof HTMLElement) {
+      $.tagLine.appendChild(tagLine);
+    } else if(tagLine) {
+      $.tagLine.innerHTML = tagLine;
     }
   },
 
