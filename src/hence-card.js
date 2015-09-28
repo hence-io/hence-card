@@ -5,6 +5,8 @@
 
 import Hence from 'hence-component-framework';
 import _defaults from 'lodash/object/defaultsDeep';
+import _clone from 'lodash/lang/cloneDeep';
+import _isString from 'lodash/lang/isString';
 
 /**
  * HenceCard Component
@@ -73,7 +75,7 @@ let HenceCard = Hence.Ui({
     _displayIntroTitle(displayAvatarCentered, displayImageTop) {
     return displayAvatarCentered || !displayImageTop;
   },
-   _displayTitleCentered(avatar, title) {
+  _displayTitleCentered(avatar, title) {
     return !avatar && title;
   },
   _displayIntroTitles(displayAvatarTop, displayIntroTitle, subtitle) {
@@ -85,6 +87,7 @@ let HenceCard = Hence.Ui({
    ********************************************************************************************************************/
   observers: [
     '_padded(padded)',
+    '_title(title)',
     '_avatarShape(avatarShape)',
     '_displayActionsSeparator(displayActionsSeparator)',
     '_displayDescription(description)',
@@ -115,33 +118,50 @@ let HenceCard = Hence.Ui({
     this.toggleClass('bordered', displayActionsSeparator, this.$.actions);
   },
 
-  _displayDescription(description) {
+  _displayDescription(text) {
     let {$} = this;
 
-    if (description instanceof HTMLElement) {
-      $.description.appendChild(description);
-    } else if(description) {
-      $.description.innerHTML = description;
+    if (!_isString(text)) { // if this text is html content, inject it
+      $.description.appendChild(text);
+    } else if (text) {
+      $.description.innerHTML = text;
     }
   },
 
-  _displaySource(source) {
-    let {$} = this;
+  _title(text) {
+    let {$,$$} = this;
 
-    if (source instanceof HTMLElement) {
-      $.source.appendChild(source);
-    } else if(source) {
-      $.source.innerHTML = source;
+    if (!_isString(text)) { // if this text is html content, inject it
+      let html = text.cloneNode(true);
+
+      console.log('html clone on', text, html);
+
+      $.titleTop.appendChild(html);
+      $.titleIntro.appendChild(html);
+      $.titleContent.appendChild(html);
+
+      // Once the title is appended, clear it out.
+      this.title = '';
     }
   },
 
-  _displayLineItem(tagLine) {
+  _displaySource(text) {
     let {$} = this;
 
-    if (tagLine instanceof HTMLElement) {
-      $.tagLine.appendChild(tagLine);
-    } else if(tagLine) {
-      $.tagLine.innerHTML = tagLine;
+    if (!_isString(text)) { // if this text is html content, inject it
+      $.source.appendChild(text);
+    } else if (text) {
+      $.source.innerHTML = text;
+    }
+  },
+
+  _displayLineItem(text) {
+    let {$} = this;
+
+    if (!_isString(text)) {
+      $.tagLine.appendChild(text);
+    } else if (text) {
+      $.tagLine.innerHTML = text;
     }
   },
 
