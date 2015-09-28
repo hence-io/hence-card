@@ -16,7 +16,7 @@
         <div class="titles">
           <div id="titleTop" class="title">{{title}}</div>
           <div hidden$="[[!subtitle]]" id="subtitleTop" class="subtitle">{{subtitle}}</div>
-          <content select=".header-titles"></content>
+          <content select=".header-title"></content>
         </div>
         <div class="clear"></div>
       </div>
@@ -28,6 +28,7 @@
         <div hidden$="[[!displayTitleCentered]]" id="titleCentered">
           <div class="title">{{title}}</div>
         </div>
+        <content select=".overlay-title"></content>
       </div>
       <div id="avatarCenteredContainer" hidden$="[[!displayAvatarCentered]]">
         <img id="avatarCentered" class="avatar" src$="{{avatar}}" alt="">
@@ -37,6 +38,7 @@
           <div class="titles">
             <div hidden$="[[!displayIntroTitle]]" id="titleContent" class="title">{{title}}</div>
             <div hidden$="[[!subtitle]]" id="subtitleContent" class="subtitle">{{subtitle}}</div>
+            <content select=".intro-titles"></content>
           </div>
         </div>
         <div id="actionsCentered" hidden$="[[!displayActionsCentered]]">

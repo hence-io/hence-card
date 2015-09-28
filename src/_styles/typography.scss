@@ -18,7 +18,8 @@ Markup:
 Styleguide 1.2.1
 */
 .title,
-:host ::content .title {
+:host ::content .title,
+:host ::content .overlay-title {
   font-size: ms(1.75);
   line-height: 1;
   //margin-bottom: ms(-3);
@@ -110,7 +111,8 @@ Markup:
 Styleguide 1.2.2
 */
 .title,
-:host ::content .title {
+:host ::content .title,
+:host ::content .overlay-title {
   color: lighten($black, 13%); // default
   color: var(--hence-card-title-color);
   font-family: var(--hence-card-title-font);
@@ -124,10 +126,15 @@ Styleguide 1.2.2
 }
 
 #titleCentered {
-  .title {
+  .title,
+  :host ::content .title {
     color: $white;
     color: var(--hence-card-cover-title-color);
   }
+}
+:host ::content .overlay-title {
+  color: $white;
+  color: var(--hence-card-cover-title-color);
 }
 
 :host.background-tile {
