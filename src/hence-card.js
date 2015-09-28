@@ -141,7 +141,11 @@ let HenceCard = Hence.Ui({
       $.titleContent.appendChild(html);
 
       // Once the title is appended, clear it out.
-      this.title = '';
+      this.title = ' ';
+    }  else if (text) {
+      $.titleTop.innerHTML = text;
+      $.titleIntro.innerHTML = text;
+      $.titleContent.innerHTML = text;
     }
   },
 
