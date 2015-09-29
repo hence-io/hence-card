@@ -32,15 +32,15 @@ $dark-blue: #000080;
 
 %raisedShadow {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12), 0 3px 1px -2px rgba(0, 0, 0, .2);
-  transition: all 0.2s ease-out;
+  transition: all .2s ease-out;
 }
 
 %raisedShadowMedium {
-  box-shadow: 0 8px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 15px 2.5px rgba(0, 0, 0, 0.12), 0 4px 5px -3.5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 12px 1px rgba(0, 0, 0, .14), 0 3px 15px 2.5px rgba(0, 0, 0, .12), 0 4px 5px -3.5px rgba(0, 0, 0, .3);
 }
 
 %raisedShadowThick {
-  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .4);
 }
 
 .float-left {

@@ -1,4 +1,5 @@
 <link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/hence-html/dist/hence-html.html">
 
 <paper-fab icon="add"></paper-fab>
 
@@ -14,9 +15,9 @@
           <img id="avatarTop" class="avatar" src$="{{avatar}}" alt="">
         </div>
         <div class="titles">
-          <div id="titleTop" class="title">{{title}}</div>
+          <hence-html id="titleTop" class="title" content="{{title}}"></hence-html>
           <div hidden$="[[!subtitle]]" id="subtitleTop" class="subtitle">{{subtitle}}</div>
-          <content select=".header-title"></content>
+          <content select=".header-titles"></content>
         </div>
         <div class="clear"></div>
       </div>
@@ -26,7 +27,7 @@
         <img id="imageTop" class="image" src$="{{image}}" alt="">
 
         <div hidden$="[[!displayTitleCentered]]" id="titleCentered">
-          <div id="titleIntro" class="title">{{title}}</div>
+          <hence-html id="titleIntro" class="title" content="{{title}}"></hence-html>
         </div>
         <content select=".overlay-title"></content>
       </div>
@@ -36,7 +37,7 @@
       <div id="content">
         <div id="intro" hidden$="[[!displayIntroTitles]]">
           <div class="titles">
-            <div hidden$="[[!displayIntroTitle]]" id="titleContent" class="title">{{title}}</div>
+            <hence-html hidden$="[[!displayIntroTitle]]" id="titleContent" class="title" content="{{title}}"></hence-html>
             <div hidden$="[[!subtitle]]" id="subtitleContent" class="subtitle">{{subtitle}}</div>
             <content select=".intro-titles"></content>
           </div>

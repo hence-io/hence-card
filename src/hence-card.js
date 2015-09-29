@@ -131,21 +131,10 @@ let HenceCard = Hence.Ui({
   _title(text) {
     let {$,$$} = this;
 
-    if (!_isString(text)) { // if this text is html content, inject it
-      let html = text.cloneNode(true);
-
-      console.log('html clone on', text, html);
-
-      $.titleTop.appendChild(html);
-      $.titleIntro.appendChild(html);
-      $.titleContent.appendChild(html);
-
-      // Once the title is appended, clear it out.
-      this.title = ' ';
-    }  else if (text) {
-      $.titleTop.innerHTML = text;
-      $.titleIntro.innerHTML = text;
-      $.titleContent.innerHTML = text;
+    if (text) {
+      //$.titleTop.innerHTML = text;
+      //$.titleIntro.innerHTML = text;
+      //$.titleContent.innerHTML = text;
     }
   },
 
