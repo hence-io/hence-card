@@ -1,28 +1,28 @@
 {
-  "name": "hence-card",
-  "version": "0.3.4",
-  "authors": [
-    "Sean Homer <sean.homer@therefore.ca>"
-  ],
-  "description": "An element providing a starting point for your own reusable Polymer elements.",
-  "keywords": [
-    "web-component",
-    "web-components",
-    "polymer"
-  ],
-  "main": "dist/hence-card.html",
-  "homepage": "https://github.com/Sean/hence-card/",
-  "ignore": [
-    "/.*",
-    "/comp/gulp/",
-    "/comp/test/"
-  ],
-  "dependencies": {
-    "font-awesome": "~4.3.0",
-    "polymer": "Polymer/polymer#^1.0.0",
-    "hence-html": "hence-io/hence-html"
-  },
-  "devDependencies": {
-    "web-component-tester": "*"
-  }
+	"name": "hence-card",
+	"version": "0.3.5",
+	"authors": [
+		"Sean Homer <sean.homer@therefore.ca>"
+	],
+	"description": "An element providing a starting point for your own reusable Polymer elements.",
+	"keywords": [
+		"web-component",
+		"web-components",
+		"polymer"
+	],
+	"main": "dist/hence-card.html",
+	"homepage": "https://github.com/Sean/hence-card/",
+	"ignore": [
+		"/.*",
+		"/comp/gulp/",
+		"/comp/test/"
+	],
+	"dependencies": {
+		"font-awesome": "~4.3.0",
+		"polymer": "Polymer/polymer#^1.0.0",
+		"hence-html": "hence-io/hence-html"
+	},
+	"devDependencies": {
+		"web-component-tester": "*"
+	}
 }
