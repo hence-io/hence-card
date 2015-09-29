@@ -1,7 +1,7 @@
 {
 	"name": "hence-card",
 	"author": "Sean Homer <sean.homer@therefore.ca>",
-	"version": "0.3.6",
+	"version": "0.3.7",
 	"description": "An element providing a starting point for your own reusable Polymer elements.",
 	"main": "src/hence-card.js",
 	"scripts": {
@@ -45,6 +45,7 @@
 		"gulp-compass": "^2.1.0",
 		"gulp-concat": "^2.5.2",
 		"gulp-eslint": "^0.13.2",
+		"gulp-git": "^1.2.4",
 		"gulp-if": "^1.2.5",
 		"gulp-imagemin": "^2.2.1",
 		"gulp-insert": "^0.4.0",
