@@ -3,7 +3,6 @@ import gulp from 'gulp';
 import fs from 'fs';
 import util from 'gulp-util';
 import {execSync} from 'child_process';
-import runSequence from 'run-sequence';
 
 let version = util.env.version;
 
@@ -26,21 +25,13 @@ gulp.task('version-bump', function (done) {
 });
 
 gulp.task('deploy', ['build'], function (done) {
-  //runSequence(
-  //  'version-bump',
-  //  'git-add',
-  //  'git-commit',
-  //  'git-push',
-  //  'git-push-tags',
-  //  done
-  //);
-
   updateConfig('bower');
   updateConfig('package');
 
   setTimeout(()=> {
     console.log(`version updated to ${version}. Committing and tagging now...`);
     execSync(`git status && git add --all && git status && git commit -m "- version bump" && git tag v${version} && git push && git push --tags`, {stdio: 'inherit'});
-  }, 1000);
 
+    done();
+  }, 1000);
 });
