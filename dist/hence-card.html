@@ -1,0 +1,82 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../hence-html/dist/hence-html.html">
+
+<paper-fab icon="add"></paper-fab>
+
+<dom-module id="hence-card">
+  <template>
+    <header>
+      <div id="tagLineContainer">
+        <hence-html id="tagLine" hidden$="[[!tagLine]]" content="{{tagLine}}"></hence-html>
+        <content select=".tagLine"></content>
+      </div>
+      <div id="avatarTopContainer" hidden$="[[!displayAvatarTop]]">
+        <div id="avatarTopColumn">
+          <img id="avatarTop" class="avatar" src$="{{avatar}}" alt="">
+        </div>
+        <div class="titles">
+          <hence-html id="titleTop" class="title" content="{{title}}"></hence-html>
+          <div hidden$="[[!subtitle]]" id="subtitleTop" class="subtitle">{{subtitle}}</div>
+          <content select=".header-titles"></content>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </header>
+    <section>
+      <div id="imageTopContainer" hidden$="[[!displayImageTop]]">
+        <img id="imageTop" class="image" src$="{{image}}" alt="">
+
+        <div hidden$="[[!displayTitleCentered]]" id="titleCentered">
+          <hence-html id="titleIntro" class="title" content="{{title}}"></hence-html>
+        </div>
+        <content select=".overlay-title"></content>
+      </div>
+      <div id="avatarCenteredContainer" hidden$="[[!displayAvatarCentered]]">
+        <img id="avatarCentered" class="avatar" src$="{{avatar}}" alt="">
+      </div>
+      <div id="content">
+        <div id="intro" hidden$="[[!displayIntroTitles]]">
+          <div class="titles">
+            <hence-html hidden$="[[!displayIntroTitle]]" id="titleContent" class="title" content="{{title}}"></hence-html>
+            <div hidden$="[[!subtitle]]" id="subtitleContent" class="subtitle">{{subtitle}}</div>
+            <content select=".intro-titles"></content>
+          </div>
+        </div>
+        <div id="actionsCentered" hidden$="[[!displayActionsCentered]]">
+          <div hidden$="[[!actions]]">
+            <template is="dom-repeat" items="{{actions}}" as="action">
+              <button on-tap="hook.action" class$="[[action.class]]">
+                <span class="label" hidden$="[[!action.label]]">{{action.label}}</span><i class$="[[action.iconClass]]"></i>
+              </button>
+            </template>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div id="details">
+          <hence-html id="source" content="{{source}}"></hence-html>
+
+          <hence-html hidden$="[[!description]]" id="description" content="{{description}}"></hence-html>
+          <content select=".description"></content>
+        </div>
+      </div>
+    </section>
+    <div id="imageCenterContainer" hidden$="[[!displayImageCentered]]">
+      <img id="imageCenter" class="image" src$="{{image}}" alt="">
+    </div>
+    <footer>
+      <div id="actions" hidden$="[[!displayActionsBottom]]">
+        <div hidden$="[[!actions]]">
+          <template is="dom-repeat" items="{{actions}}" as="action">
+            <button on-tap="hook.action" class$="[[action.class]]">
+              <span class="label" hidden$="[[!action.label]]">{{action.label}}</span><i class$="[[action.iconClass]]"></i>
+            </button>
+          </template>
+        </div>
+        <content select=".actions"></content>
+        <div class="clear"></div>
+      </div>
+    </footer>
+  </template>
+<link rel="import" type="css" href="css/hence-card.min.css">
+        <script src="js/hence-card.min.js"></script>
+        </dom-module>

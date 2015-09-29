@@ -19,7 +19,7 @@ let updateConfig = (file, done)=> {
   console.log(`updated ${file} to ${version}`);
 };
 
-gulp.task('version-bump',function(done){
+gulp.task('version-bump', function (done) {
   updateConfig('bower');
   updateConfig('package');
   done();
@@ -38,7 +38,9 @@ gulp.task('deploy', ['build'], function (done) {
   updateConfig('bower');
   updateConfig('package');
 
-  //console.log(`version updated to ${version}. Committing and tagging now...`);
-  execSync(`git add --all && git commit -m "- version bump" && git tag v${version} && git push && git push --tags`, {stdio: 'inherit'});
+  setTimeout(()=> {
+    console.log(`version updated to ${version}. Committing and tagging now...`);
+    execSync(`git status && git add --all && git status && git commit -m "- version bump" && git tag v${version} && git push && git push --tags`, {stdio: 'inherit'});
+  }, 1000);
 
 });
