@@ -1,6 +1,6 @@
 {
   "name": "hence-card",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "authors": [
     "Sean Homer <sean.homer@therefore.ca>"
   ],
@@ -20,7 +20,7 @@
   "dependencies": {
     "font-awesome": "~4.3.0",
     "polymer": "Polymer/polymer#^1.0.0",
-    "hence-html": "hence-io/hence-html#~0.1.2"
+    "hence-html": "hence-io/hence-html"
   },
   "devDependencies": {
     "web-component-tester": "*"
