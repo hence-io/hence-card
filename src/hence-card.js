@@ -93,8 +93,7 @@ let HenceCard = Hence.Ui({
     '_displayImage(image, imagePosition)',
     '_displayImageBackground(displayImageBackground)',
     '_displayActions(actions, actionsPosition)',
-    '_prepareActions(actions.*)',
-    '_displaySource(source)'
+    '_prepareActions(actions.*)'
   ],
 
   _padded(padded) {
