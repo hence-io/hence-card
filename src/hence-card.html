@@ -7,7 +7,7 @@
   <template>
     <header>
       <div id="tagLineContainer">
-        <span id="tagLine" hidden$="[[!tagLine]]"></span>
+        <hence-html id="tagLine" hidden$="[[!tagLine]]" content="{{tagLine}}"></hence-html>
         <content select=".tagLine"></content>
       </div>
       <div id="avatarTopContainer" hidden$="[[!displayAvatarTop]]">
@@ -53,9 +53,9 @@
           <div class="clear"></div>
         </div>
         <div id="details">
-          <span id="source"></span>
+          <hence-html id="source" content="{{source}}"></hence-html>
 
-          <div hidden$="[[!description]]" id="description"></div>
+          <hence-html hidden$="[[!description]]" id="description" content="{{description}}"></hence-html>
           <content select=".description"></content>
         </div>
       </div>

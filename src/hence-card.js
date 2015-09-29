@@ -87,11 +87,8 @@ let HenceCard = Hence.Ui({
    ********************************************************************************************************************/
   observers: [
     '_padded(padded)',
-    '_title(title)',
     '_avatarShape(avatarShape)',
     '_displayActionsSeparator(displayActionsSeparator)',
-    '_displayDescription(description)',
-    '_displayLineItem(tagLine)',
     '_displayAvatar(avatar, avatarPosition)',
     '_displayImage(image, imagePosition)',
     '_displayImageBackground(displayImageBackground)',
@@ -116,46 +113,6 @@ let HenceCard = Hence.Ui({
   _displayActionsSeparator(displayActionsSeparator) {
     // If flagged as padded, as the style class for it
     this.toggleClass('bordered', displayActionsSeparator, this.$.actions);
-  },
-
-  _displayDescription(text) {
-    let {$} = this;
-
-    if (!_isString(text)) { // if this text is html content, inject it
-      $.description.appendChild(text);
-    } else if (text) {
-      $.description.innerHTML = text;
-    }
-  },
-
-  _title(text) {
-    let {$,$$} = this;
-
-    if (text) {
-      //$.titleTop.innerHTML = text;
-      //$.titleIntro.innerHTML = text;
-      //$.titleContent.innerHTML = text;
-    }
-  },
-
-  _displaySource(text) {
-    let {$} = this;
-
-    if (!_isString(text)) { // if this text is html content, inject it
-      $.source.appendChild(text);
-    } else if (text) {
-      $.source.innerHTML = text;
-    }
-  },
-
-  _displayLineItem(text) {
-    let {$} = this;
-
-    if (!_isString(text)) {
-      $.tagLine.appendChild(text);
-    } else if (text) {
-      $.tagLine.innerHTML = text;
-    }
   },
 
   _displayAvatar(img, position) {
