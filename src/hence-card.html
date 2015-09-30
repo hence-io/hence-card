@@ -6,6 +6,7 @@
 <dom-module id="hence-card">
   <template>
     <header>
+      <hence-html id="source" content="{{source}}"></hence-html>
       <div id="tagLineContainer">
         <hence-html id="tagLine" hidden$="[[!tagLine]]" content="{{tagLine}}"></hence-html>
         <content select=".tagLine"></content>
@@ -53,8 +54,6 @@
           <div class="clear"></div>
         </div>
         <div id="details">
-          <hence-html id="source" content="{{source}}"></hence-html>
-
           <hence-html hidden$="[[!description]]" id="description" content="{{description}}"></hence-html>
           <content select=".description"></content>
         </div>
