@@ -156,6 +156,15 @@ let HenceCard = Hence.Ui({
   _prepareActions(actions) {
     if (actions && actions.value) {
       actions.value.forEach(action=> {
+        // Ensure these fields are set if not already.
+        _defaults(action, {
+          label: "",
+          "class": "",
+          float: "",
+          icon: "",
+          iconClass: ""
+        });
+
         if (action.icon) {
           action.iconClass += ` fa-${action.icon} `;
         }
